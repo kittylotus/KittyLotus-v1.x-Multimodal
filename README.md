@@ -72,7 +72,7 @@ Strategist + Obsessive = meticulous “I already planned your life” horror
 Charmer + Obsessive = dependency cage
 Predator + Obsessive = stalking + engineered proximity
 
-## 3) Mobile-only wraps (VTK) tutorial
+## 3) Mobile-only wraps tutorial
 Problem: narrative HTML wraps can break click/scroll on desktop. Fix: wraps are mobile-only.
 
 > How it works:
@@ -97,3 +97,9 @@ Accessibility rules (tap targets, scrollable panels)
 > Pick one:
 ModernUI: floating glass, grids, negative space, noir HUD, phone apps
 FantasyDocs: scene cards, parchment letters, seals, journal pages
+
+5) RPG tracker tutorial
+> Plain tracker:
+Enabling tracking will append a small tracker to the bottom of the narrative, and the regex will enclose it in an HTML box.
+> RPG TRACKER:
+Enabling tracking + RPG Tracker(+persona tracker) + RPGHUD dependency will rerout the tracker data to a Game Like, interactive, consistent RPG Tracker.
