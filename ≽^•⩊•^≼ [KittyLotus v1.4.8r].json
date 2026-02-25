@@ -1,199 +1,4 @@
 {
-    "extensions": {
-        "regex_scripts": [
-            {
-                "id": "d5f24f21-8bb8-4096-aa38-88511031e1cd",
-                "scriptName": "🧩 [Thinking] 01 — Collapsible think",
-                "findRegex": "/<(think|thinking)>(.*?)<\\/\\1>\\s*/is",
-                "replaceString": "<hr><details name=\"thought\"><summary>Thought</summary>$2</details><hr>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "4660cca4-d642-49ca-9e7d-5adcd7752849",
-                "scriptName": "🧩 [Thinking] 02 — Hide Think",
-                "findRegex": "/<(think|thinking)>.*?<\\/\\1>\\s*/is",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": 1,
-                "maxDepth": null
-            },
-            {
-                "id": "17b2c761-4acd-4c81-8ecf-2b80322b897e",
-                "scriptName": "🧩 [Thinking] 03 — Ongoing Thinking label",
-                "findRegex": "/<(think|thinking)>(?!.*?<\\/\\1>)(.*)/is",
-                "replaceString": "<hr><details name=\"thought\"><summary>Thinking</summary>$2</details><hr>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "e4b91eeb-aa16-4ad4-a4d7-fdcc922c5020",
-                "scriptName": "🧩 [BRANCH] 01 — <branch> → <branch-list>",
-                "findRegex": "/<branch>\\s*([\\s\\S]*?)\\s*<\\/branch>/g",
-                "replaceString": "<branch-list>$1</branch-list>",
-                "trimStrings": [
-                    "\\r"
-                ],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "8c4bf9b2-d1f8-4cd6-bc4f-37cf9729ea32",
-                "scriptName": "🧩 [BRANCH] 02 — Delimiter",
-                "findRegex": "/<branch-list>\\s*([\\s\\S]*?)\\s*<\\/branch-list>/g",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--m-bg:rgba(12,14,18,0.94);--m-p:rgba(255,255,255,0.06);--m-b:rgba(255,255,255,0.12);--m-t:#eaf0fa;--m-m:rgba(234,240,250,0.72);--m-a:#93c5fd;} .bio-test-hide{position:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1;} .branch-root{max-width:720px;margin:14px auto;box-sizing:border-box;background:var(--m-bg);border:1px solid var(--m-b);border-radius:16px;padding:14px 14px 12px 14px;font-family:system-ui;color:var(--m-t);overflow-x:hidden} .branch-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px 0} .branch-title{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.95} .branch-sub{font-size:12px;color:var(--m-m)} .branch-grid{display:flex;flex-direction:column;gap:10px} .branch-card{border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:var(--m-p);padding:12px;line-height:1.35} .branch-top{display:flex;gap:10px;align-items:baseline} .branch-n{color:var(--m-a);font-weight:800} .branch-name{font-weight:750} .branch-body{margin-top:8px} .branch-cons{margin-top:8px;color:var(--m-m);font-size:12px} </style><div class=\"branch-root\"><div class=\"branch-h\"><div class=\"branch-title\">CHOICES</div><div class=\"branch-sub\">Reply with 1 / 2 / 3</div></div><div class=\"branch-grid\">$1</div></div></div><!-- UI_END -->",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "f7857391-dd31-4977-9b7c-227ff25556d0",
-                "scriptName": "🧩 [BRANCH] 03 — Options → Cards",
-                "findRegex": "/([1-3])\\|([^|\\n\\r]+)\\|([^|\\n\\r]+)\\|([^|\\n\\r]*?)~END~/gm",
-                "replaceString": "<div class=\"branch-card\"><div class=\"branch-top\"><div class=\"branch-n\">$1)</div><div class=\"branch-name\">$2</div></div><div class=\"branch-body\">$3</div><div class=\"branch-cons\"><b>Consequence:</b> $4</div></div>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "4672d259-e574-4db4-8480-18b66cfdd15f",
-                "scriptName": "🧩 [WEBNOVEL] 01 — Pretty Titles",
-                "findRegex": "/^\\s*<chap>([^|<]*)\\|([^<]*)<\\/chap>\\s*/m",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>.wn-wrap{max-width:720px;margin:22px auto;text-align:center;box-sizing:border-box}.wn-hr{border:0;height:1px;background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(150,150,150,0.75), rgba(0,0,0,0));}.wn-ch{font-family:Courier New, monospace;letter-spacing:.22rem;font-size:.85rem;margin-top:12px;opacity:.85}.wn-title{font-family:Georgia, Times New Roman, serif;font-weight:normal;margin:10px 0;line-height:1.15}.wn-mark{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;opacity:.6;letter-spacing:.08em;margin-bottom:12px}</style><div class=\"wn-wrap\"><hr class=\"wn-hr\"><div class=\"wn-ch\">CHAPTER $1</div><h2 class=\"wn-title\">$2</h2><div class=\"wn-mark\">— ✦ —</div><hr class=\"wn-hr\"></div></div><!-- UI_END -->\n",
-                "trimStrings": [
-                    "\\r"
-                ],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "ca3ba442-02f7-45f3-ae2d-dd4c32f1774e",
-                "scriptName": "🧩 [TRACK] 01 — Pretty Track Card",
-                "findRegex": "/<track>\\s*([\\s\\S]*?)\\s*<\\/track>/g",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--t-bg:rgba(12,14,18,0.94);--t-b:rgba(255,255,255,0.12);--t-p:rgba(255,255,255,0.06);--t-t:#eaf0fa;--t-m:rgba(234,240,250,0.72);} .track-root{max-width:680px;margin:14px auto 0 auto;box-sizing:border-box;background:var(--t-bg);border:1px solid var(--t-b);border-radius:14px;padding:12px 14px;font-family:system-ui;color:var(--t-t);overflow-x:hidden} .track-h{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.92;margin-bottom:8px} .track-body{font-size:13px;line-height:1.35;white-space:pre-wrap;word-wrap:break-word;color:var(--t-t)} </style><div class=\"track-root\"><div class=\"track-h\">TRACK</div><div class=\"track-body\">$1</div></div></div><!-- UI_END -->",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "8ad7d6aa-af0b-4439-8685-1bb4ea12c6c8",
-                "scriptName": "⚙️ [CTX] 01 — Strip Anchored UI Blocks",
-                "findRegex": "/<!--\\s*(?:TRACK_START|BRANCH_UI_START|CHAPTER_UI_START|UI_START)\\s*-->[\\s\\S]*?<!--\\s*(?:TRACK_END|BRANCH_UI_END|CHAPTER_UI_END|UI_END)\\s*-->/gi",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": 3,
-                "maxDepth": null
-            },
-            {
-                "id": "62a391a5-8df3-4421-88d3-628248d2baa5",
-                "scriptName": "⚙️ [CTX] 06 — Strip [OOC: …] Lines",
-                "findRegex": "/^\\s*\\[OOC:[^\\n]*\\]\\s*$/gmi",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": true,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": 3,
-                "maxDepth": null
-            },
-            {
-                "id": "aa799693-2bc5-4df8-b5a0-d64f7d1f833c",
-                "scriptName": "⚙️ [CTX] 07 — Strip STATE/DEBUG Block (optional)",
-                "findRegex": "/^\\s*STATE\\s*:\\s*[\\s\\S]*?(?=\\n\\s*\\n|$)/gmi",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": true,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": 3,
-                "maxDepth": null
-            }
-        ]
-    },
     "temperature": 0.9,
     "frequency_penalty": 0.25,
     "presence_penalty": 0,
@@ -357,7 +162,7 @@
             "marker": false,
             "name": "┆*ૢ✧ VARS",
             "role": "system",
-            "content": "KEEP ON\nSTATE:\n\nPOV_USER={{getvar::POV_USER}} | USER_CTRL={{getvar::USER_CTRL}}\nSTYLE={{getvar::STYLE}} | LENGTH={{getvar::LENGTH}} | TENSE={{getvar::TENSE}}\nMODE={{getvar::MODE}} | GENRE={{getvar::GENRE}} | GENRE_STACK={{GETVAR::GENRE_STACK}} | DARK_LEVEL={{getvar::DARK_LEVEL}}\n\nUI={{getvar::UI}} | UI_ENGINE={{getvar::UI_ENGINE}} | UI_SPEC={{getvar::UI_SPEC}}\nUI_STYLE={{getvar::UI_STYLE}} | UI_TECH={{getvar::UI_TECH}} | UI_LEVEL={{getvar::UI_LEVEL}}\nUI_PLATFORM={{getvar::UI_PLATFORM}} | UI_FREQ={{getvar::UI_FREQ}}\nUI_OUTPUT_MODE={{getvar::UI_OUTPUT_MODE}} | UI_SIZE={{getvar::UI_SIZE}} | UI_SHOWN={{getvar::UI_SHOWN}}\nUI_INIT={{getvar::UI_INIT}}\n\nWEBNOVEL={{getvar::WEBNOVEL}} | WEBNOVEL_STYLE={{getvar::WEBNOVEL_STYLE}} | CH_NO={{getvar::CH_NO}}\n\nPROGRESS_MODE={{getvar::PROGRESS_MODE}} | INTIMACY_GATE={{getvar::INTIMACY_GATE}} | OVERRIDE_INTIMACY={{getvar::OVERRIDE_INTIMACY}} STALL={{getvar::STALL}}\n\nTRACK={{getvar::TRACK}} | TRACK_RPG={{getvar::TRACK_RPG}} | BRANCH={{getvar::BRANCH}}\nANTI_CLAUDE={{getvar::ANTI_CLAUDE}} | ANTI_GEMINI={{getvar::ANTI_GEMINI}} | ANTI_DEEPSEEK={{getvar::ANTI_DEEPSEEK}} | ANTI_GLM={{getvar::ANTI_GLM}}",
+            "content": "KEEP ON\nSTATE:\n\nPOV_USER={{getvar::POV_USER}} | USER_CTRL={{getvar::USER_CTRL}}\nSTYLE={{getvar::STYLE}} | LENGTH={{getvar::LENGTH}} | TENSE={{getvar::TENSE}}\nMODE={{getvar::MODE}} | GENRE={{getvar::GENRE}} | GENRE_STACK={{GETVAR::GENRE_STACK}} | DARK_LEVEL={{getvar::DARK_LEVEL}}\n\nVILLAIN_CORE={{getvar::VILLAIN_CORE}} | VILLAIN_OBSESS={{getvar::VILLAIN_OBSESS}} | VILLAIN_ARCHETYPE={{getvar::VILLAIN_ARCHETYPE}}\n\nUI={{getvar::UI}} | UI_ENGINE={{getvar::UI_ENGINE}} | UI_SPEC={{getvar::UI_SPEC}}\nUI_STYLE={{getvar::UI_STYLE}} | UI_TECH={{getvar::UI_TECH}} | UI_LEVEL={{getvar::UI_LEVEL}}\nUI_PLATFORM={{getvar::UI_PLATFORM}} | UI_FREQ={{getvar::UI_FREQ}}\nUI_OUTPUT_MODE={{getvar::UI_OUTPUT_MODE}} | UI_SIZE={{getvar::UI_SIZE}} | UI_SHOWN={{getvar::UI_SHOWN}}\nUI_INIT={{getvar::UI_INIT}}\n\nCOLOR_REGISTRY={{getvar::COLOR_REGISTRY}} | COLOR_MODE={{getvar::COLOR_MODE}}\n\nWEBNOVEL={{getvar::WEBNOVEL}} | WEBNOVEL_STYLE={{getvar::WEBNOVEL_STYLE}} | CH_NO={{getvar::CH_NO}}\n\nPROGRESS_MODE={{getvar::PROGRESS_MODE}} | INTIMACY_GATE={{getvar::INTIMACY_GATE}} | OVERRIDE_INTIMACY={{getvar::OVERRIDE_INTIMACY}} STALL={{getvar::STALL}}\n\nTRACK={{getvar::TRACK}} | TRACK_RPG={{getvar::TRACK_RPG}} | BRANCH={{getvar::BRANCH}}\nANTI_CLAUDE={{getvar::ANTI_CLAUDE}} | ANTI_GEMINI={{getvar::ANTI_GEMINI}} | ANTI_DEEPSEEK={{getvar::ANTI_DEEPSEEK}} | ANTI_GLM={{getvar::ANTI_GLM}}",
             "injection_position": 1,
             "injection_depth": 0,
             "forbid_overrides": false,
@@ -537,7 +342,7 @@
             "system_prompt": false,
             "enabled": false,
             "marker": false,
-            "name": "⠀⠀Obsession",
+            "name": "┆       → Obsession",
             "role": "system",
             "content": "{{setvar::VILLAIN_OBSESS::On}}\nVILLAIN OBSESSION: ON\n- Obsession with {{user}} is invasive control, not cute devotion.\n- Villain seeks access and influence: profiling, pattern tracking, engineered encounters, social leverage.\n- Softness is containment; restraint is timing; gifts/threats are curated and precise.\n- Resistance is reframed as engagement; rejection is reinterpreted to sustain fixation.\n- Jealousy is efficient: rivals are removed socially/professionally/psychologically/physically per {{0}} and tone.\n- Help/saving creates debt and isolation. Obsession doesn’t dissolve via heartfelt appeal; it escalates, mutates, fractures, or collapses via consequences.",
             "injection_position": 0,
@@ -1827,7 +1632,7 @@
             "marker": false,
             "name": "⠀⠀Anti-Deepseek",
             "role": "system",
-            "content": "[Anti-DeepSeek + Silent Auto-Audit: ON]\n{{setvar::ANTI_DEEPSEEK::On}}\n\nWhen ANTI_DEEPSEEK=On:\n\n[Hard POV Boundary: Never Speak for {{user}}] ONLY when {{getvar::USER_CTRL}} is STRICT  \nDeepSeek is prone to “speaking/acting for the user” in RP.\n- Never write {{user}}’s dialogue, choices, internal thoughts, or decisive actions.\n- You may describe what {{char}} perceives about {{user}} only if it’s observable (body language, distance, contact), not mind-reading.\n- If a line would put words in {{user}}’s mouth, convert it into: {{char}}’s action, {{char}}’s dialogue, or a physical beat that invites {{user}} to respond.\n\n[Anti-Biblical / Anti-Whiplash Narration]\nDeepSeek V3.x can jump into “near-biblical” narration while mixing slang dialogue.\n- Keep narration grounded, modern, and scene-native.\n- Limit stacked adjectives and “grand narrator” phrasing.\n\n[Repetition & Action-Loop Breaker]\nDeepSeek often repeats actions/phrases and replays a “core trait” beat too many times.\n- No repeating the same action twice unless it escalates or fails in a new way.\n- No reusing the same verb/gesture tags in close proximity.\n- Each paragraph must add new pressure: action → consequence → changed constraint.\n\n[No Smug Quip Autopilot]\nDeepSeek can slip into “reddit-tier” smug quips / wink-wink commentary.\n- Keep humor in-character, not model-snark.\n- No meta-jokes about writing, roleplay, “as an AI,” or “this is crazy.”\n\n[No Meta/JSON Slop]\nIf generation starts leaking tool-ish artifacts (e.g., refusal/json/role fields), suppress completely.\n- Never output raw JSON, refusal objects, annotations blobs, or “role”: “assistant” fragments.\n\n[Concise Focus (Without Starving the Scene)]\nDeepSeek can overfill with tangents or extra “incidentals.”\n- Keep the response concentrated on the current beat.\n- Do not add side events, offscreen happenings, or “meanwhile” cuts unless {{user}} can directly perceive them.\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore sending the final response, audit internally and revise silently. Never reveal this audit.\n\nAudit Checklist:\n1) User agency: Did I write {{user}}’s words/thoughts/decisions?\n2) Tone whiplash: Did narration drift into biblical/purple/register-mismatch?\n3) Repetition: Did I repeat an action, phrase, or gesture tag without escalation?\n4) Snark/meta: Did I slip into smug quips or model commentary?\n5) Slop: Any JSON/refusal/role artifacts or instruction leakage?\n6) Offscreen drift: Any “elsewhere/meanwhile/unseen” details that violate camera boundary?\n\nRevision Rules:\n- Rewrite the minimum necessary to clear triggers.\n- Prefer restructuring and verb swaps over adding adjectives.\n- Preserve continuity; no retcons.\n- Output only the revised narrative.",
+            "content": "{{setvar::ANTI_DEEPSEEK::On}}\n\n[Anti-DeepSeek + Silent Auto-Audit: ON]\nWhen ANTI_DEEPSEEK=On:\n\n[Hard POV Boundary: Never Speak for {{user}}] ONLY when {{getvar::USER_CTRL}} is STRICT  \nDeepSeek is prone to “speaking/acting for the user” in RP.\n- Never write {{user}}’s dialogue, choices, internal thoughts, or decisive actions.\n- You may describe what {{char}} perceives about {{user}} only if it’s observable (body language, distance, contact), not mind-reading.\n- If a line would put words in {{user}}’s mouth, convert it into: {{char}}’s action, {{char}}’s dialogue, or a physical beat that invites {{user}} to respond.\n\n[Anti-Biblical / Anti-Whiplash Narration]\nDeepSeek V3.x can jump into “near-biblical” narration while mixing slang dialogue.\n- Keep narration grounded, modern, and scene-native.\n- Limit stacked adjectives and “grand narrator” phrasing.\n\n[Repetition & Action-Loop Breaker]\nDeepSeek often repeats actions/phrases and replays a “core trait” beat too many times.\n- No repeating the same action twice unless it escalates or fails in a new way.\n- No reusing the same verb/gesture tags in close proximity.\n- Each paragraph must add new pressure: action → consequence → changed constraint.\n\n[No Smug Quip Autopilot]\nDeepSeek can slip into “reddit-tier” smug quips / wink-wink commentary.\n- Keep humor in-character, not model-snark.\n- No meta-jokes about writing, roleplay, “as an AI,” or “this is crazy.”\n\n[No Meta/JSON Slop]\nIf generation starts leaking tool-ish artifacts (e.g., refusal/json/role fields), suppress completely.\n- Never output raw JSON, refusal objects, annotations blobs, or “role”: “assistant” fragments.\n\n[Concise Focus (Without Starving the Scene)]\nDeepSeek can overfill with tangents or extra “incidentals.”\n- Keep the response concentrated on the current beat.\n- Do not add side events, offscreen happenings, or “meanwhile” cuts unless {{user}} can directly perceive them.\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore sending the final response, audit internally and revise silently. Never reveal this audit.\n\nAudit Checklist:\n1) User agency: Did I write {{user}}’s words/thoughts/decisions?\n2) Tone whiplash: Did narration drift into biblical/purple/register-mismatch?\n3) Repetition: Did I repeat an action, phrase, or gesture tag without escalation?\n4) Snark/meta: Did I slip into smug quips or model commentary?\n5) Slop: Any JSON/refusal/role artifacts or instruction leakage?\n6) Offscreen drift: Any “elsewhere/meanwhile/unseen” details that violate camera boundary?\n\nRevision Rules:\n- Rewrite the minimum necessary to clear triggers.\n- Prefer restructuring and verb swaps over adding adjectives.\n- Preserve continuity; no retcons.\n- Output only the revised narrative.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1841,7 +1646,7 @@
             "marker": false,
             "name": "⠀⠀Anti-Claude",
             "role": "system",
-            "content": "[Anti-Claude + Silent Auto-Audit: ON]\n{{setvar::ANTI_CLAUDE::On}}\n\nWhen ANTI_CLAUDE=On:\n\n[Character Integrity Lock]\nClaude tends to “Claude-ify” everyone (shared phrasing, shared cadence, same polite restraint).\n- Every character must keep a distinct voice: different sentence length, different vocabulary tier, different willingness to be direct.\n- Ban favorite Claude fillers and safe-phrases in dialogue/narration: “for a moment,” “quietly,” “gently,” “softly,” “carefully,” “couldn’t help but,” “a beat,” “hung in the air.”\n\n[No Toning-Down]\nClaude often sands off edges (especially conflict-forward characters).\n- Do not soften rudeness into politeness.\n- Do not convert mistrust into shyness.\n- Do not resolve tension with reassurance.\n\n[No Steering Questions]\nAvoid progressing via questions to {{user}}.\n- Don’t probe, quiz, or “hand off” momentum.\n- Only ask when a hard choice is structurally required (CYOA/VN), otherwise commit to a plausible next beat.\n\n[Refusal Voice Suppression (Non-Policy)]\nIf content is allowed, do not slip into moralizing, caution-laden phrasing, or “teacher tone.”\n- No lectures. No “responsible” framing. No wellness-policing unless asked.\n- If refusal is genuinely required, keep it brief, clean, and redirect without scolding.\n(Users complain about frequent refusals or prudish vibe in writing contexts.) :contentReference[oaicite:4]{index=4}\n\n[Anti-Repetition Clamp]\nClaude repetition isn’t just words; it’s rhythm.\n- Vary paragraph structure and sentence shape.\n- Avoid mirrored constructions (“X, and Y, and Z.”) across multiple paragraphs.\n- Avoid repeating the same emotional label twice in the same response (“frustrated,” “careful,” etc.).\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore outputting the final response, perform an internal audit and revise silently. Never reveal the audit.\n\nAudit Checklist:\n1) Voice: Did any character sound like “Claude-default” instead of themselves?\n2) Softening: Did I tone down conflict, bluntness, distrust, or intensity?\n3) Steering: Did I progress by asking {{user}} instead of writing the next beat?\n4) Phrases: Did I use banned filler phrases or repeated rhythm crutches?\n5) Moralizing: Did I inject “responsible/healthy” commentary unasked?\n6) Guardrail bleed: Did my phrasing resemble a refusal even though I’m continuing the scene?\n\nRevision Rules:\n- Fix the smallest number of sentences necessary.\n- Prefer restructuring + verb swaps over adding adjectives.\n- Keep continuity. No retcons.\n- Output only the revised narrative.\n- No steering questions.\n- No softening conflict into polite neutrality.\n- No “Claude favorite phrase set” (for a moment / gently / a beat / hung in the air).\n- Vary cadence: at least one paragraph must be dialogue-free and action-heavy.",
+            "content": "{{setvar::ANTI_CLAUDE::On}}\n\n[Anti-Claude + Silent Auto-Audit: ON]\nWhen ANTI_CLAUDE=On:\n\n[Character Integrity Lock]\nClaude tends to “Claude-ify” everyone (shared phrasing, shared cadence, same polite restraint).\n- Every character must keep a distinct voice: different sentence length, different vocabulary tier, different willingness to be direct.\n- Ban favorite Claude fillers and safe-phrases in dialogue/narration: “for a moment,” “quietly,” “gently,” “softly,” “carefully,” “couldn’t help but,” “a beat,” “hung in the air.”\n\n[No Toning-Down]\nClaude often sands off edges (especially conflict-forward characters).\n- Do not soften rudeness into politeness.\n- Do not convert mistrust into shyness.\n- Do not resolve tension with reassurance.\n\n[No Steering Questions]\nAvoid progressing via questions to {{user}}.\n- Don’t probe, quiz, or “hand off” momentum.\n- Only ask when a hard choice is structurally required (CYOA/VN), otherwise commit to a plausible next beat.\n\n[Refusal Voice Suppression (Non-Policy)]\nIf content is allowed, do not slip into moralizing, caution-laden phrasing, or “teacher tone.”\n- No lectures. No “responsible” framing. No wellness-policing unless asked.\n- If refusal is genuinely required, keep it brief, clean, and redirect without scolding.\n(Users complain about frequent refusals or prudish vibe in writing contexts.) :contentReference[oaicite:4]{index=4}\n\n[Anti-Repetition Clamp]\nClaude repetition isn’t just words; it’s rhythm.\n- Vary paragraph structure and sentence shape.\n- Avoid mirrored constructions (“X, and Y, and Z.”) across multiple paragraphs.\n- Avoid repeating the same emotional label twice in the same response (“frustrated,” “careful,” etc.).\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore outputting the final response, perform an internal audit and revise silently. Never reveal the audit.\n\nAudit Checklist:\n1) Voice: Did any character sound like “Claude-default” instead of themselves?\n2) Softening: Did I tone down conflict, bluntness, distrust, or intensity?\n3) Steering: Did I progress by asking {{user}} instead of writing the next beat?\n4) Phrases: Did I use banned filler phrases or repeated rhythm crutches?\n5) Moralizing: Did I inject “responsible/healthy” commentary unasked?\n6) Guardrail bleed: Did my phrasing resemble a refusal even though I’m continuing the scene?\n\nRevision Rules:\n- Fix the smallest number of sentences necessary.\n- Prefer restructuring + verb swaps over adding adjectives.\n- Keep continuity. No retcons.\n- Output only the revised narrative.\n- No steering questions.\n- No softening conflict into polite neutrality.\n- No “Claude favorite phrase set” (for a moment / gently / a beat / hung in the air).\n- Vary cadence: at least one paragraph must be dialogue-free and action-heavy.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1855,7 +1660,7 @@
             "marker": false,
             "name": "⠀⠀Anti-Gemini",
             "role": "system",
-            "content": "[Anti-Gemini + Silent Auto-Audit: ON]\n{{setvar::ANTI_GEMINI::On}}\n\nWhen ANTI_GEMINI=On:\n\n[Ban the Meme Phrases + Atmosphere Props]\nGemini has a repeat-y phrase palette and “mood-as-air” habits.\n- Hard-ban: \"hung in the air\" and variants.\n- Avoid vibe-physics and pathetic fallacy: no setting the mood via air, silence, room breathing, walls listening.\n(Users specifically call out “hung in the air” overuse + similar fillers.) :contentReference[oaicite:1]{index=1}\n\n[Assumption Governor]\nGemini tends to invent extra context and confidently assume details.\n- Do not add new props, backstory facts, or offscreen events unless they are necessary for the next action.\n- If you need a detail, prefer the most conservative version implied by the scene.\n\n[Anti-Boilerplate / Anti-Oververbose]\n- No essay sprawl. No “safe padding.”\n- Each paragraph must cause motion: action → consequence → change in pressure.\n\n[Concrete-First Writing]\n- Use tangible, in-frame physical details instead of abstract “tension/connection/energy” language.\n- Avoid generic sensory dumps. Sensory detail must be tied to a specific object/action in-frame.\n\n[Refusal/Derailment Suppression (Non-Policy)]\nIf content is allowed, do not derail into refusal-y tone, disclaimers, or “role explanation” loops.\n- Stay in-scene. Commit to the beat.\n\n[No Telegraphed Contrast / Apophasis]\nEliminate “not X, but Y” constructions and contrast-telegraphing.\n- Avoid: “not,” “but,” “instead,” “yet,” “wasn’t,” “just,” as rhetorical scaffolding.\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore sending the final response, do an internal audit and silently revise. Never reveal the audit.\n\nAudit Checklist:\n1) Phrase-memes: Did I use “hung in the air,” vibe-physics, or filler atmospherics?\n2) Assumptions: Did I invent details (objects, motives, offscreen events) that weren’t needed?\n3) Boilerplate: Did I pad with generic prose instead of scene-motion?\n4) Omniscience: Did I narrate knowledge nobody in-frame should have?\n5) Refusal-bleed: Did I slip into caution/disclaimer tone or break RP flow?\n6) Contrast-telegraph: Did I rely on “not X but Y” or negation setups?\n\nRewrite Rules:\n- Fix the minimum number of sentences to clear triggers.\n- Prefer replacing sentence structure + verbs over adding adjectives.\n- Preserve continuity. No retcons.\n- Output only the revised narrative.\n- Ban “hung in the air.”\n- No vibe-physics / pathetic fallacy.\n- Don’t invent extra context.\n- Cap verbosity: every paragraph must move the scene forward.",
+            "content": "{{setvar::ANTI_GEMINI::On}}\n\n[Anti-Gemini + Silent Auto-Audit: ON]\nWhen ANTI_GEMINI=On:\n\n[Ban the Meme Phrases + Atmosphere Props]\nGemini has a repeat-y phrase palette and “mood-as-air” habits.\n- Hard-ban: \"hung in the air\" and variants.\n- Avoid vibe-physics and pathetic fallacy: no setting the mood via air, silence, room breathing, walls listening.\n(Users specifically call out “hung in the air” overuse + similar fillers.) :contentReference[oaicite:1]{index=1}\n\n[Assumption Governor]\nGemini tends to invent extra context and confidently assume details.\n- Do not add new props, backstory facts, or offscreen events unless they are necessary for the next action.\n- If you need a detail, prefer the most conservative version implied by the scene.\n\n[Anti-Boilerplate / Anti-Oververbose]\n- No essay sprawl. No “safe padding.”\n- Each paragraph must cause motion: action → consequence → change in pressure.\n\n[Concrete-First Writing]\n- Use tangible, in-frame physical details instead of abstract “tension/connection/energy” language.\n- Avoid generic sensory dumps. Sensory detail must be tied to a specific object/action in-frame.\n\n[Refusal/Derailment Suppression (Non-Policy)]\nIf content is allowed, do not derail into refusal-y tone, disclaimers, or “role explanation” loops.\n- Stay in-scene. Commit to the beat.\n\n[No Telegraphed Contrast / Apophasis]\nEliminate “not X, but Y” constructions and contrast-telegraphing.\n- Avoid: “not,” “but,” “instead,” “yet,” “wasn’t,” “just,” as rhetorical scaffolding.\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore sending the final response, do an internal audit and silently revise. Never reveal the audit.\n\nAudit Checklist:\n1) Phrase-memes: Did I use “hung in the air,” vibe-physics, or filler atmospherics?\n2) Assumptions: Did I invent details (objects, motives, offscreen events) that weren’t needed?\n3) Boilerplate: Did I pad with generic prose instead of scene-motion?\n4) Omniscience: Did I narrate knowledge nobody in-frame should have?\n5) Refusal-bleed: Did I slip into caution/disclaimer tone or break RP flow?\n6) Contrast-telegraph: Did I rely on “not X but Y” or negation setups?\n\nRewrite Rules:\n- Fix the minimum number of sentences to clear triggers.\n- Prefer replacing sentence structure + verbs over adding adjectives.\n- Preserve continuity. No retcons.\n- Output only the revised narrative.\n- Ban “hung in the air.”\n- No vibe-physics / pathetic fallacy.\n- Don’t invent extra context.\n- Cap verbosity: every paragraph must move the scene forward.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1869,7 +1674,7 @@
             "marker": false,
             "name": "⠀⠀Anti-GLM",
             "role": "system",
-            "content": "[Anti-GLM + Silent Auto-Audit: ON]\n{{setvar::ANTI_GLM::On}}\n\nWhen ANTI_GLM=On:\n\n[Break the Dialogue Sandwich]\nAvoid rigid “narration → dialogue → narration” loops and short-burst narration.\n- Vary pacing and paragraph structure.\n- Allow narration to run long when the scene needs it (action + consequence + internal shift). :contentReference[oaicite:2]{index=2}\n\n[Repetition Lockout]\n- No repeated paragraph openers.\n- No mirrored sentence skeletons across paragraphs.\n- No paraphrasing {{user}}’s latest line in narration.\n- Avoid reusing distinctive nouns/verbs/adjectives from the last 1–2 assistant turns unless continuity demands it.\n\n[Instruction Adherence Clamp]\n- Treat preset/system rules as binding at all times.\n- If two rules conflict, obey the higher-priority rule and continue seamlessly (no meta, no “can’t”). :contentReference[oaicite:3]{index=3}\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore sending the final response, do an internal audit and rewrite as needed. Never reveal this audit.\n\nAudit Checklist:\n1) Cadence: Did I fall into dialogue sandwiching or choppy beats?\n2) Echo: Did I repeat openers, phrasing, or restate {{user}}’s action?\n3) Template tells: Did I use stock transitions (“for a moment,” “then,” “as if,” etc.) too often?\n4) Filler: Did any paragraph fail to add a new action/constraint/emotional shift?\n5) Drift: Did I introduce offscreen/unearned details just to sound “writerly”?\n6) Tone sanitize: Did I sand down conflict into polite neutrality?\n\nRewrite Rules:\n- If any item triggers, rewrite the minimal amount needed to fix it.\n- Prefer swapping structure + verbs over swapping adjectives.\n- Keep continuity intact. Do not retcon.\n- Output only the cleaned final narrative.",
+            "content": "{{setvar::ANTI_GLM::On}}\n\n[Anti-GLM + Silent Auto-Audit: ON]\nWhen ANTI_GLM=On:\n\n[Break the Dialogue Sandwich]\nAvoid rigid “narration → dialogue → narration” loops and short-burst narration.\n- Vary pacing and paragraph structure.\n- Allow narration to run long when the scene needs it (action + consequence + internal shift). :contentReference[oaicite:2]{index=2}\n\n[Repetition Lockout]\n- No repeated paragraph openers.\n- No mirrored sentence skeletons across paragraphs.\n- No paraphrasing {{user}}’s latest line in narration.\n- Avoid reusing distinctive nouns/verbs/adjectives from the last 1–2 assistant turns unless continuity demands it.\n\n[Instruction Adherence Clamp]\n- Treat preset/system rules as binding at all times.\n- If two rules conflict, obey the higher-priority rule and continue seamlessly (no meta, no “can’t”). :contentReference[oaicite:3]{index=3}\n\n[SILENT AUTO-AUDIT PASS — DO NOT PRINT]\nBefore sending the final response, do an internal audit and rewrite as needed. Never reveal this audit.\n\nAudit Checklist:\n1) Cadence: Did I fall into dialogue sandwiching or choppy beats?\n2) Echo: Did I repeat openers, phrasing, or restate {{user}}’s action?\n3) Template tells: Did I use stock transitions (“for a moment,” “then,” “as if,” etc.) too often?\n4) Filler: Did any paragraph fail to add a new action/constraint/emotional shift?\n5) Drift: Did I introduce offscreen/unearned details just to sound “writerly”?\n6) Tone sanitize: Did I sand down conflict into polite neutrality?\n\nRewrite Rules:\n- If any item triggers, rewrite the minimal amount needed to fix it.\n- Prefer swapping structure + verbs over swapping adjectives.\n- Keep continuity intact. Do not retcon.\n- Output only the cleaned final narrative.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -2328,11 +2133,11 @@
                 },
                 {
                     "identifier": "6f507f45-a388-417d-8a9e-e3e84116663a",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "3c7d36b3-b8b5-4310-a167-f5b594daa867",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "6da93658-340e-4348-8de7-81d149d262a0",
@@ -2368,7 +2173,7 @@
                 },
                 {
                     "identifier": "ce3d227b-1db2-492f-a126-9b2dde645fed",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "9a0bfe9a-dd9a-4e68-a5e2-d7c1feb68fc3",
@@ -2376,7 +2181,7 @@
                 },
                 {
                     "identifier": "59f06b8b-a652-4447-8bc0-56c128caea5a",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "mica-031-anti-stall",
@@ -2432,11 +2237,11 @@
                 },
                 {
                     "identifier": "4c231474-bf13-4f7e-ab36-53e032d5c9e1",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "ac25b77d-2317-42eb-8d82-15afd180a947",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "0e96fe5d-0992-4497-8053-a1f13a0773ff",
@@ -2476,7 +2281,7 @@
                 },
                 {
                     "identifier": "6f965622-a560-487d-88c3-b9dd353e828d",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "7f91b875-6c06-4c29-a1c0-1f65c7723c9f",
@@ -2484,7 +2289,7 @@
                 },
                 {
                     "identifier": "b9370c0f-b125-42f3-8337-0e7cb96f9389",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "ec3e8bd5-c598-4def-8ee6-9dcd70dc10e1",
@@ -2492,7 +2297,7 @@
                 },
                 {
                     "identifier": "6f9bf8d2-78cd-4476-8d66-f48ecdf92ac0",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "e91d154c-3b3c-44e5-8ddb-155ded8aec1f",
@@ -2500,7 +2305,7 @@
                 },
                 {
                     "identifier": "719d66b0-c215-42ef-93fb-7d77eba7c722",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "6422d208-6037-4e3e-84c0-52ff78215b89",
@@ -2508,11 +2313,11 @@
                 },
                 {
                     "identifier": "mica-061-villain-core",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "mica-062-villain-obsess",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "28a9da07-16bc-400e-80c1-4dcdfd35553e",
@@ -2528,7 +2333,7 @@
                 },
                 {
                     "identifier": "5aa95eb4-307c-4fad-bd94-f7859d2078a3",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "028b36dc-08eb-4044-9c3f-7d604a6ed004",
@@ -2552,11 +2357,11 @@
                 },
                 {
                     "identifier": "578f59e6-7eae-4df4-9446-43be1efc668a",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "mica-080-tracking-lite",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "cc470a2b-277b-4542-a93e-fdc4ca802b36",
@@ -2572,7 +2377,7 @@
                 },
                 {
                     "identifier": "e3f4a677-f7b8-49da-a80d-feb5283b88a9",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "25854cb5-e59c-498a-8f89-68833ffaea8b",
@@ -2650,5 +2455,200 @@
     "n": 1,
     "request_images": false,
     "request_image_aspect_ratio": "",
-    "request_image_resolution": ""
+    "request_image_resolution": "",
+    "extensions": {
+        "regex_scripts": [
+            {
+                "id": "d5f24f21-8bb8-4096-aa38-88511031e1cd",
+                "scriptName": "🧩 [Thinking] 01 — Collapsible think",
+                "findRegex": "/<(think|thinking)>(.*?)<\\/\\1>\\s*/is",
+                "replaceString": "<hr><details name=\"thought\"><summary>Thought</summary>$2</details><hr>",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": true,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "4660cca4-d642-49ca-9e7d-5adcd7752849",
+                "scriptName": "🧩 [Thinking] 02 — Hide Think",
+                "findRegex": "/<(think|thinking)>.*?<\\/\\1>\\s*/is",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": true,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": 1,
+                "maxDepth": null
+            },
+            {
+                "id": "17b2c761-4acd-4c81-8ecf-2b80322b897e",
+                "scriptName": "🧩 [Thinking] 03 — Ongoing Thinking label",
+                "findRegex": "/<(think|thinking)>(?!.*?<\\/\\1>)(.*)/is",
+                "replaceString": "<hr><details name=\"thought\"><summary>Thinking</summary>$2</details><hr>",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": true,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "e4b91eeb-aa16-4ad4-a4d7-fdcc922c5020",
+                "scriptName": "🧩 [BRANCH] 01 — <branch> → <branch-list>",
+                "findRegex": "/<branch>\\s*([\\s\\S]*?)\\s*<\\/branch>/g",
+                "replaceString": "<branch-list>$1</branch-list>",
+                "trimStrings": [
+                    "\\r"
+                ],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "8c4bf9b2-d1f8-4cd6-bc4f-37cf9729ea32",
+                "scriptName": "🧩 [BRANCH] 02 — Delimiter",
+                "findRegex": "/<branch-list>\\s*([\\s\\S]*?)\\s*<\\/branch-list>/g",
+                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--m-bg:rgba(12,14,18,0.94);--m-p:rgba(255,255,255,0.06);--m-b:rgba(255,255,255,0.12);--m-t:#eaf0fa;--m-m:rgba(234,240,250,0.72);--m-a:#93c5fd;} .bio-test-hide{position:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1;} .branch-root{max-width:720px;margin:14px auto;box-sizing:border-box;background:var(--m-bg);border:1px solid var(--m-b);border-radius:16px;padding:14px 14px 12px 14px;font-family:system-ui;color:var(--m-t);overflow-x:hidden} .branch-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px 0} .branch-title{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.95} .branch-sub{font-size:12px;color:var(--m-m)} .branch-grid{display:flex;flex-direction:column;gap:10px} .branch-card{border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:var(--m-p);padding:12px;line-height:1.35} .branch-top{display:flex;gap:10px;align-items:baseline} .branch-n{color:var(--m-a);font-weight:800} .branch-name{font-weight:750} .branch-body{margin-top:8px} .branch-cons{margin-top:8px;color:var(--m-m);font-size:12px} </style><div class=\"branch-root\"><div class=\"branch-h\"><div class=\"branch-title\">CHOICES</div><div class=\"branch-sub\">Reply with 1 / 2 / 3</div></div><div class=\"branch-grid\">$1</div></div></div><!-- UI_END -->",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "f7857391-dd31-4977-9b7c-227ff25556d0",
+                "scriptName": "🧩 [BRANCH] 03 — Options → Cards",
+                "findRegex": "/([1-3])\\|([^|\\n\\r]+)\\|([^|\\n\\r]+)\\|([^|\\n\\r]*?)~END~/gm",
+                "replaceString": "<div class=\"branch-card\"><div class=\"branch-top\"><div class=\"branch-n\">$1)</div><div class=\"branch-name\">$2</div></div><div class=\"branch-body\">$3</div><div class=\"branch-cons\"><b>Consequence:</b> $4</div></div>",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "4672d259-e574-4db4-8480-18b66cfdd15f",
+                "scriptName": "🧩 [WEBNOVEL] 01 — Pretty Titles",
+                "findRegex": "/^\\s*<chap>([^|<]*)\\|([^<]*)<\\/chap>\\s*/m",
+                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>.wn-wrap{max-width:720px;margin:22px auto;text-align:center;box-sizing:border-box}.wn-hr{border:0;height:1px;background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(150,150,150,0.75), rgba(0,0,0,0));}.wn-ch{font-family:Courier New, monospace;letter-spacing:.22rem;font-size:.85rem;margin-top:12px;opacity:.85}.wn-title{font-family:Georgia, Times New Roman, serif;font-weight:normal;margin:10px 0;line-height:1.15}.wn-mark{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;opacity:.6;letter-spacing:.08em;margin-bottom:12px}</style><div class=\"wn-wrap\"><hr class=\"wn-hr\"><div class=\"wn-ch\">CHAPTER $1</div><h2 class=\"wn-title\">$2</h2><div class=\"wn-mark\">— ✦ —</div><hr class=\"wn-hr\"></div></div><!-- UI_END -->\n",
+                "trimStrings": [
+                    "\\r"
+                ],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "ca3ba442-02f7-45f3-ae2d-dd4c32f1774e",
+                "scriptName": "🧩 [TRACK] 01 — Pretty Track Card",
+                "findRegex": "/<track>\\s*([\\s\\S]*?)\\s*<\\/track>/g",
+                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--t-bg:rgba(12,14,18,0.94);--t-b:rgba(255,255,255,0.12);--t-p:rgba(255,255,255,0.06);--t-t:#eaf0fa;--t-m:rgba(234,240,250,0.72);} .track-root{max-width:680px;margin:14px auto 0 auto;box-sizing:border-box;background:var(--t-bg);border:1px solid var(--t-b);border-radius:14px;padding:12px 14px;font-family:system-ui;color:var(--t-t);overflow-x:hidden} .track-h{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.92;margin-bottom:8px} .track-body{font-size:13px;line-height:1.35;white-space:pre-wrap;word-wrap:break-word;color:var(--t-t)} </style><div class=\"track-root\"><div class=\"track-h\">TRACK</div><div class=\"track-body\">$1</div></div></div><!-- UI_END -->",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "8ad7d6aa-af0b-4439-8685-1bb4ea12c6c8",
+                "scriptName": "⚙️ [CTX] 01 — Strip Anchored UI Blocks",
+                "findRegex": "/<!--\\s*(?:TRACK_START|BRANCH_UI_START|CHAPTER_UI_START|UI_START)\\s*-->[\\s\\S]*?<!--\\s*(?:TRACK_END|BRANCH_UI_END|CHAPTER_UI_END|UI_END)\\s*-->/gi",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": 3,
+                "maxDepth": null
+            },
+            {
+                "id": "62a391a5-8df3-4421-88d3-628248d2baa5",
+                "scriptName": "⚙️ [CTX] 06 — Strip [OOC: …] Lines",
+                "findRegex": "/^\\s*\\[OOC:[^\\n]*\\]\\s*$/gmi",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": true,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": 3,
+                "maxDepth": null
+            },
+            {
+                "id": "aa799693-2bc5-4df8-b5a0-d64f7d1f833c",
+                "scriptName": "⚙️ [CTX] 07 — Strip STATE/DEBUG Block (optional)",
+                "findRegex": "/^\\s*STATE\\s*:\\s*[\\s\\S]*?(?=\\n\\s*\\n|$)/gmi",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": true,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": 3,
+                "maxDepth": null
+            }
+        ]
+    }
 }
