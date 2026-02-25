@@ -102,4 +102,4 @@ FantasyDocs: scene cards, parchment letters, seals, journal pages
 - Plain tracker:
 Enabling tracking will append a small tracker to the bottom of the narrative, and the regex will enclose it in an HTML box.
 - RPG TRACKER:
-Enabling tracking + RPG Tracker(+persona tracker) + RPGHUD dependency will rerout the tracker data to a Game Like, interactive, consistent RPG Tracker.
+Enabling tracking + RPG Tracker(+persona tracker) will rerout the tracker data to a Game Like, interactive, consistent RPG Tracker.
