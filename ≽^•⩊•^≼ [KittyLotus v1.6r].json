@@ -53,59 +53,6 @@
                 "maxDepth": null
             },
             {
-                "id": "e4b91eeb-aa16-4ad4-a4d7-fdcc922c5020",
-                "scriptName": "🧩 [BRANCH] 01 — <branch> → <branch-list>",
-                "findRegex": "/<branch>\\s*([\\s\\S]*?)\\s*<\\/branch>/g",
-                "replaceString": "<branch-list>$1</branch-list>",
-                "trimStrings": [
-                    "\\r"
-                ],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "8c4bf9b2-d1f8-4cd6-bc4f-37cf9729ea32",
-                "scriptName": "🧩 [BRANCH] 02 — Delimiter",
-                "findRegex": "/<branch-list>\\s*([\\s\\S]*?)\\s*<\\/branch-list>/g",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--m-bg:rgba(12,14,18,0.94);--m-p:rgba(255,255,255,0.06);--m-b:rgba(255,255,255,0.12);--m-t:#eaf0fa;--m-m:rgba(234,240,250,0.72);--m-a:#93c5fd;} .bio-test-hide{position:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1;} .branch-root{max-width:720px;margin:14px auto;box-sizing:border-box;background:var(--m-bg);border:1px solid var(--m-b);border-radius:16px;padding:14px 14px 12px 14px;font-family:system-ui;color:var(--m-t);overflow-x:hidden} .branch-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px 0} .branch-title{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.95} .branch-sub{font-size:12px;color:var(--m-m)} .branch-grid{display:flex;flex-direction:column;gap:10px} .branch-card{border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:var(--m-p);padding:12px;line-height:1.35} .branch-top{display:flex;gap:10px;align-items:baseline} .branch-n{color:var(--m-a);font-weight:800} .branch-name{font-weight:750} .branch-body{margin-top:8px} .branch-cons{margin-top:8px;color:var(--m-m);font-size:12px} </style><div class=\"branch-root\"><div class=\"branch-h\"><div class=\"branch-title\">CHOICES</div><div class=\"branch-sub\">Reply with 1 / 2 / 3</div></div><div class=\"branch-grid\">$1</div></div></div><!-- UI_END -->",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "f7857391-dd31-4977-9b7c-227ff25556d0",
-                "scriptName": "🧩 [BRANCH] 03 — Options → Cards",
-                "findRegex": "/([1-3])\\|([^|\\n\\r]+)\\|([^|\\n\\r]+)\\|([^|\\n\\r]*?)~END~/gm",
-                "replaceString": "<div class=\"branch-card\"><div class=\"branch-top\"><div class=\"branch-n\">$1)</div><div class=\"branch-name\">$2</div></div><div class=\"branch-body\">$3</div><div class=\"branch-cons\"><b>Consequence:</b> $4</div></div>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
                 "id": "4672d259-e574-4db4-8480-18b66cfdd15f",
                 "scriptName": "🧩 [WEBNOVEL] 01 — Pretty Titles",
                 "findRegex": "/^\\s*<chap>([^|<]*)\\|([^<]*)<\\/chap>\\s*/m",
@@ -157,40 +104,6 @@
                 "substituteRegex": 0,
                 "minDepth": 3,
                 "maxDepth": null
-            },
-            {
-                "id": "62a391a5-8df3-4421-88d3-628248d2baa5",
-                "scriptName": "⚙️ [CTX] 06 — Strip [OOC: …] Lines",
-                "findRegex": "/^\\s*\\[OOC:[^\\n]*\\]\\s*$/gmi",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": true,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": 3,
-                "maxDepth": null
-            },
-            {
-                "id": "aa799693-2bc5-4df8-b5a0-d64f7d1f833c",
-                "scriptName": "⚙️ [CTX] 07 — Strip STATE/DEBUG Block (optional)",
-                "findRegex": "/^\\s*STATE\\s*:\\s*[\\s\\S]*?(?=\\n\\s*\\n|$)/gmi",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": true,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": 3,
-                "maxDepth": null
             }
         ]
     },
@@ -212,7 +125,7 @@
     "new_group_chat_prompt": "",
     "new_example_chat_prompt": "",
     "continue_nudge_prompt": "[Your last message got cut off. Continue writing it. Do not include any parts of the original one.]",
-    "bias_preset_selected": "Default (none)",
+    "bias_preset_selected": "Anti-bond",
     "wi_format": "{0}",
     "scenario_format": "{{scenario}}",
     "personality_format": "{{personality}}",
@@ -665,7 +578,7 @@
             "marker": false,
             "name": "┆       → Branching ",
             "role": "system",
-            "content": "{{setvar::BRANCH::On}}\n[BRANCH GOVERNOR: (Highest priority)\nAppend EXACTLY at the very end:\n<branch>1|TITLE|ACTION SUMMARY|CONSEQUENCE~END~2|TITLE|ACTION SUMMARY|CONSEQUENCE~END~3|TITLE|ACTION SUMMARY|CONSEQUENCE~END~</branch>\n",
+            "content": "{{setvar::BRANCH::On}}\n[BRANCH GOVERNOR: (Highest priority)\nPersona: The current character is the persona controlling the choices. Options are actions they would plausibly take next, consistent with {{scenario}} and {{personality}}. \nTitle: Ascii symbol + character name\nCommentary: Add a short 2–4 sentence inner reaction in the persona’s voice (no quotes in UI). It should hint at intent/impulse, not stall. \nOptions: Output 3–4 choices as real <button> elements (clickable-inputs). Each button includes: a short descriptor tag + a concrete action line + a consequence to said choice (no quotes). Visually emphasize the option most aligned with the current DARK_LEVEL and GENRE (default highlight).\nIn BRANCH, never render dialogue inside quote marks.\nOne option should imply risk and be highlighted accordingly.\nBranching should always follow the current UI_STYLE, but also match the character's aesthetic\nFooter (optional): One short flavor line in persona voice or a small status note.\nKeep it compact and centered.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1041,7 +954,7 @@
             "system_prompt": false,
             "enabled": false,
             "marker": false,
-            "name": "⠀⠀No impersonation - strict",
+            "name": "⠀⠀No impersonation - Strict",
             "role": "system",
             "content": "{{setvar::USER_CTRL::Strict}}\nNever write {{user}}’s dialogue or decisive actions.\nYou may include only involuntary micro-reactions if needed for continuity.",
             "injection_position": 0,
@@ -1407,7 +1320,7 @@
             "marker": false,
             "name": "┆✧ Momentum Governor",
             "role": "system",
-            "content": "[MOMENTUM GOVERNOR] NO PARROTING/NO RECAP: Do not restate the user’s message (no “you said…”). No recap loops; continuity refs stay to one clause max. DENSITY: Every paragraph must include at least one EVENT (action→consequence) or REVELATION (new info/clarified inference) or SHIFT (stakes/goal/power/constraint change). If a paragraph is only movement/atmosphere/circling, compress it into a clause attached to an EVENT/REVELATION/SHIFT paragraph. ANTI-STALL (only when looping): If the scene is looping/indecisive/low-info, inject ONE grounded pressure (interrupt/timer/consequence/NPC initiative/reveal/env shift/threat move). FOLLOW-THROUGH: Never end on “I’ll do X” without executing at least the first concrete step of X in the same response. NPCs must act on their own decisions on-screen. Only hold if acting would steal a decisive user action (user’s spoken choice, pulling the trigger, signing, confessing); then advance everything else and stop right before that decisive moment. END BEAT: End on a live situation with a changed constraint, not a promise to act later. HARD LIMIT: Maintain POV/agency rules; don’t write the user’s dialogue/thoughts/decisions unless explicitly allowed.",
+            "content": "[MOMENTUM GOVERNOR] (Anti-stall + Density + No-parroting)\nNO PARROTING / NO RECAP\nDo not restate the user’s message (no “you said…”).\nNo recap loops; continuity references stay to one clause max.\n\nDENSITY RULE\nEvery paragraph must include at least ONE:\nEVENT (action → consequence)\nREVELATION (new info / clarified inference)\nSHIFT (stakes/goal/power/constraint changes)\nIf a paragraph is only movement/atmosphere/circling, compress it into a clause attached to an EVENT/REVELATION/SHIFT paragraph.\n\nANTI-STALL (only when looping)\nIf the scene is looping/indecisive/low-info, inject a grounded pressure (interrupt/timer/consequence/NPC initiative/reveal/env shift/threat move).\n\nFOLLOW-THROUGH (critical)\nNever end a response on “I’ll do X” without executing at least the FIRST concrete step of X in the same response.\nNPCs must act on their own decisions on-screen (send the text, open the door, move first, reveal the partial fact, take the call, start the plan).\nOnly hold if acting would steal a decisive user action (e.g., the user’s spoken choice, pulling the trigger, signing, confessing). In that case, move everything else forward and stop right before the user’s decisive moment.\n\nEND BEAT\nEnd on a live situation with a changed constraint (new info, new pressure, new position), not a promise to act later.\n\nHARD LIMIT\nMaintain POV/agency rules: don’t write the user’s dialogue/thoughts/decisions unless explicitly allowed.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1615,7 +1528,7 @@
             "system_prompt": false,
             "enabled": false,
             "marker": false,
-            "name": "┆       → Scale Governor",
+            "name": "┆       → Scale Governor [ENABLE IF HTML BREAKS]",
             "role": "system",
             "content": "[DIEGETIC SCALE] Apply only when rendering a physical object (phone/letter/badge/monitor) as HTML.\n\nONE primary object per HTML block. No nesting silhouettes inside extra capped panels.\nBubble-safe outer object wrapper: max-width:100%;overflow-x:hidden;box-sizing:border-box;margin:14px auto;\nObject width must be container-based (no vw): width:min(100%, clamp(MINpx, 100%, MAXpx));\nPadding limits: shell ≤14px, inner ≤16px.\n\nUse aspect-ratio for the object; avoid tiny fixed heights.\nIf bubble would force below minimum readable width, do NOT render the object silhouette; use a simple panel instead.\n\nPreset mins/maxes (quick):\nPhone: min 280 max 420\nLetter: min 420 max 680\nBadge: min 260 max 480\nDossier: min 480 max 720\nMonitor: min 520 max 860",
             "injection_position": 0,
@@ -1813,7 +1726,7 @@
             "marker": false,
             "name": "┆✧ Safe HTML",
             "role": "system",
-            "content": "[HTML SAFE RENDER + QUOTE FIX] Applies to ANY HTML/CSS output.\n\nANCHORS\nWrap the HTML block ONLY in:\n\n<!-- UI_START -->\n...HTML...\n<!-- UI_END -->\n\nNothing else inside anchors.\n[DOM SEAM (NO BLANK LINES)]\nInputs and .ROOT are direct siblings (flat). \nNo extra wrapper between inputs and .ROOT. \nNever use markdown fences for HTML.\nNever display:none / visibility:hidden.\nEvery state input uses class=\"bio-test-hide\" and ONLY:\nposition:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1;\nDo NOT set top/left/right/bottom. No fixed.\nUse ONLY general sibling (~), never adjacent (+).\nState rules live in <style>.\nHidden panels: opacity:0;visibility:hidden;pointer-events:none;\nShown panels: opacity:1;visibility:visible;pointer-events:auto;\nFirst radio in a group is checked; first tab/page readable by default.\n\nThen proceed to output",
+            "content": "[HTML SAFE RENDER] Applies to ANY HTML/CSS output.\nANCHORS: Wrap HTML ONLY in <!-- UI_START --> ... <!-- UI_END -->.\nDOM SEAM (NO BLANK LINES): <div class=html-safe-wrap><style>...</style><input...><input...><div class=ROOT>...</div></div>. Inputs and .ROOT are direct siblings; no extra wrapper between inputs and .ROOT; no markdown fences.\n\nSTATE INPUTS (for CSS toggles): never display:none / visibility:hidden; class=bio-test-hide and ONLY position:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1; Do not set top/left/right/bottom; no fixed.\n\nSTATE CSS: use only general sibling (~), never (+); hidden panels opacity:0;visibility:hidden;pointer-events:none; shown panels opacity:1;visibility:visible;pointer-events:auto; first radio checked by default.\n\nFORM CONTROLS (allowed + preferred): you MAY include real controls inside .ROOT (button/select/textarea/input). If using clickable inputs, keep each mini-form in one container, give every input an id, and pair it with <label for=id>. Use a <button data-submit> to send current values; avoid duplicate ids.\n\nINTERACTION: anything that looks clickable must do something (CSS toggle or extension click) and be reversible.\n\nOVERFLOW: .ROOT{max-width:100%;overflow-x:hidden;box-sizing:border-box;} long content scrolls inside an INNER panel (max-height + overflow:auto). No fullscreen/viewport takeover.\n\nSTYLE BLEED: html-safe-wrap is structural only; visuals belong to .ROOT and children.",
             "injection_position": 1,
             "injection_depth": 0,
             "injection_order": 100,
@@ -1869,7 +1782,7 @@
             "marker": false,
             "name": "┆✧ core v3.0",
             "role": "system",
-            "content": "[CORE ROUTER + OOC + DEFAULTS] Check and Follow active vars. No planning output.\n\nDEFAULT\nIf UI_INIT is empty/unset: {{setvar::UI_INIT::0}}\n\nOOC PRIORITY\nWhen user gives OOC instructions, obey them over roleplay flow. Stop narration, resume when unpaused by user.\nPriority:\n- Current user OOC message\n- Active vars/state (UI/GENRE/DARK/USER_CTRL/etc)\n- Preset core rules (format/agency/safety)\n- Character card + scenario \n- Older messages/preferences\n- Return to IC only when user signals resume (e.g., continue/resume or in-world action/dialogue).\n\nPRE-GATE\n- If UI_OUTPUT_MODE=HUD:\nNarrative first (respect LENGTH/STYLE/etc).\nThen ONE RPGHUD HTML block wrapped in <!-- TRACK_START -->...<!-- TRACK_END -->.\n- If BRANCH=On, branching payload goes AFTER <!-- TRACK_END -->.\n- Never output plain <track> in HUD mode.\n\nElse: use pipeline.\nPIPELINE\n- If WEBNOVEL=On: output chapter header first.\n- Narrative: advance scene, obey LENGTH, avoid stall/loops.\nOptional non-HUD HTML UI only when warranted by scene/UI vars.\n- Tracking only if TRACK=Lite/Full. If TRACK=Off: none.\n- If BRANCH=On: emit exact <branch> payload. If BRANCH=Off: no choices/prompts.\n- NEVER output quotes inside HTML, replace `\"` with `&quot;` and `'` with `&apos;`.\n\n\nMODULE RULE\nIf a module toggle is Off, do not apply it.",
+            "content": "[CORE ROUTER + OOC + DEFAULTS] Check and Follow active vars. No planning output.\n\nDEFAULT\nIf UI_INIT is empty/unset: {{setvar::UI_INIT::0}}\n\nOOC PRIORITY\nWhen user gives OOC instructions, obey them over roleplay flow. Stop narration, resume when unpaused by user.\nPriority:\n- Current user OOC message\n- Active vars/state (UI/GENRE/DARK/USER_CTRL/etc)\n- Preset core rules (format/agency/safety)\n- Character card + scenario \n- Older messages/preferences\n- Return to IC only when user signals resume (e.g., continue/resume or in-world action/dialogue).\n\nPRE-GATE\n- If UI_OUTPUT_MODE=HUD:\nNarrative first (respect LENGTH/STYLE/etc).\nThen ONE RPGHUD HTML block wrapped in <!-- TRACK_START -->...<!-- TRACK_END -->.\n- Branching payload goes AFTER <!-- TRACK_END -->.\n- Never output plain <track> in HUD mode.\n\nElse: use pipeline.\nPIPELINE\n- If WEBNOVEL=On: output chapter header first.\n- Narrative: advance scene, obey LENGTH, avoid stall/loops.\nOptional non-HUD HTML UI only when warranted by scene/UI vars.\n- Tracking only if TRACK=Lite/Full. If TRACK=Off: none.\n- If BRANCH=On: emit exact <branch> payload. If BRANCH=Off: no choices/prompts.\n- NEVER output quotes inside HTML, replace `\"` with `&quot;` and `'` with `&apos;`.\n\n\nMODULE RULE\nIf a module toggle is Off, do not apply it.",
             "injection_position": 1,
             "injection_depth": 0,
             "injection_order": 100,
@@ -1911,7 +1824,7 @@
             "marker": false,
             "name": "⠀⠀VisualNovel",
             "role": "system",
-            "content":"{{setvar::UI_STYLE::VisualNovel}} Visual novel aesthetic. When UI_STYLE=VisualNovel and UI_ENGINE=Widget, before outputting any HTML block: In VisualNovel-style HTML UI, never render dialogue inside quote marks. Replace quotes with a speaker prefix + symbol, e.g., IVAN ➤ You’re not even going to look at me? This rule applies ONLY to visible text inside HTML UI blocks. Normal narrative dialogue outside HTML may use quotes as usual, and uses COLOR_MODE. USE PASTEL COLORS (pinks, lilac, blues). Structure: Card-in-card UI. Outer card: soft linear gradient + white border + drop shadow + big rounded corners (20px+). Inner card: white or glass background (opacity 0.9) + padding + dark text for readability. Decorations: Unicode symbols (✦, ♥, ⋆) instead of emojis. Animation: gentle floating (translateY), pulsing, or pop-in effects. Typography: sans-serif, clean, high contrast (dark gray text on pastel backgrounds). Vibe: soft, cute, pillowy design (think Doki Doki Literature Club).",
+            "content": "{{setvar::UI_STYLE::VisualNovel}}\nVisual novel aesthetic.\nWhen UI_STYLE=VisualNovel and UI_ENGINE=Widget, before outputting any HTML block:\nIn VisualNovel-style HTML UI, never render dialogue inside quote marks. Replace quotes with a speaker prefix + symbol, e.g.: IVAN ➤ You’re not even going to look at me? This rule applies ONLY to visible text inside HTML UI blocks. \nNormal narrative dialogue outside HTML may use quotes as usual, and uses COLOR_MODE.\nUSE PASTEL COLORS (pinks, lilac, blues).\nStructure: \"Card-in-card\" UI.\n- Outer card: Soft linear gradient + white border + drop shadow + big rounded corners (20px+).\n- Inner card: White/Glass background (opacity 0.9) + padding + dark text for readability.\n- Decorations: Unicode symbols (✦, ♥, ⋆) instead of emojis.\n- Animation: Gentle floating (translateY), pulsing, or pop-in effects.\n- Typography: Sans-serif, clean, high contrast (dark gray text on pastel backgrounds).\nVibe: Soft, cute, \"pillowy\" design (Think Doki Doki Literature Club).\n",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1925,7 +1838,7 @@
             "marker": false,
             "name": "┆✧ Quote Color Fix ST",
             "role": "system",
-            "content":"[QUOTE COLOR FIX] Applies to all HTML UI. Never render straight quotes in visible UI text (\" or '). Do NOT use &quot; or &apos; for dialogue—those decode back into straight quotes. Use curly quotes (“ ” / ‘ ’) or replace quotes with a leading symbol (e.g., › or ➤) or italics/smallcaps. Optional: wrap emphasized quoted phrases as <span class=ui-quote>“text”</span> and define .ui-quote{color:var(--quote,var(--text));font-weight:600;} in the UI <style>.",
+            "content": "[QUOTE COLOR FIX] MANDATORY\nDo NOT use &quot; or &apos; for dialogue—those decode back into straight quotes. \nUse curly quotes (“ ” / ‘ ’) or replace quotes with symbols (e.g., ➤) or italics/smallcaps",
             "injection_position": 0,
             "injection_depth": 0,
             "injection_order": 100,
@@ -2080,7 +1993,7 @@
                 },
                 {
                     "identifier": "41e28b69-c332-4d25-aa95-4d65d1a60204",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "cadd9713-f994-4194-bfbb-7e46e1712b11",
@@ -2096,11 +2009,11 @@
                 },
                 {
                     "identifier": "mica-020-narr-rp",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "mica-021-narr-fanfic",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "2a8ca5d1-e7b8-46ed-8de2-bb9ea4ec1826",
@@ -2112,7 +2025,7 @@
                 },
                 {
                     "identifier": "b23fb23e-33e6-49b7-985f-dab55f43ae30",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "a422cf04-96e4-4fb4-a2bc-9efc24a232b0",
@@ -2124,7 +2037,7 @@
                 },
                 {
                     "identifier": "dcd236ab-951b-407a-9659-3ddf871bac2b",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "c7a2f022-3a02-4a5b-8484-b48a82169fb1",
@@ -2192,7 +2105,7 @@
                 },
                 {
                     "identifier": "5308115e-25c4-4d49-b94f-94223aa0db95",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "6f507f45-a388-417d-8a9e-e3e84116663a",
@@ -2200,7 +2113,7 @@
                 },
                 {
                     "identifier": "3c7d36b3-b8b5-4310-a167-f5b594daa867",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "6da93658-340e-4348-8de7-81d149d262a0",
@@ -2240,11 +2153,11 @@
                 },
                 {
                     "identifier": "9a0bfe9a-dd9a-4e68-a5e2-d7c1feb68fc3",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "59f06b8b-a652-4447-8bc0-56c128caea5a",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "33970b33-ba5b-4b30-90ab-5394701aed12",
@@ -2356,7 +2269,7 @@
                 },
                 {
                     "identifier": "719d66b0-c215-42ef-93fb-7d77eba7c722",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "6422d208-6037-4e3e-84c0-52ff78215b89",
