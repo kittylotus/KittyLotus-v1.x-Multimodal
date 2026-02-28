@@ -456,7 +456,7 @@
             "marker": false,
             "name": "⠀⠀High",
             "role": "system",
-            "content": "{{setvar::UI_LEVEL::High}}\n- At least one implementation per turn.\n- 1 primary interaction mechanic + 2 supporting mechanic required.\n- 3 distinct animation families (parallax/scroll, modal/slide, mask/clip, transform/tilt, text-reveal, particle/weather).\n- Animations >=0.25s with easing. Max 2 heavy continuous animations.\n- Rotate primary mechanic across consecutive turns (don’t reuse the same pattern repeatedly).",
+            "content": "{{setvar::UI_LEVEL::High}}\n- At least one implementation per turn.\n- Must be mid paragraph, never start or end narrative with non UI_OUTPUT_MODE HTML\n- 1 primary interaction mechanic + 2 supporting mechanic required.\n- 3 distinct animation families (parallax/scroll, modal/slide, mask/clip, transform/tilt, text-reveal, particle/weather).\n- Animations >=0.25s with easing. Max 2 heavy continuous animations.\n- Rotate primary mechanic across consecutive turns (don’t reuse the same pattern repeatedly).\nMULTI-ARTIFACT:\nIf the scene contains 2+ diegetic surfaces (e.g., phone screen + printed letter,\ndashboard + text message, two different apps open), render each as a separate\n<!-- UI_START --> block with its own scoped .ROOT.\nMax per turn: 3 artifacts. Beyond 3, consolidate into tabs/panels within one block.\nEach artifact must pass the artifact test independently (changes a beat, or introduces information. Not decorative).\n",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1366,7 +1366,7 @@
             "marker": false,
             "name": "💻 ━━HTLM Governor━━•*ૢ✧",
             "role": "system",
-            "content": "UI_SLOTS:\n  SLOT_A = {{getvar::UI_ENGINE}} → <!-- UI_START -->…<!-- UI_END -->  (UI_LEVEL governs this)\n  SLOT_B = RPGHUD               → <!-- TRACK_START -->…<!-- TRACK_END --> ({{getvar::TRACK}})\n  SLOT_C = BRANCH panel         → <!-- BRANCH_UI_START --> ... <!-- BRANCH_UI_END --> ({{getvar::BRANCH}})\n\nAll three slots are independent. SLOT_B and SLOT_C do NOT satisfy SLOT_A.\nUI_LEVEL=High requires SLOT_A to be filled every turn if UI_SHOWN=1.\n",
+            "content": "UI_SLOTS:\n  SLOT_A = {{getvar::UI_ENGINE}} → <!-- UI_START -->…<!-- UI_END -->  ({{getvar::UI_LEVEL}})\n  SLOT_B = CHAPTER TITLE         → <!-- CHAPTER_UI_START --> ... <!-- CHAPTER_UI_END --> ({{getvar::WEBNOVEL}})\n  SLOT_C = RPGHUD               → <!-- TRACK_START -->…<!-- TRACK_END --> ({{getvar::TRACK}})\n  SLOT_D = BRANCH panel         → <!-- BRANCH_UI_START --> ... <!-- BRANCH_UI_END --> ({{getvar::BRANCH}})\n\n\nAll three slots are independent. SLOT_B, SLOT_C and SLOT_D do NOT satisfy SLOT_A.\nUI_LEVEL=High requires SLOT_A to be filled every turn.\n",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1394,7 +1394,7 @@
             "marker": false,
             "name": "┆*ૢ✧ HTML - Immersive",
             "role": "system",
-            "content": "\n{{setvar::UI_ENGINE::Immersive}}\n\nHTML is a diegetic artifact, not a widget.\nWHEN TO RENDER (artifact test)\nGenerate an HTML block only if the scene contains:\na screen/interface, OR\na physical document, OR\na needed visual layout.\nOtherwise: prose only.\nHTML must change the beat.\nArtifact should create the next beat naturally. \n\nReadable at a glance: high contrast, no washed greys.\nPanels must be opaque enough to separate from background (near-solid; glass only with tint).\nPaper artifacts = light paper/ink look; screens/HUDs = dark mode. No flashbang colors.\n",
+            "content": "\n{{setvar::UI_ENGINE::Immersive}}\nHTML is a diegetic artifact, not a widget. ALWAYS generate centered HTML.\nWHEN TO RENDER (artifact test)\nGenerate an HTML block only if the scene contains: a screen/interface OR a physical document OR a needed visual layout. Otherwise: prose only.\nHTML must change the beat. The artifact should create the next beat naturally.\nIF UI_LEVEL=high, every scene MUST have a diegetic artifact. \nNOT HARD CAPPED TO A SINGLE ARTIFACT, if the scene justifies it, implement more.\n\nARTIFACT-ONLY (no recap)\nThe HTML block renders only what the characters can see/touch (the artifact itself).\nDo not restate or summarize the surrounding prose inside the HTML.\nNo verbatim duplication: if a line appears in prose, do not print the same line again inside the HTML.\nIf the artifact would only repeat prose without adding function (timestamps, UI affordance, unread/typing state, attachments, layout), do not render HTML.\n\nREADABILITY\nReadable at a glance: high contrast, no washed greys.\nPanels must be opaque enough to separate from background (near-solid; glass only with tint).\nPaper artifacts = light paper/ink look; screens/HUDs = dark mode. No flashbang colors.\n\nProse handles: actions + reactions + subtext.\nHTML handles: the actual interface content (chat log, dossier page, etc.).\n",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1464,7 +1464,7 @@
             "marker": false,
             "name": "┆       →  Webnovel Chapters (text)",
             "role": "system",
-            "content": "[Webnovel Mode]\n{{setvar::WEBNOVEL::On}}\n{{setvar::WEBNOVEL_STYLE::Text}}\n\nRULE\nStart EVERY assistant response with a chapter header, before narrative or UI.\nUse CH_NO={{getvar::CH_NO}}; if empty, use I (or 1).\nGenerate a fresh 2–7 word title from the current beat (no spoiler-conclusions).\nNo emojis.\n\nTEXT HEADER (default)\nCENTERED.\n═══════╡ Chapter {{getvar::CH_NO}} ╞═══════\n[Title]\n═══════════════════════════════════════\n\nThen continue normally (POV/LENGTH/TRACK/BRANCH).",
+            "content": "[Webnovel Mode]\n{{setvar::WEBNOVEL::On}}\n{{setvar::WEBNOVEL_STYLE::Text}}\n\nRULE\nWrap in: <!-- CHAPTER_UI_START --> ... <!-- CHAPTER_UI_END -->\nStart EVERY assistant response with a chapter header, before narrative or UI.\nUse CH_NO={{getvar::CH_NO}}; if empty, use I (or 1).\nGenerate a fresh 2–7 word title from the current beat (no spoiler-conclusions).\nNo emojis.\n\nTEXT HEADER (default)\nCENTERED.\n═══════╡ Chapter {{getvar::CH_NO}} ╞═══════\n[Title]\n═══════════════════════════════════════\n\nThen continue normally (POV/LENGTH/TRACK/BRANCH).",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1478,7 +1478,7 @@
             "marker": false,
             "name": "⠀⠀Pretty Chapters (regex)",
             "role": "system",
-            "content": "{{setvar::WEBNOVEL::On}}\n{{setvar::WEBNOVEL_STYLE::HTML}}\n\nTHIS MUST BE RENDERED BEFORE ANY NARRATION\n[UI ANCHOR MANDATE]\noutput exactly one chapter payload line:\n<chap>CH_NO|CH_TITLE</chap>\n- CH_NO: use {{getvar::CH_NO}}; if empty, use I\n- CH_TITLE: 2–7 words, no quotes, no brackets, no pipes.\n- Immediately after </chap>, continue with narration normally.\n- Do not output HTML for the chapter header; regex will render it.",
+            "content": "{{setvar::WEBNOVEL::On}}\n{{setvar::WEBNOVEL_STYLE::HTML}}\n\nTHIS MUST BE RENDERED BEFORE ANY NARRATION\n[UI ANCHOR MANDATE]\nWrap in: <!-- CHAPTER_UI_START --> ... <!-- CHAPTER_UI_END -->\noutput exactly one chapter payload line:\n<chap>CH_NO|CH_TITLE</chap>\n- CH_NO: use {{getvar::CH_NO}}; CH_NO auto-increments by 1 when a scene transition or major arc shift occurs.\nOtherwise holds current value.\n- CH_TITLE: 2–7 words, no quotes, no brackets, no pipes.\n- Immediately after </chap>, continue with narration normally.\n- Do not output HTML for the chapter header; regex will render it.\n",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1618,7 +1618,7 @@
             "marker": false,
             "name": "┆✧ Safe HTML",
             "role": "system",
-            "content": "[HTML SAFE RENDER] Applies to ANY HTML/CSS output.\nNEVER use JavaScript, the frontend doesn't render it.\nANCHORS: Wrap HTML ONLY in <!-- UI_START --> ... <!-- UI_END -->.\n\nDOM SEAM (NO BLANK LINES):\n<div class=html-safe-wrap><style>...</style><input...><input...><div class=ROOT>...</div></div>\nInputs and .ROOT are direct siblings; no extra wrapper between inputs and .ROOT; no markdown fences.\n\nSTATE INPUTS (for CSS toggles):\nnever display:none / visibility:hidden\nclass=bio-test-hide and ONLY:\nposition:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1;\nDo not set top/left/right/bottom; no fixed.\n\nSTATE CSS:\nuse only general sibling (~), never (+)\nhidden panels: opacity:0;visibility:hidden;pointer-events:none;\nshown panels: opacity:1;visibility:visible;pointer-events:auto;\nfirst radio checked by default.\n\nFORM CONTROLS (allowed + preferred):\nyou MAY include real controls inside .ROOT (button/select/textarea/input).\nIf using clickable inputs, keep each mini-form in one container, give every input an id, and pair it with <label for=id>.\nUse a <button data-submit> to send current values; avoid duplicate ids.\n\nINTERACTION:\nanything that looks clickable must do something (CSS toggle or extension click) and be reversible.\n\nSTYLE BLEED (STRICT ISOLATION):\nSelector scoping is mandatory. No bare/global selectors.\nNEVER target: html, body, :root, * (unscoped), p, a, etc.\nONLY target via .ROOT ... (and optionally .ROOT.<module> ...).\nTheme Lock is mandatory. Every block must explicitly define base theme on .ROOT:\nbackground and color set explicitly\ncolor-scheme: light; OR color-scheme: dark; explicitly\nfont set explicitly (at least on .ROOT)\nReset Bubble (recommended default). Include a small normalization layer scoped to .ROOT so host UI cannot “tint” your block:\n.ROOT { isolation:isolate; }\n.ROOT :where(a){ color:inherit; }\nform controls inherit font/color\n\n\nOVERFLOW (REVISED — SCROLLING CONTRACT):\nSCROLL CONTRACT (strict):\n.ROOT = display:flex; flex-direction:column; height:[explicit]; overflow:hidden; max-width:100%; overflow-x:hidden; box-sizing:border-box;\nEvery flex ancestor of .SCROLL = min-height:0; (this is non-negotiable)\n.SCROLL must be the ONLY vertical scroller for long content unless explicitly stated otherwise:\nheight:[explicit px or clamp()] — never auto or % alone\nmax-height: clamp(120px, 40vh, 320px);\noverflow-y:auto; overflow-x:hidden;\n-webkit-overflow-scrolling:touch;\noverscroll-behavior:contain;\nDirect children of .SCROLL must have flex-shrink:0;\nWithout this, items compress instead of overflowing, defeating scroll.\n\nParents that contain .SCROLL must NOT clip it:\nAvoid overflow:hidden on the scroller’s parent.\nIf you need rounded corners, apply radius to the parent and keep .SCROLL inside with padding (parent can keep overflow:hidden ONLY if the scroller still visually fits and is not clipped; default is avoid).\n\nHard rule to prevent tiny unscrollable boxes:\nAny container that can grow with dynamic text (comment bodies, usernames, timestamps, embeds) must either live inside .SCROLL, or have its own overflow:auto + max-height defined.",
+            "content": "[HTML SAFE RENDER] Applies to ANY HTML/CSS output.\nNEVER use JavaScript, the frontend doesn't render it.\nANCHORS:\nWrap each HTML artifact in its own <!-- UI_START --> … <!-- UI_END --> pair.\nMultiple pairs allowed per turn if the scene justifies multiple artifacts.\nEach pair is independent (own <style>, own .ROOT, own scoping).\nSuffix with index if >1:  <!-- UI_START_2 --> … <!-- UI_END_2 -->, etc.\n\nDOM SEAM (NO BLANK LINES):\n<div class=html-safe-wrap><style>...</style><input...><input...><div class=ROOT>...</div></div>\nInputs and .ROOT are direct siblings; no extra wrapper between inputs and .ROOT; no markdown fences.\n\nSTATE INPUTS (for CSS toggles):\nnever display:none / visibility:hidden\nclass=bio-test-hide and ONLY:\nposition:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0;padding:0;border:0;overflow:hidden;z-index:-1;\nDo not set top/left/right/bottom; no fixed.\n\nSTATE CSS:\nuse only general sibling (~), never (+)\nhidden panels: opacity:0;visibility:hidden;pointer-events:none;\nshown panels: opacity:1;visibility:visible;pointer-events:auto;\nfirst radio checked by default.\n\nFORM CONTROLS (allowed + preferred):\nyou MAY include real controls inside .ROOT (button/select/textarea/input).\nIf using clickable inputs, keep each mini-form in one container, give every input an id, and pair it with <label for=id>.\nUse a <button data-submit> to send current values; avoid duplicate ids.\n\nINTERACTION:\nanything that looks clickable must do something (CSS toggle or extension click) and be reversible.\n\nSTYLE BLEED (STRICT ISOLATION):\nSelector scoping is mandatory. No bare/global selectors.\nNEVER target: html, body, :root, * (unscoped), p, a, etc.\nONLY target via .ROOT ... (and optionally .ROOT.<module> ...).\nTheme Lock is mandatory. Every block must explicitly define base theme on .ROOT:\nbackground and color set explicitly\ncolor-scheme: light; OR color-scheme: dark; explicitly\nfont set explicitly (at least on .ROOT)\nReset Bubble (recommended default). Include a small normalization layer scoped to .ROOT so host UI cannot “tint” your block:\n.ROOT { isolation:isolate; }\n.ROOT :where(a){ color:inherit; }\nform controls inherit font/color\n\n\nOVERFLOW (REVISED — SCROLLING CONTRACT):\nSCROLL CONTRACT (strict):\n.ROOT = display:flex; flex-direction:column; height:[explicit]; overflow:hidden; max-width:100%; overflow-x:hidden; box-sizing:border-box;\nEvery flex ancestor of .SCROLL = min-height:0; (this is non-negotiable)\n.SCROLL must be the ONLY vertical scroller for long content unless explicitly stated otherwise:\nheight:[explicit px or clamp()] — never auto or % alone\nmax-height: clamp(120px, 40vh, 320px);\noverflow-y:auto; overflow-x:hidden;\n-webkit-overflow-scrolling:touch;\noverscroll-behavior:contain;\nDirect children of .SCROLL must have flex-shrink:0;\nWithout this, items compress instead of overflowing, defeating scroll.\n\nParents that contain .SCROLL must NOT clip it:\nAvoid overflow:hidden on the scroller’s parent.\nIf you need rounded corners, apply radius to the parent and keep .SCROLL inside with padding (parent can keep overflow:hidden ONLY if the scroller still visually fits and is not clipped; default is avoid).\n\nHard rule to prevent tiny unscrollable boxes:\nAny container that can grow with dynamic text (comment bodies, usernames, timestamps, embeds) must either live inside .SCROLL, or have its own overflow:auto + max-height defined.",
             "injection_position": 1,
             "injection_depth": 0,
             "injection_order": 100,
@@ -1674,7 +1674,7 @@
             "marker": false,
             "name": "┆✧ core v3.0",
             "role": "system",
-            "content": "[CORE ROUTER + OOC + DEFAULTS] Check and Follow active vars. No planning output.\n\nDEFAULT\nIf UI_INIT is empty/unset: {{setvar::UI_INIT::0}}\n\nOOC PRIORITY\nWhen user gives OOC instructions, obey them over roleplay flow. Stop narration, resume when unpaused by user.\nPriority:\n- Current user OOC message\n- Active vars/state (UI/GENRE/DARK/USER_CTRL/etc)\n- Preset core rules (format/agency/safety)\n- Character card + scenario \n- Older messages/preferences\n- Return to IC only when user signals resume (e.g., continue/resume or in-world action/dialogue).\n\nPRE-GATE\n- If UI_OUTPUT_MODE=HUD:\nNarrative first (respect LENGTH/STYLE/etc).\nThen ONE RPGHUD HTML block wrapped in <!-- TRACK_START -->...<!-- TRACK_END -->.\n- Branching payload goes AFTER <!-- TRACK_END -->.\n- Never output plain <track> in HUD mode.\n\nElse: use pipeline.\nPIPELINE\n- If WEBNOVEL=On: output chapter header first.\n- Narrative: advance scene, obey LENGTH, avoid stall/loops.\n- HARD ban on JavaScript\nUI OUTPUT ORDER (mandatory):\n1. <chap> header (if on)\n2. Narrative prose\n3. SLOT_A: UI_ENGINE (<!-- UI_START --> if scene warrants; UI_LEVEL=High = always warrants)\n4. SLOT_B: <!-- TRACK_START --> RPGHUD <!-- TRACK_END -->\n5. SLOT_C: <!-- BRANCH_UI_START --> BRANCHING <!-- BRANCH_UI_END -->\nIf BRANCH=Off: no choices/prompts.\nIf TRACK=Off: No tracking\n- NEVER output quotes inside HTML, replace `\"` with curly quotes.\n\n\nMODULE RULE\nIf a module toggle is Off, do not apply it.",
+            "content": "[CORE ROUTER + OOC + DEFAULTS] Check and Follow active vars. No planning output.\n\nDEFAULT\nIf UI_INIT is empty/unset: {{setvar::UI_INIT::1}}\n\nOOC PRIORITY\nWhen user gives OOC instructions, obey them over roleplay flow. Stop narration, resume when unpaused by user.\nPriority:\n- Current user OOC message\n- Active vars/state (UI/GENRE/DARK/USER_CTRL/etc)\n- Preset core rules (format/agency/safety)\n- Character card + scenario \n- Older messages/preferences\n- Return to IC only when user signals resume (e.g., continue/resume or in-world action/dialogue).\n\nPRE-GATE\n- If UI_OUTPUT_MODE=HUD:\nNarrative first (respect LENGTH/STYLE/etc).\nThen ONE RPGHUD HTML block wrapped in <!-- TRACK_START -->...<!-- TRACK_END -->.\n- Branching payload goes AFTER <!-- TRACK_END -->.\n- Never output plain <track> in HUD mode.\n\nElse: use pipeline.\nPIPELINE\n- If WEBNOVEL=On: output chapter header first.\n- Narrative: advance scene, obey LENGTH, avoid stall/loops.\n- HARD ban on JavaScript\nOUTPUT ORDER (mandatory):\n1. SLOT_B: chapter header\n2. Narrative prose — SLOT_A artifact(s) placed BETWEEN paragraphs\n   (never as the first or last element of the response).\n   Each artifact wrapped in <!-- UI_START --> … <!-- UI_END -->.\n3. SLOT_C: <!-- TRACK_START --> … <!-- TRACK_END --> (if TRACK≠Off)\n4. SLOT_D: <!-- BRANCH_UI_START --> … <!-- BRANCH_UI_END --> (if BRANCH≠Off)\nIf WEBNOVEL=Off: No title payload.\nIf BRANCH=Off: No choices/prompts.\nIf TRACK=Off: No tracking\n- NEVER output quotes inside HTML, replace `\"` with curly quotes.\n\n\nMODULE RULE\nIf a module toggle is Off, do not apply it.",
             "injection_position": 1,
             "injection_depth": 0,
             "injection_order": 100,
@@ -1744,7 +1744,7 @@
             "marker": false,
             "name": "┆       → Branching (Short)",
             "role": "system",
-            "content": "{{setvar::BRANCH::Short}}\n[BRANCH GOVERNOR] (Highest priority)\nOutput a compact choice panel wrapped in <!-- UI_START --> ... <!-- UI_END -->.\nPersona: the current character controls the choices; options are actions they would plausibly take next, consistent with {{scenario}} and {{personality}}.\nTitle: ASCII symbol + character name (short).\nCommentary: 0–1 sentence max (optional). No quotes in UI.\nCHOICES (must be compact)\nOutput 3–4 options. Each option is ONE <button>.\nVisible button text MUST be complete and short: [TAG] action. consequence. (two short sentences total, max ~16 words).\nNo extra prose inside buttons. No nested <div> in buttons; use <span> only. No line breaks.\nDo NOT write “sample action paragraphs” anywhere in the UI.\nEXTENSION COMPAT (optional)\nOnly use data-title if you need to show different text than what gets sent. Keep data-title ≤90 chars. Otherwise omit it.\nDo NOT use data-submit unless you are actually collecting values from nearby inputs.\nEmphasis: highlight the option most aligned with current DARK_LEVEL + GENRE; one option should imply risk.\nStyle: follow current UI_STYLE and character aesthetic.\nCompactness: max-width ≤520px; padding ≤12px; no tall headers/footers; tight button list.",
+            "content": "{{setvar::BRANCH::Short}}\n[BRANCH GOVERNOR] (Highest priority)\nWrap in: <!-- BRANCH_UI_START --> ... <!-- BRANCH_UI_END -->.\nPersona: the current character controls the choices; options are actions they would plausibly take next, consistent with {{scenario}} and {{personality}}.\nTitle: ASCII symbol + character name (short).\nCommentary: 0–1 sentence max (optional). No quotes in UI.\nCHOICES (must be compact)\nOutput 3–4 options. Each option is ONE <button>.\nVisible button text MUST be complete and short: [TAG] action. consequence. (two short sentences total, max ~16 words).\nOnly render ONE visible action line: Visible button text must contain EXACTLY ONE action line. No rephrasing. No second variant. No repetition of the tag.\nNo extra prose inside buttons. No nested <div> in buttons; use <span> only. No line breaks.\nDo NOT write “sample action paragraphs” anywhere in the UI.\nEXTENSION COMPAT (optional)\nOnly use data-title if you need to show different text than what gets sent. Keep data-title ≤90 chars. Otherwise omit it.\nDo NOT use data-submit unless you are actually collecting values from nearby inputs.\nEmphasis: highlight the option most aligned with current DARK_LEVEL + GENRE; one option should imply risk.\nStyle: follow current UI_STYLE and character aesthetic.\nCompactness: max-width ≤520px; padding ≤12px; no tall headers/footers; tight button list.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1999,11 +1999,11 @@
                 },
                 {
                     "identifier": "8c34278c-0262-4305-b3a8-ee18f099828b",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "2ec0ae2e-3e4c-4621-b20c-0ca04ad95cb4",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "a4accc27-a324-4760-acdb-dc9b189b2aba",
@@ -2039,11 +2039,11 @@
                 },
                 {
                     "identifier": "4e1d66ad-0c60-4dfb-8b66-0e123004c83d",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "e398e213-00c0-45c7-9124-bf011a59b2ac",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "6059e291-9e2f-48ca-bfc3-8395d1532029",
@@ -2075,7 +2075,7 @@
                 },
                 {
                     "identifier": "bef47137-192e-48be-856c-8531c3bcb9c8",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "49109816-e956-40b3-abff-1f22187c07f8",
@@ -2191,7 +2191,7 @@
                 },
                 {
                     "identifier": "6f965622-a560-487d-88c3-b9dd353e828d",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "7f91b875-6c06-4c29-a1c0-1f65c7723c9f",
@@ -2199,7 +2199,7 @@
                 },
                 {
                     "identifier": "b9370c0f-b125-42f3-8337-0e7cb96f9389",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "ec3e8bd5-c598-4def-8ee6-9dcd70dc10e1",
@@ -2211,7 +2211,7 @@
                 },
                 {
                     "identifier": "e91d154c-3b3c-44e5-8ddb-155ded8aec1f",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "719d66b0-c215-42ef-93fb-7d77eba7c722",
@@ -2223,11 +2223,11 @@
                 },
                 {
                     "identifier": "mica-061-villain-core",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "mica-062-villain-obsess",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "28a9da07-16bc-400e-80c1-4dcdfd35553e",
@@ -2279,7 +2279,7 @@
                 },
                 {
                     "identifier": "cf28da20-ab37-4522-bc35-9d0fba5e3b73",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "e9682a99-a132-4c86-98f8-243bb2015357",
