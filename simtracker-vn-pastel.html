@@ -1,0 +1,463 @@
+<!-- TEMPLATE NAME: VisualNovel Stats Card (Pastel Pillowy, Compact->Expand, Colored Cards, Separators, NO EMOJIS) -->
+<!-- POSITION: BOTTOM -->
+<!-- CARD_TEMPLATE_START -->
+
+<style>
+  #silly-sim-tracker-container{
+    display:flex; flex-direction:column; align-items:center;
+    gap:18px; width:100%; padding:18px 0;
+  }
+  .wide-wrapper-scope{ width:100%; display:flex; justify-content:center; }
+  .wide-container{ width:100%; display:flex; justify-content:center; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+
+  /* ===== VN OUTER CARD ===== */
+  .vn-card{
+    width: min(100%, 600px);
+    min-width: 320px;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,.90);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,170,215,.62), transparent 52%),
+      radial-gradient(circle at 85% 0%, rgba(150,210,255,.58), transparent 56%),
+      radial-gradient(circle at 70% 92%, rgba(195,165,255,.52), transparent 58%),
+      linear-gradient(135deg, rgba(255,190,225,.34), rgba(175,205,255,.30) 45%, rgba(215,190,255,.30));
+    box-shadow: 0 18px 44px rgba(0,0,0,.18);
+    overflow:hidden;
+    position:relative;
+    color: rgba(28,28,40,.92);
+    animation: vn_float 5.8s ease-in-out infinite;
+  }
+  @keyframes vn_float{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-3px); } }
+
+  .vn-card::before{
+    content:"";
+    position:absolute; inset:-40px;
+    background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%);
+    transform: translateX(-35%);
+    opacity:.42;
+    pointer-events:none;
+    animation: vn_sheen 8s ease-in-out infinite;
+  }
+  @keyframes vn_sheen{
+    0%,60%{ transform: translateX(-35%); opacity:.26; }
+    100%{ transform: translateX(25%); opacity:.50; }
+  }
+
+  .vn-inner{
+    position:relative;
+    margin: 12px;
+    border-radius: 22px;
+    border: 1px solid rgba(28,28,40,.10);
+    background: rgba(255,255,255,.88);
+    overflow:hidden;
+  }
+
+  /* ===== TOGGLE EXORCISM =====
+     The SimTracker “ghost toggle” appears as a mystery control inside the header area.
+     We can’t stop it from existing, but we can make it invisible + non-interactive.
+  */
+  .vn-inner :is(button, input, a, [role="button"]){
+    /* keep our external checkbox working; inside the card, kill interactivity */
+    pointer-events:none;
+  }
+  /* allow the header label to still click */
+  .vn-head{ pointer-events:auto; }
+  /* hide common expand controls */
+  .vn-card .expand-button,
+  .vn-card .wide-expand-button,
+  .vn-card .expand-btn,
+  .vn-card .btn-expand,
+  .vn-card [class*="expand"]{
+    display:none !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+
+  /* our checkbox (outside .vn-card) */
+  .toggle-wide{ display:none; }
+  .vn-body{ display:none; }
+  .toggle-wide:checked + .vn-card .vn-body{ display:block; }
+
+  /* ===== HEADER ===== */
+  .vn-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:12px; padding: 14px 14px 12px;
+    cursor:pointer; user-select:none; position:relative;
+  }
+  .vn-head > :not(.vn-left):not(.vn-right){ display:none !important; }
+
+  .vn-left{ min-width:0; }
+  .vn-name{
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing:.01em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .vn-meta{
+    margin-top:6px;
+    font-size:12px;
+    color: rgba(28,28,40,.62);
+    font-variant-numeric: tabular-nums;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  .vn-right{
+    display:flex; flex-direction:column; align-items:flex-end;
+    gap:8px; flex-shrink:0;
+  }
+
+  .vn-pill{
+    padding:7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(28,28,40,.10);
+    background: rgba(255,255,255,.94);
+    color: rgba(28,28,40,.76);
+    font-size:12px;
+    white-space:nowrap;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  }
+  .vn-pill.accent{
+    border-color: rgba(255,170,215,.60);
+    background:
+      radial-gradient(circle at 25% 30%, rgba(255,170,215,.34), transparent 55%),
+      radial-gradient(circle at 75% 70%, rgba(150,210,255,.28), transparent 58%),
+      rgba(255,255,255,.94);
+  }
+
+  /* ASCII texture rail */
+  .vn-rail{
+    padding: 0 14px 10px;
+    color: rgba(28,28,40,.48);
+    font-size:12px;
+    line-height:1.1;
+    letter-spacing:.02em;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    user-select:none;
+    opacity:.95;
+  }
+  .vn-rail .a{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .vn-rail .a:nth-child(2){ opacity:.80; }
+  .vn-rail .a:nth-child(3){ opacity:.74; }
+
+  /* separator between sections (requested) */
+  .sep{
+    margin: 10px 14px;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(28,28,40,.18) 0 2px, transparent 2px 10px);
+    opacity:.38;
+  }
+
+  /* compact preview always visible */
+  .vn-preview{ padding: 0 14px 14px; }
+  .vn-preview-row{
+    border-radius: 18px;
+    border: 1px solid rgba(28,28,40,.10);
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    padding: 10px 12px;
+  }
+
+  .vn-mini{ display:grid; gap:10px; }
+  .vn-mini-stat{
+    display:grid;
+    grid-template-columns: 18px 1fr 34px;
+    gap:10px; align-items:center;
+  }
+  .vn-mini-ico{
+    width:18px; text-align:center;
+    font-size:12px; color: rgba(28,28,40,.78);
+  }
+  .vn-mini-track{
+    height:8px; border-radius:999px;
+    background: rgba(28,28,40,.10); overflow:hidden;
+  }
+  .vn-mini-fill{
+    height:100%;
+    width: min(100%, max(0%, var(--val, 0%)));
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(255,170,215,.92), rgba(150,210,255,.85));
+  }
+  .vn-mini-num{
+    text-align:right;
+    font-size:11px;
+    color: rgba(28,28,40,.72);
+    font-variant-numeric: tabular-nums;
+  }
+  .vn-mini.ap .vn-mini-fill{ --val: {{divide stats.ap 2}}%; }
+  .vn-mini.tp .vn-mini-fill{ --val: {{divide stats.tp 1.5}}%; background: linear-gradient(90deg, rgba(150,210,255,.90), rgba(195,165,255,.80)); }
+  .vn-mini.cp .vn-mini-fill{ --val: {{divide stats.cp 1.5}}%; background: linear-gradient(90deg, rgba(195,165,255,.92), rgba(255,170,215,.78)); }
+
+  /* ===== BODY ===== */
+  .vn-body{ padding: 0 14px 14px; }
+
+  .vn-section{
+    border-radius: 20px;
+    border: 1px solid rgba(28,28,40,.10);
+    box-shadow: 0 12px 26px rgba(0,0,0,.10);
+    overflow:hidden;
+    background: rgba(255,255,255,.94);
+  }
+
+  /* Solid-ish pastel card tints (requested) */
+  .tint-pink{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,170,215,.20), transparent 55%),
+      rgba(255,245,250,.96);
+  }
+  .tint-blue{
+    background:
+      radial-gradient(circle at 20% 25%, rgba(150,210,255,.20), transparent 55%),
+      rgba(245,250,255,.96);
+  }
+  .tint-violet{
+    background:
+      radial-gradient(circle at 20% 25%, rgba(195,165,255,.20), transparent 55%),
+      rgba(250,246,255,.96);
+  }
+
+  .vn-sec-hd{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding: 12px 12px 10px;
+    border-bottom: 1px dashed rgba(28,28,40,.14);
+  }
+
+  .vn-k{
+    font-size:11px;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    color: rgba(28,28,40,.62);
+    font-weight: 900;
+  }
+
+  .vn-chip{
+    font-size:12px;
+    padding:7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(28,28,40,.10);
+    background: rgba(255,255,255,.96);
+    color: rgba(28,28,40,.74);
+    white-space:nowrap;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  }
+
+  .vn-text{
+    padding: 10px 12px 12px;
+    font-size:13px;
+    line-height:1.5;
+    color: rgba(28,28,40,.88);
+  }
+
+  .vn-stats{ padding: 12px; display:grid; gap:12px; }
+  .vn-note{
+    font-size:12px;
+    color: rgba(28,28,40,.62);
+    line-height:1.35;
+    margin-bottom: 2px;
+  }
+
+  .vn-stat{
+    display:grid;
+    grid-template-columns: 20px 1fr 40px;
+    grid-template-rows: auto auto;
+    column-gap:10px; row-gap:4px;
+    align-items:center;
+  }
+  .vn-ico{
+    width:20px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; color: rgba(28,28,40,.78);
+    opacity:.95;
+  }
+  .vn-track{
+    height:10px;
+    border-radius:999px;
+    background: rgba(28,28,40,.10);
+    overflow:hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.80) inset;
+  }
+  .vn-fill{
+    height:100%;
+    width: min(100%, max(0%, var(--val, 0%)));
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(255,170,215,.95), rgba(150,210,255,.88));
+  }
+  .vn-num{
+    text-align:right;
+    font-size:12px;
+    color: rgba(28,28,40,.78);
+    font-variant-numeric: tabular-nums;
+  }
+  .vn-sub{
+    grid-column:2 / 4;
+    grid-row:2;
+    margin-top:-2px;
+    font-size:11px;
+    color: rgba(28,28,40,.62);
+    line-height:1.2;
+  }
+  .vn-sub span{ opacity:.85; }
+
+  .vn-stat.ap .vn-fill{ --val: {{divide stats.ap 2}}%; }
+  .vn-stat.dp .vn-fill{ --val: {{divide stats.dp 1.5}}%; background: linear-gradient(90deg, rgba(255,170,215,.92), rgba(195,165,255,.82)); }
+  .vn-stat.tp .vn-fill{ --val: {{divide stats.tp 1.5}}%; background: linear-gradient(90deg, rgba(150,210,255,.92), rgba(195,165,255,.82)); }
+  .vn-stat.cp .vn-fill{
+    --val: {{divide stats.cp 1.5}}%;
+    background: linear-gradient(90deg, rgba(195,165,255,.92), rgba(255,170,215,.78));
+  }
+
+  /* cute VN choices (decorative) */
+  .vn-choices{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+  }
+  .vn-choice{
+    border-radius: 18px;
+    border: 1px solid rgba(28,28,40,.10);
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,170,215,.20), transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(150,210,255,.16), transparent 58%),
+      rgba(255,255,255,.94);
+    padding: 10px 12px;
+    text-align:center;
+    font-size:12px;
+    color: rgba(28,28,40,.74);
+    box-shadow: 0 12px 26px rgba(0,0,0,.10);
+    user-select:none;
+  }
+  .vn-choice strong{ font-weight:900; color: rgba(28,28,40,.82); }
+
+  @media (max-width: 380px){
+    .vn-card{ border-radius: 24px; }
+    .vn-inner{ margin: 10px; border-radius: 20px; }
+    .vn-head{ padding: 12px 12px 10px; }
+  }
+</style>
+
+<div class="wide-wrapper-scope">
+  <div class="wide-container">
+    <!-- start compact (unchecked); click header to expand -->
+    <input type="checkbox" id="wide-toggle-{{id}}" class="toggle toggle-wide">
+
+    <div class="vn-card {{#if stats.inactive}}inactive{{/if}}">
+      <div class="vn-inner">
+
+        <label for="wide-toggle-{{id}}" class="vn-head">
+          <div class="vn-left">
+            <div class="vn-name">≽•⩊•≼ {{characterName}}</div>
+            <div class="vn-meta">{{currentDate}} · Day {{stats.days_since_first_meeting}}</div>
+          </div>
+
+          <div class="vn-right">
+            <!-- NO EMOJIS -->
+            <div class="vn-pill accent">{{#if stats.relationshipStatus}}{{stats.relationshipStatus}}{{else}}—{{/if}}</div>
+            <div class="vn-pill">Mood: {{#if stats.desireStatus}}{{stats.desireStatus}}{{else}}Neutral{{/if}}</div>
+          </div>
+        </label>
+
+        <div class="vn-rail">
+          <div class="a">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</div>
+          <div class="a">▶︎ •၊၊||၊|။||||။‌‌‌‌‌၊|• 0:10</div>
+          <div class="a">⏔⏔⏔ ꒰ ᧔ෆ᧓ ꒱ ⏔⏔⏔</div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="vn-preview">
+          <div class="vn-preview-row">
+            <div class="vn-mini">
+              <div class="vn-mini-stat vn-mini ap">
+                <div class="vn-mini-ico">♥</div>
+                <div class="vn-mini-track"><div class="vn-mini-fill"></div></div>
+                <div class="vn-mini-num">{{stats.ap}}</div>
+              </div>
+
+              <div class="vn-mini-stat vn-mini tp">
+                <div class="vn-mini-ico">⋆</div>
+                <div class="vn-mini-track"><div class="vn-mini-fill"></div></div>
+                <div class="vn-mini-num">{{stats.tp}}</div>
+              </div>
+
+              <div class="vn-mini-stat vn-mini cp">
+                <div class="vn-mini-ico">⚑</div>
+                <div class="vn-mini-track"><div class="vn-mini-fill"></div></div>
+                <div class="vn-mini-num">{{stats.cp}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="vn-body">
+          <div class="vn-section tint-blue">
+            <div class="vn-sec-hd">
+              <div class="vn-k">Current thought</div>
+              <div class="vn-chip">✦ now</div>
+            </div>
+            <div class="vn-text">
+              {{#if stats.internal_thought}}{{stats.internal_thought}}{{else}}…{{/if}}
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="vn-section tint-violet">
+            <div class="vn-sec-hd">
+              <div class="vn-k">Stats</div>
+              <div class="vn-chip">♡ tracker</div>
+            </div>
+
+            <div class="vn-stats">
+              <div class="vn-note">Little meters for big feelings.</div>
+
+              <div class="vn-stat ap">
+                <div class="vn-ico">♥</div>
+                <div class="vn-track"><div class="vn-fill"></div></div>
+                <div class="vn-num">{{stats.ap}}</div>
+                <div class="vn-sub">Connection <span>— warmth / closeness</span></div>
+              </div>
+
+              <div class="vn-stat dp">
+                <div class="vn-ico">✦</div>
+                <div class="vn-track"><div class="vn-fill"></div></div>
+                <div class="vn-num">{{stats.dp}}</div>
+                <div class="vn-sub">Desire <span>— attraction / pull</span></div>
+              </div>
+
+              <div class="vn-stat tp">
+                <div class="vn-ico">⋆</div>
+                <div class="vn-track"><div class="vn-fill"></div></div>
+                <div class="vn-num">{{stats.tp}}</div>
+                <div class="vn-sub">Trust <span>— safety / reliability</span></div>
+              </div>
+
+              <div class="vn-stat cp">
+                <div class="vn-ico">⚑</div>
+                <div class="vn-track"><div class="vn-fill"></div></div>
+                <div class="vn-num">{{stats.cp}}</div>
+                <div class="vn-sub">Friction <span>— irritation / resistance</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="vn-choices">
+            <div class="vn-choice"><strong>[♥]</strong> Start.</div>
+            <div class="vn-choice"><strong>[✦]</strong> Go.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD_TEMPLATE_END -->

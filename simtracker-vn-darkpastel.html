@@ -1,0 +1,468 @@
+<!-- TEMPLATE NAME: VisualNovel Dark Mode (Moonlit VN, Compact->Expand, No Emojis) -->
+<!-- POSITION: BOTTOM -->
+<!-- CARD_TEMPLATE_START -->
+
+<style>
+  #silly-sim-tracker-container{
+    display:flex; flex-direction:column; align-items:center;
+    gap:18px; width:100%; padding:18px 0;
+  }
+  .wide-wrapper-scope{ width:100%; display:flex; justify-content:center; }
+  .wide-container{ width:100%; display:flex; justify-content:center; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+
+  /* ===== DARK VN OUTER CARD ===== */
+  .dvn-card{
+    width: min(100%, 620px);
+    min-width: 320px;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,.12);
+    background:
+      radial-gradient(circle at 18% 12%, rgba(120,72,190,.28), transparent 55%),
+      radial-gradient(circle at 85% 10%, rgba(70,190,255,.16), transparent 58%),
+      radial-gradient(circle at 70% 92%, rgba(255,120,200,.12), transparent 62%),
+      linear-gradient(180deg, #0b0814, #07060c);
+    box-shadow: 0 18px 44px rgba(0,0,0,.55);
+    overflow:hidden;
+    position:relative;
+    color: rgba(245,244,255,.92);
+    animation: dvn_float 6.2s ease-in-out infinite;
+  }
+  @keyframes dvn_float{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-3px); } }
+
+  /* subtle grid/noise */
+  .dvn-card::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 34px);
+    opacity:.08;
+    pointer-events:none;
+  }
+  /* soft scan shimmer */
+  .dvn-card::after{
+    content:"";
+    position:absolute; inset:-40px;
+    background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.10) 50%, transparent 60%);
+    transform: translateX(-35%);
+    opacity:.30;
+    pointer-events:none;
+    animation: dvn_sheen 9s ease-in-out infinite;
+  }
+  @keyframes dvn_sheen{
+    0%,65%{ transform: translateX(-35%); opacity:.20; }
+    100%{ transform: translateX(25%); opacity:.34; }
+  }
+
+  /* ===== inner glass panel (dark glass) ===== */
+  .dvn-inner{
+    position:relative;
+    margin: 12px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow:hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset;
+  }
+
+  /* ===== TOGGLE EXORCISM (same trick) ===== */
+  .dvn-inner :is(button, input, a, [role="button"]){ pointer-events:none; }
+  .dvn-head{ pointer-events:auto; }
+  .dvn-card .expand-button,
+  .dvn-card .wide-expand-button,
+  .dvn-card .expand-btn,
+  .dvn-card .btn-expand,
+  .dvn-card [class*="expand"]{
+    display:none !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+
+  /* our checkbox outside */
+  .toggle-wide{ display:none; }
+  .dvn-body{ display:none; }
+  .toggle-wide:checked + .dvn-card .dvn-body{ display:block; }
+
+  /* ===== HEADER ===== */
+  .dvn-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:12px; padding: 14px 14px 12px;
+    cursor:pointer; user-select:none; position:relative;
+  }
+  .dvn-head > :not(.dvn-left):not(.dvn-right){ display:none !important; }
+
+  .dvn-left{ min-width:0; }
+  .dvn-name{
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing:.01em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    color: rgba(245,244,255,.92);
+  }
+  .dvn-meta{
+    margin-top:6px;
+    font-size:12px;
+    color: rgba(245,244,255,.55);
+    font-variant-numeric: tabular-nums;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  .dvn-right{
+    display:flex; flex-direction:column; align-items:flex-end;
+    gap:8px; flex-shrink:0;
+  }
+
+  .dvn-pill{
+    padding:7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.22);
+    color: rgba(245,244,255,.78);
+    font-size:12px;
+    white-space:nowrap;
+    box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  }
+  .dvn-pill.accent{
+    border-color: rgba(120,72,190,.35);
+    background:
+      radial-gradient(circle at 25% 30%, rgba(120,72,190,.22), transparent 55%),
+      radial-gradient(circle at 75% 70%, rgba(70,190,255,.14), transparent 58%),
+      rgba(0,0,0,.22);
+  }
+
+  /* ASCII texture rail (dark) */
+  .dvn-rail{
+    padding: 0 14px 10px;
+    color: rgba(245,244,255,.42);
+    font-size:12px;
+    line-height:1.1;
+    letter-spacing:.02em;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    user-select:none;
+    opacity:.95;
+  }
+  .dvn-rail .a{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .dvn-rail .a:nth-child(2){ opacity:.78; }
+  .dvn-rail .a:nth-child(3){ opacity:.72; }
+
+  /* separator between sections */
+  .sep{
+    margin: 10px 14px;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.16) 0 2px, transparent 2px 10px);
+    opacity:.35;
+  }
+
+  /* compact preview */
+  .dvn-preview{ padding: 0 14px 14px; }
+  .dvn-preview-row{
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.18);
+    box-shadow: 0 14px 30px rgba(0,0,0,.35);
+    padding: 10px 12px;
+  }
+
+  .dvn-mini{ display:grid; gap:10px; }
+  .dvn-mini-stat{
+    display:grid;
+    grid-template-columns: 18px 1fr 34px;
+    gap:10px; align-items:center;
+  }
+  .dvn-mini-ico{
+    width:18px; text-align:center;
+    font-size:12px; color: rgba(245,244,255,.78);
+  }
+  .dvn-mini-track{
+    height:8px; border-radius:999px;
+    background: rgba(255,255,255,.10); overflow:hidden;
+  }
+  .dvn-mini-fill{
+    height:100%;
+    width: min(100%, max(0%, var(--val, 0%)));
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(120,72,190,.72), rgba(70,190,255,.55));
+  }
+  .dvn-mini-num{
+    text-align:right;
+    font-size:11px;
+    color: rgba(245,244,255,.62);
+    font-variant-numeric: tabular-nums;
+  }
+  .dvn-mini.ap .dvn-mini-fill{ --val: {{divide stats.ap 2}}%; }
+  .dvn-mini.tp .dvn-mini-fill{ --val: {{divide stats.tp 1.5}}%; background: linear-gradient(90deg, rgba(70,190,255,.60), rgba(255,120,200,.35)); }
+  .dvn-mini.cp .dvn-mini-fill{ --val: {{divide stats.cp 1.5}}%; background: linear-gradient(90deg, rgba(255,120,200,.45), rgba(120,72,190,.55)); }
+
+  /* ===== BODY ===== */
+  .dvn-body{ padding: 0 14px 14px; }
+
+  .dvn-section{
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: 0 16px 34px rgba(0,0,0,.35);
+    overflow:hidden;
+    background: rgba(0,0,0,.18);
+  }
+
+  /* dark solid tints (moonlit) */
+  .tint-grape{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(120,72,190,.22), transparent 60%),
+      rgba(0,0,0,.18);
+  }
+  .tint-cyan{
+    background:
+      radial-gradient(circle at 20% 25%, rgba(70,190,255,.16), transparent 62%),
+      rgba(0,0,0,.18);
+  }
+  .tint-pink{
+    background:
+      radial-gradient(circle at 20% 25%, rgba(255,120,200,.14), transparent 62%),
+      rgba(0,0,0,.18);
+  }
+
+  .dvn-sec-hd{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding: 12px 12px 10px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+    background: linear-gradient(90deg, rgba(120,72,190,.12), transparent 45%, rgba(70,190,255,.08));
+  }
+
+  .dvn-k{
+    font-size:11px;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    color: rgba(245,244,255,.62);
+    font-weight: 900;
+  }
+
+  .dvn-chip{
+    font-size:12px;
+    padding:7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.22);
+    color: rgba(245,244,255,.74);
+    white-space:nowrap;
+    box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  }
+
+  .dvn-text{
+    padding: 10px 12px 12px;
+    font-size:13px;
+    line-height:1.5;
+    color: rgba(245,244,255,.88);
+  }
+
+  .dvn-stats{ padding: 12px; display:grid; gap:12px; }
+  .dvn-note{
+    font-size:12px;
+    color: rgba(245,244,255,.55);
+    line-height:1.35;
+    margin-bottom: 2px;
+  }
+
+  .dvn-stat{
+    display:grid;
+    grid-template-columns: 20px 1fr 40px;
+    grid-template-rows: auto auto;
+    column-gap:10px; row-gap:4px;
+    align-items:center;
+  }
+  .dvn-ico{
+    width:20px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; color: rgba(245,244,255,.78);
+    opacity:.95;
+  }
+  .dvn-track{
+    height:10px;
+    border-radius:999px;
+    background: rgba(255,255,255,.10);
+    overflow:hidden;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+  }
+  .dvn-fill{
+    height:100%;
+    width: min(100%, max(0%, var(--val, 0%)));
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(120,72,190,.75), rgba(70,190,255,.55));
+  }
+  .dvn-num{
+    text-align:right;
+    font-size:12px;
+    color: rgba(245,244,255,.72);
+    font-variant-numeric: tabular-nums;
+  }
+  .dvn-sub{
+    grid-column:2 / 4;
+    grid-row:2;
+    margin-top:-2px;
+    font-size:11px;
+    color: rgba(245,244,255,.55);
+    line-height:1.2;
+  }
+  .dvn-sub span{ opacity:.85; }
+
+  .dvn-stat.ap .dvn-fill{ --val: {{divide stats.ap 2}}%; }
+  .dvn-stat.dp .dvn-fill{ --val: {{divide stats.dp 1.5}}%; background: linear-gradient(90deg, rgba(255,120,200,.48), rgba(120,72,190,.62)); }
+  .dvn-stat.tp .dvn-fill{ --val: {{divide stats.tp 1.5}}%; background: linear-gradient(90deg, rgba(70,190,255,.62), rgba(255,120,200,.28)); }
+  .dvn-stat.cp .dvn-fill{ --val: {{divide stats.cp 1.5}}%; background: linear-gradient(90deg, rgba(255,120,200,.40), rgba(120,72,190,.55)); }
+
+  /* dark VN choices */
+  .dvn-choices{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+  }
+  .dvn-choice{
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.10);
+    background:
+      radial-gradient(circle at 20% 20%, rgba(120,72,190,.14), transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(70,190,255,.10), transparent 58%),
+      rgba(0,0,0,.22);
+    padding: 10px 12px;
+    text-align:center;
+    font-size:12px;
+    color: rgba(245,244,255,.74);
+    box-shadow: 0 16px 34px rgba(0,0,0,.35);
+    user-select:none;
+  }
+  .dvn-choice strong{ font-weight:900; color: rgba(245,244,255,.86); }
+
+  @media (max-width: 380px){
+    .dvn-card{ border-radius: 24px; }
+    .dvn-inner{ margin: 10px; border-radius: 20px; }
+    .dvn-head{ padding: 12px 12px 10px; }
+  }
+</style>
+
+<div class="wide-wrapper-scope">
+  <div class="wide-container">
+    <!-- start compact (unchecked); click header to expand -->
+    <input type="checkbox" id="wide-toggle-{{id}}" class="toggle toggle-wide">
+
+    <div class="dvn-card {{#if stats.inactive}}inactive{{/if}}">
+      <div class="dvn-inner">
+
+        <label for="wide-toggle-{{id}}" class="dvn-head">
+          <div class="dvn-left">
+            <div class="dvn-name">≽•⩊•≼ {{characterName}}</div>
+            <div class="dvn-meta">{{currentDate}} · Day {{stats.days_since_first_meeting}}</div>
+          </div>
+
+          <div class="dvn-right">
+            <div class="dvn-pill accent">{{#if stats.relationshipStatus}}{{stats.relationshipStatus}}{{else}}—{{/if}}</div>
+            <div class="dvn-pill">Mood: {{#if stats.desireStatus}}{{stats.desireStatus}}{{else}}Neutral{{/if}}</div>
+          </div>
+        </label>
+
+        <div class="dvn-rail">
+          <div class="a">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</div>
+          <div class="a">▶︎ •၊၊||၊|।||||।‌‌‌‌‌၊|• 0:10</div>
+          <div class="a">⏔⏔⏔ ꒰ ᧔ෆ᧓ ꒱ ⏔⏔⏔</div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="dvn-preview">
+          <div class="dvn-preview-row">
+            <div class="dvn-mini">
+              <div class="dvn-mini-stat dvn-mini ap">
+                <div class="dvn-mini-ico">♥</div>
+                <div class="dvn-mini-track"><div class="dvn-mini-fill"></div></div>
+                <div class="dvn-mini-num">{{stats.ap}}</div>
+              </div>
+
+              <div class="dvn-mini-stat dvn-mini tp">
+                <div class="dvn-mini-ico">⋆</div>
+                <div class="dvn-mini-track"><div class="dvn-mini-fill"></div></div>
+                <div class="dvn-mini-num">{{stats.tp}}</div>
+              </div>
+
+              <div class="dvn-mini-stat dvn-mini cp">
+                <div class="dvn-mini-ico">⚑</div>
+                <div class="dvn-mini-track"><div class="dvn-mini-fill"></div></div>
+                <div class="dvn-mini-num">{{stats.cp}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="dvn-body">
+          <div class="dvn-section tint-cyan">
+            <div class="dvn-sec-hd">
+              <div class="dvn-k">Current thought</div>
+              <div class="dvn-chip">✦ now</div>
+            </div>
+            <div class="dvn-text">
+              {{#if stats.internal_thought}}{{stats.internal_thought}}{{else}}…{{/if}}
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="dvn-section tint-grape">
+            <div class="dvn-sec-hd">
+              <div class="dvn-k">Stats</div>
+              <div class="dvn-chip">♡ tracker</div>
+            </div>
+
+            <div class="dvn-stats">
+              <div class="dvn-note">How bad is it?.</div>
+
+              <div class="dvn-stat ap">
+                <div class="dvn-ico">♥</div>
+                <div class="dvn-track"><div class="dvn-fill"></div></div>
+                <div class="dvn-num">{{stats.ap}}</div>
+                <div class="dvn-sub">Connection <span>— warmth / closeness</span></div>
+              </div>
+
+              <div class="dvn-stat dp">
+                <div class="dvn-ico">✦</div>
+                <div class="dvn-track"><div class="dvn-fill"></div></div>
+                <div class="dvn-num">{{stats.dp}}</div>
+                <div class="dvn-sub">Desire <span>— attraction / pull</span></div>
+              </div>
+
+              <div class="dvn-stat tp">
+                <div class="dvn-ico">⋆</div>
+                <div class="dvn-track"><div class="dvn-fill"></div></div>
+                <div class="dvn-num">{{stats.tp}}</div>
+                <div class="dvn-sub">Trust <span>— safety / reliability</span></div>
+              </div>
+
+              <div class="dvn-stat cp">
+                <div class="dvn-ico">⚑</div>
+                <div class="dvn-track"><div class="dvn-fill"></div></div>
+                <div class="dvn-num">{{stats.cp}}</div>
+                <div class="dvn-sub">Friction <span>— irritation / resistance</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="dvn-choices">
+            <div class="dvn-choice"><strong>[♥]</strong> Start.</div>
+            <div class="dvn-choice"><strong>[✦]</strong> Go.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD_TEMPLATE_END -->

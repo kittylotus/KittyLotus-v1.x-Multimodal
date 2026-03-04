@@ -1,0 +1,468 @@
+<!-- TEMPLATE NAME: ModernUI Real Phone — Health App (Samsung Nav Controls) -->
+<!-- AUTHOR: stable wide base + modern system nav -->
+<!-- POSITION: BOTTOM -->
+<!-- CARD_TEMPLATE_START -->
+
+<style>
+  #silly-sim-tracker-container{
+    display:flex; flex-direction:column; align-items:center;
+    gap:18px; width:100%; padding:18px 0;
+  }
+  .wide-wrapper-scope{ width:100%; display:flex; justify-content:center; }
+  .wide-container{ width:100%; display:flex; justify-content:center; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+
+  .wide-card{
+    width:min(100%, 420px);
+    min-width:320px;
+    border-radius:34px;
+    position:relative;
+    overflow:visible;
+    padding:14px;
+    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow: 0 28px 90px rgba(0,0,0,.55), 0 2px 0 rgba(255,255,255,.08) inset;
+  }
+  .wide-card.inactive{ opacity:.62; }
+
+  .wide-card::before{
+    content:""; position:absolute; left:-3px; top:92px;
+    width:4px; height:86px; border-radius:10px;
+    background: rgba(255,255,255,.10);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset;
+    opacity:.9;
+  }
+  .wide-card::after{
+    content:""; position:absolute; right:-3px; top:120px;
+    width:4px; height:54px; border-radius:10px;
+    background: rgba(255,255,255,.10);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset;
+    opacity:.9;
+  }
+
+  .screen{
+    position:relative;
+    overflow:hidden;
+    border-radius:26px;
+    border:1px solid rgba(255,255,255,.10);
+    background:
+      radial-gradient(circle at 20% 5%, rgba(120,170,255,.10), transparent 48%),
+      radial-gradient(circle at 80% 0%, rgba(180,120,255,.08), transparent 52%),
+      linear-gradient(180deg, rgba(16,18,28,.97), rgba(8,9,14,.98));
+    box-shadow: 0 18px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.35) inset;
+    height: clamp(520px, 72vh, 720px);
+    display:flex; flex-direction:column;
+  }
+  .screen::before{
+    content:""; position:absolute; inset:-40px;
+    background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.06) 50%, transparent 65%);
+    transform: translateX(-25%);
+    opacity:.55; pointer-events:none;
+  }
+  .screen::after{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 50% 120%, rgba(0,0,0,.55), transparent 62%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 44px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 44px);
+    opacity:.08; pointer-events:none;
+  }
+
+  .notch{
+    position:relative;
+    width:54%; height:20px;
+    margin:10px auto 8px;
+    border-radius:999px;
+    background: rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    z-index:2;
+    flex:0 0 auto;
+  }
+  .notch:before{
+    content:""; position:absolute; left:50%; top:6px;
+    width:42%; height:6px; transform:translateX(-50%);
+    border-radius:999px; background: rgba(255,255,255,.10); opacity:.6;
+  }
+  .notch:after{
+    content:""; position:absolute; right:12px; top:6px;
+    width:7px; height:7px; border-radius:999px;
+    background: rgba(120,170,255,.22);
+    box-shadow: 0 0 0 2px rgba(0,0,0,.45) inset, 0 0 14px rgba(120,170,255,.14);
+    opacity:.9;
+  }
+
+  .app{
+    position:relative;
+    padding:12px 14px 0;
+    z-index:2;
+    flex:1;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* top bar */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px; padding: 4px 2px 10px;
+    flex:0 0 auto;
+  }
+  .titlewrap{ min-width:0; }
+  .name{
+    font-weight:800; font-size:13px; letter-spacing:.01em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    color: rgba(235,245,255,.92);
+  }
+  .meta{
+    margin-top:4px; font-size:11px;
+    color: rgba(200,210,235,.62);
+    font-variant-numeric: tabular-nums;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .pill{
+    padding:7px 9px;
+    border-radius:999px;
+    background: rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    color: rgba(220,235,255,.84);
+    font-size:11px;
+    display:flex; align-items:center; gap:7px;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:999px;
+    background: rgba(120,170,255,.65);
+    box-shadow: 0 0 0 3px rgba(120,170,255,.16);
+  }
+
+  /* fixed scroller */
+  .scroll{
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:4px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.18) transparent;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Cards */
+  .surface{
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    overflow:hidden;
+  }
+  .surface-hd{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px;
+    padding:11px 12px 9px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .k{
+    font-size:10px;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    color: rgba(200,220,255,.58);
+    font-weight:800;
+  }
+  .chip{
+    font-size:11px;
+    padding:6px 9px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.16);
+    color: rgba(235,245,255,.86);
+    white-space:nowrap;
+  }
+  .surface-bd{
+    padding:9px 12px 11px;
+    font-size:12px;
+    line-height:1.45;
+    color: rgba(235,245,255,.88);
+  }
+
+  /* Readout */
+  .meters{ padding:11px 12px 12px; display:grid; gap:10px; }
+  .readout-note{ font-size:11px; color: rgba(200,210,235,.62); line-height:1.35; margin-bottom:2px; }
+
+  .stat{
+    display:grid;
+    grid-template-columns: 20px 1fr 38px;
+    grid-template-rows:auto auto;
+    column-gap:10px;
+    row-gap:4px;
+    align-items:center;
+  }
+  .ico{ width:20px; display:flex; align-items:center; justify-content:center; color: rgba(220,235,255,.88); font-size:12px; opacity:.9; }
+  .track{
+    height:9px;
+    border-radius:999px;
+    background: rgba(255,255,255,.08);
+    overflow:hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
+  }
+  .fill{
+    height:100%;
+    width: min(100%, max(0%, var(--val, 0%)));
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(120,170,255,.92), rgba(90,210,255,.70));
+    box-shadow: 0 0 18px rgba(120,170,255,.10);
+  }
+  .num{ text-align:right; font-size:11px; color: rgba(220,235,255,.70); font-variant-numeric: tabular-nums; }
+  .sub{ grid-column:2 / 4; grid-row:2; margin-top:-2px; font-size:10.5px; color: rgba(200,210,235,.62); line-height:1.2; }
+  .sub span{ opacity:.85; }
+
+  .stat.ap .fill{ --val: {{divide stats.ap 2}}%; }
+  .stat.dp .fill{ --val: {{divide stats.dp 1.5}}%; }
+  .stat.tp .fill{ --val: {{divide stats.tp 1.5}}%; }
+  .stat.cp .fill{
+    --val: {{divide stats.cp 1.5}}%;
+    background: linear-gradient(90deg, rgba(255,100,140,.92), rgba(180,120,255,.55));
+    box-shadow: 0 0 18px rgba(255,120,170,.08);
+  }
+
+  /* Decorative app nav (your app) */
+  .nav{
+    flex:0 0 auto;
+    padding: 10px 6px 10px;
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .navbtn{
+    flex:1;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+    padding: 9px 0 8px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    color: rgba(200,220,255,.62);
+    font-size:10.5px;
+    letter-spacing:.04em;
+    opacity:.95;
+  }
+  .navbtn.active{
+    color: rgba(235,245,255,.88);
+    border-color: rgba(120,170,255,.22);
+    background: rgba(120,170,255,.07);
+  }
+
+  /* simple icon glyphs */
+  .glyph{ width:22px; height:18px; position:relative; opacity:.9; }
+  .g-health::before{
+    content:""; position:absolute; left:4px; top:3px;
+    width:6px; height:6px; border-radius:999px;
+    background: rgba(235,245,255,.60);
+    box-shadow: 8px 0 0 rgba(235,245,255,.60);
+  }
+  .g-health::after{
+    content:""; position:absolute; left:6px; top:7px;
+    width:10px; height:8px;
+    border-radius: 0 0 10px 10px;
+    border: 2px solid rgba(235,245,255,.45);
+    border-top:none;
+  }
+  .g-trends::before{
+    content:""; position:absolute; left:4px; bottom:2px;
+    width:3px; height:7px; border-radius:2px;
+    background: rgba(235,245,255,.40);
+    box-shadow: 6px -2px 0 rgba(235,245,255,.55), 12px -5px 0 rgba(235,245,255,.70);
+  }
+  .g-log::before{
+    content:""; position:absolute; left:4px; top:4px;
+    width:14px; height:2px; border-radius:999px;
+    background: rgba(235,245,255,.55);
+    box-shadow: 0 5px 0 rgba(235,245,255,.40), 0 10px 0 rgba(235,245,255,.28);
+  }
+  .g-profile::before{
+    content:""; position:absolute; left:8px; top:2px;
+    width:6px; height:6px; border-radius:999px;
+    background: rgba(235,245,255,.55);
+  }
+  .g-profile::after{
+    content:""; position:absolute; left:5px; top:9px;
+    width:12px; height:7px;
+    border-radius: 10px 10px 6px 6px;
+    border: 2px solid rgba(235,245,255,.35);
+    border-top:none;
+  }
+
+  /* ---- Samsung-style system nav controls bar (modern) ---- */
+  .sysnav{
+    flex:0 0 auto;
+    padding: 8px 10px 12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .sysbar{
+    width: 66%;
+    height: 40px;
+    border-radius: 16px;
+    background: rgba(0,0,0,.28);
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: 0 10px 26px rgba(0,0,0,.30), 0 0 0 1px rgba(255,255,255,.06) inset;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    gap:10px;
+  }
+
+  .sysbtn{
+    width:44px;
+    height:28px;
+    border-radius: 12px;
+    position:relative;
+    opacity:.85;
+  }
+
+  /* Recents: three vertical bars */
+  .sys-recents::before{
+    content:"";
+    position:absolute; left:16px; top:7px;
+    width:3px; height:14px;
+    border-radius:2px;
+    background: rgba(235,245,255,.42);
+    box-shadow: 6px 0 0 rgba(235,245,255,.55), 12px 0 0 rgba(235,245,255,.32);
+  }
+
+  /* Home: hollow circle */
+  .sys-home::before{
+    content:"";
+    position:absolute; left:50%; top:50%;
+    width:14px; height:14px;
+    transform: translate(-50%,-50%);
+    border-radius:999px;
+    border: 2px solid rgba(235,245,255,.48);
+    box-shadow: 0 0 14px rgba(120,170,255,.12);
+  }
+
+  /* Back: chevron */
+  .sys-back::before{
+    content:"";
+    position:absolute; left:18px; top:50%;
+    width:10px; height:10px;
+    transform: translateY(-50%) rotate(45deg);
+    border-left: 2px solid rgba(235,245,255,.48);
+    border-bottom: 2px solid rgba(235,245,255,.48);
+    border-radius: 2px;
+  }
+
+  /* Hide any native expand control remnants */
+  .wide-card .expand-button,
+  .wide-card .wide-expand-button,
+  .wide-card .expand-btn,
+  .wide-card .btn-expand{ display:none !important; }
+
+  @media (max-width: 380px){
+    .wide-card{ border-radius: 30px; padding: 12px; }
+    .screen{ border-radius: 24px; }
+    .sysbar{ width: 74%; }
+  }
+</style>
+
+<div class="wide-wrapper-scope">
+  <div class="wide-container">
+    <div class="wide-card {{#if stats.inactive}}inactive{{/if}}">
+      <div class="screen">
+        <div class="notch"></div>
+
+        <div class="app">
+          <div class="topbar">
+            <div class="titlewrap">
+              <div class="name">{{characterName}}</div>
+              <div class="meta">{{currentDate}} • Day {{stats.days_since_first_meeting}}</div>
+            </div>
+            <div class="pill">
+              <span class="dot"></span>
+              <span>
+                {{#if stats.desireStatus}}{{stats.desireStatus}}
+                {{else}}{{#if stats.relationshipStatus}}{{stats.relationshipStatus}}{{else}}Neutral{{/if}}{{/if}}
+              </span>
+            </div>
+          </div>
+
+          <div class="scroll">
+            <div class="surface">
+              <div class="surface-hd">
+                <div class="k">Notes</div>
+                <div class="chip">{{reactionEmoji}} {{#if stats.relationshipStatus}}{{stats.relationshipStatus}}{{else}}—{{/if}}</div>
+              </div>
+              <div class="surface-bd">
+                {{#if stats.internal_thought}}{{stats.internal_thought}}{{else}}(none){{/if}}
+              </div>
+            </div>
+
+            <div class="surface">
+              <div class="surface-hd">
+                <div class="k">Readout</div>
+                <div class="chip">Today</div>
+              </div>
+              <div class="meters">
+                <div class="readout-note">
+                  Interprets relational signals as four indicators. Higher isn’t always “better.”
+                </div>
+
+                <div class="stat ap">
+                  <div class="ico">♥</div>
+                  <div class="track"><div class="fill"></div></div>
+                  <div class="num">{{stats.ap}}</div>
+                  <div class="sub">Connection <span>— warmth / closeness</span></div>
+                </div>
+
+                <div class="stat dp">
+                  <div class="ico">✦</div>
+                  <div class="track"><div class="fill"></div></div>
+                  <div class="num">{{stats.dp}}</div>
+                  <div class="sub">Desire <span>— attraction / pull</span></div>
+                </div>
+
+                <div class="stat tp">
+                  <div class="ico">⋆</div>
+                  <div class="track"><div class="fill"></div></div>
+                  <div class="num">{{stats.tp}}</div>
+                  <div class="sub">Trust <span>— safety / reliability</span></div>
+                </div>
+
+                <div class="stat cp">
+                  <div class="ico">⚑</div>
+                  <div class="track"><div class="fill"></div></div>
+                  <div class="num">{{stats.cp}}</div>
+                  <div class="sub">Friction <span>— irritation / resistance</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="nav">
+            <div class="navbtn active"><div class="glyph g-health"></div><div>Health</div></div>
+            <div class="navbtn"><div class="glyph g-trends"></div><div>Trends</div></div>
+            <div class="navbtn"><div class="glyph g-log"></div><div>Log</div></div>
+            <div class="navbtn"><div class="glyph g-profile"></div><div>Profile</div></div>
+          </div>
+
+          <div class="sysnav">
+            <div class="sysbar">
+              <div class="sysbtn sys-recents"></div>
+              <div class="sysbtn sys-home"></div>
+              <div class="sysbtn sys-back"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD_TEMPLATE_END -->
