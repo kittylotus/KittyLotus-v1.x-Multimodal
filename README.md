@@ -1,4 +1,4 @@
-# KittyLotus-v1.x-Multimodal
+# KittyLotus-v2.x-Multimodal
 Check [the Carrd](https://multimodalkl.carrd.co/) for more info!
 
 
