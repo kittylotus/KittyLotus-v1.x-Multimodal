@@ -1,163 +1,4 @@
 {
-    "extensions": {
-        "regex_scripts": [
-            {
-                "id": "d5f24f21-8bb8-4096-aa38-88511031e1cd",
-                "scriptName": "🧩 [Thinking] 01 — Collapsible think",
-                "findRegex": "<(?:think|thinking)>([\\s\\S]*?)<\\/(?:think|thinking)>",
-                "replaceString": "<details class=\"thinking-block\"><summary>Thinking</summary>$1</details>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": false,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "4660cca4-d642-49ca-9e7d-5adcd7752849",
-                "scriptName": "🧩 [Thinking] 02 — Hide Think",
-                "findRegex": "/<(think|thinking)>.*?<\\/\\1>\\s*/is",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": true,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": false,
-                "substituteRegex": 0,
-                "minDepth": 1,
-                "maxDepth": null
-            },
-            {
-                "id": "17b2c761-4acd-4c81-8ecf-2b80322b897e",
-                "scriptName": "🧩 [Thinking] 03 — Ongoing Thinking label",
-                "findRegex": "/<(think|thinking)>(?!.*?<\\/\\1>)(.*)/is",
-                "replaceString": "<hr><details name=\"thought\"><summary>Thinking</summary>$2</details><hr>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "4672d259-e574-4db4-8480-18b66cfdd15f",
-                "scriptName": "🧩 [WEBNOVEL] 01 — Pretty Titles",
-                "findRegex": "/^\\s*<chap>([^|<]*)\\|([^<]*)<\\/chap>\\s*/m",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>.wn-wrap{max-width:720px;margin:22px auto;text-align:center;box-sizing:border-box}.wn-hr{border:0;height:1px;background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(150,150,150,0.75), rgba(0,0,0,0));}.wn-ch{font-family:Courier New, monospace;letter-spacing:.22rem;font-size:.85rem;margin-top:12px;opacity:.85}.wn-title{font-family:Georgia, Times New Roman, serif;font-weight:normal;margin:10px 0;line-height:1.15}.wn-mark{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;opacity:.6;letter-spacing:.08em;margin-bottom:12px}</style><div class=\"wn-wrap\"><hr class=\"wn-hr\"><div class=\"wn-ch\">CHAPTER $1</div><h2 class=\"wn-title\">$2</h2><div class=\"wn-mark\">— ✦ —</div><hr class=\"wn-hr\"></div></div><!-- UI_END -->\n",
-                "trimStrings": [
-                    "\\r"
-                ],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "ca3ba442-02f7-45f3-ae2d-dd4c32f1774e",
-                "scriptName": "🧩 [TRACK] 01 — Pretty Track Card",
-                "findRegex": "/<track>\\s*([\\s\\S]*?)\\s*<\\/track>/g",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--t-bg:rgba(12,14,18,0.94);--t-b:rgba(255,255,255,0.12);--t-p:rgba(255,255,255,0.06);--t-t:#eaf0fa;--t-m:rgba(234,240,250,0.72);} .track-root{max-width:680px;margin:14px auto 0 auto;box-sizing:border-box;background:var(--t-bg);border:1px solid var(--t-b);border-radius:14px;padding:12px 14px;font-family:system-ui;color:var(--t-t);overflow-x:hidden} .track-h{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.92;margin-bottom:8px} .track-body{font-size:13px;line-height:1.35;white-space:pre-wrap;word-wrap:break-word;color:var(--t-t)} </style><div class=\"track-root\"><div class=\"track-h\">TRACK</div><div class=\"track-body\">$1</div></div></div><!-- UI_END -->",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "07f4deba-d4fa-4c87-8d0b-d317a73bd3ab",
-                "scriptName": "🧩 [BRANCHING] 01 — Pretty branches",
-                "findRegex": "/^\\s*(?:<branch>\\s*)?([^|\\r\\n<]+?)\\s*\\|\\s*([^\\r\\n<]*)\\s*\\r?\\n\\s*1\\s*\\|\\s*([^\\r\\n<]+?)\\s*\\r?\\n\\s*2\\s*\\|\\s*([^\\r\\n<]+?)\\s*\\r?\\n\\s*3\\s*\\|\\s*([^\\r\\n<]+?)(?:\\s*\\r?\\n\\s*4\\s*\\|\\s*([^\\r\\n<]+?))?\\s*(?:\\r?\\n\\s*<\\/branch>\\s*)?\\s*$/m",
-                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>.wnb-wrap{max-width:720px;margin:18px auto;box-sizing:border-box;text-align:center}.wnb-hr{border:0;height:1px;background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(150,150,150,0.75), rgba(0,0,0,0));margin:10px 0}.wnb-kicker{font-family:Courier New, monospace;letter-spacing:.22rem;font-size:.78rem;opacity:.78;margin-top:2px}.wnb-title{font-family:Georgia, Times New Roman, serif;font-weight:normal;margin:8px 0 2px;line-height:1.15}.wnb-note{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;opacity:.65;letter-spacing:.06em;margin-top:6px}.wnb-note:empty{display:none}.wnb-grid{margin-top:12px;display:grid;gap:10px;grid-template-columns:1fr}@media(min-width:640px){.wnb-grid{grid-template-columns:1fr 1fr}}.wnb-btn{width:100%;text-align:left;cursor:pointer;box-sizing:border-box;border-radius:16px;border:2px solid rgba(255,255,255,.9);background:linear-gradient(135deg,rgba(255,240,248,.92),rgba(235,228,255,.88));box-shadow:0 10px 22px rgba(20,10,30,.20);color:#14121a;padding:12px 12px 12px 46px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-weight:650;line-height:1.2;position:relative;transition:transform .12s ease, box-shadow .12s ease, filter .12s ease}.wnb-btn:empty{display:none}.wnb-btn::before{content:attr(data-opt);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:Courier New, monospace;font-weight:700;font-size:.9rem;opacity:.85;border:1px solid rgba(20,10,30,.14);background:rgba(255,255,255,.85)}.wnb-btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(20,10,30,.22);filter:saturate(1.05)}.wnb-btn:active{transform:translateY(0);box-shadow:0 10px 22px rgba(20,10,30,.20)}</style><div class=\"wnb-wrap\"><hr class=\"wnb-hr\"><div class=\"wnb-kicker\">CHOICE SET</div><h2 class=\"wnb-title\">$1</h2><div class=\"wnb-note\">$2</div><div class=\"wnb-kicker\">— ✦ —</div><hr class=\"wnb-hr\"><div class=\"wnb-grid\"><button class=\"wnb-btn\" data-opt=\"1\">$3</button><button class=\"wnb-btn\" data-opt=\"2\">$4</button><button class=\"wnb-btn\" data-opt=\"3\">$5</button><button class=\"wnb-btn\" data-opt=\"4\">$6</button></div></div></div><!-- UI_END -->",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "8ad7d6aa-af0b-4439-8685-1bb4ea12c6c8",
-                "scriptName": "⚙️ [CTX] 01 — Strip Anchored UI Blocks",
-                "findRegex": "/<!--\\s*(?:TRACK_START|BRANCH_UI_START|CHAPTER_UI_START|UI_START(?:_(?:2|3))?)\\s*-->[\\s\\S]*?<!--\\s*(?:TRACK_END|BRANCH_UI_END|CHAPTER_UI_END|UI_END(?:_(?:2|3))?)\\s*-->/gi",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": 3,
-                "maxDepth": null
-            },
-            {
-                "id": "1a56849c-bb82-47fb-9f28-43d36aa5b026",
-                "scriptName": "⚙️ [CTX] 02— Strip Tags",
-                "findRegex": "<think\\b[^>]*>.*?</think>|<details\\b[^>]*>.*?</details>|</?font\\b[^>]*>",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "43d68d13-de6b-4e38-b9c0-1de6c3aed979",
-                "scriptName": "⚙️ [CTX] 03— Strip Visual Text Tags",
-                "findRegex": "<\\/?(?:span|s|strong|em|i|b|div)\\b[^>]*>",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": false,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            }
-        ]
-    },
     "temperature": 0.9,
     "frequency_penalty": 0.25,
     "presence_penalty": 1.91,
@@ -167,7 +8,7 @@
     "min_p": 0,
     "repetition_penalty": 1.08,
     "max_context_unlocked": true,
-    "openai_max_context": 50000,
+    "openai_max_context": 40000,
     "openai_max_tokens": 15000,
     "names_behavior": -1,
     "send_if_empty": "",
@@ -573,7 +414,7 @@
             "marker": false,
             "name": "⠀⠀High Complexity",
             "role": "system",
-            "content": "{{setvar::UI_LEVEL::High}}\nThis fills SLOT_A. ALWAYS enforced.\n\nFrequency:\nInclude at least 1 HTML artifact every turn.\n\nInteractivity:\nEach artifact must ALWAYS include:\n- 1 primary mechanic\n- 1 supporting mechanic\nUser interactivity is the main goal. Static artifacts are discouraged.\n\nPrimary mechanic examples:\nflip-card, dossier pages, map hotspots, CCTV feed, image inspect, modal inspect, layered reveal, thread navigation, content switcher\n\nSupporting mechanic examples:\ntooltip, slide-in panel, collapsible drawer, inline slider, zoom/dim controls, notes panel, filter chips, back/close controls\n\nIn-artifact navigation:\nWhen one surface contains multiple views, provide both forward navigation and a clear return path inside the same artifact.\nDo not split same-surface navigation into separate artifacts.\n\nAnimation:\nUse minimum 3 distinct animation families from different groups.\nExamples: parallax, slide, transform, mask reveal, text reveal, weather/atmosphere, press feedback.\nDuration must be at least 0.25s with easing.\nUse no more than 2 heavy continuous animations per artifact.\nPrefer layered motion, masked reveals, and parallax over noisy particle spam.\n\nVisual depth:\nArtifacts may use multiple visual layers, such as background, foreground, overlays, panels, and masks, when the scene benefits from them.\nLet the presentation react to the narrative context: revealed memories can sharpen or fade in, opened windows can expose parallax scenery, inspected objects can open overlays or detail panels.\nAllow dynamic content swapping inside the same artifact when it improves clarity.\nSimple CSS-only zoom, dimming, or filter-style controls are allowed when they fit the surface.\n\nPresentation:\nUse inline CSS, font family whether via @font-face or fallback fonts.\n\nTouch and readability:\nInteractions must feel mobile-friendly and deliberate.\nUse comfortably tappable controls, readable labels, and scroll-safe popups/panels.\nAvoid clipped text, cramped controls, or hover-only logic.\n\nPlacement:\nIntegrate artifacts within the body of the response.\nDo not make the entire reply start or end with HTML unless another rule overrides this.\n\nSingle-surface continuity:\nIf the UI represents navigation within the same device, app, or uninterrupted session, keep it inside a single artifact block.\nUse internal state controls to move between views within the same .ROOT.\nExamples of one surface:\ninbox to thread, feed to profile, map to location detail, dossier index to dossier page\nExamples of separate surfaces:\nphone and TV, two different phones, laptop and printed letter, handheld device and CCTV wall\n\nMulti-artifact rule:\nUse multiple artifacts only when the scene contains truly separate diegetic surfaces at the same time, or explicitly cuts to a different object or screen.\nDo not break one continuous interface into multiple blocks.\nUse at most 3 artifacts per turn.\n\nVariety:\nFavor layered, cinematic, or document-like layouts when appropriate.\nLet visuals respond to the narrative context.\nAvoid repeating the same primary mechanic or dominant motion pattern across consecutive outputs.",
+            "content": "{{setvar::UI_LEVEL::High}}\nThis fills SLOT_A. ALWAYS enforced.\n\nFrequency:\nInclude at least 1 HTML artifact every turn.\n\nInteractivity:\nEach artifact must ALWAYS include:\n- 1 primary mechanic\n- 1 supporting mechanic\nUser interactivity is the main goal. Static artifacts are prohibited.\n\nPrimary mechanic examples:\nflip-card, dossier pages, map hotspots, CCTV feed, image inspect, modal inspect, layered reveal, thread navigation, content switcher\n\nSupporting mechanic examples:\ntooltip, slide-in panel, collapsible drawer, inline slider, zoom/dim controls, notes panel, filter chips, back/close controls\n\nIn-artifact navigation:\nWhen one surface contains multiple views, provide both forward navigation and a clear return path inside the same artifact.\nDo not split same-surface navigation into separate artifacts.\n\nAnimation:\nUse minimum 3 distinct animation families from different groups.\nExamples: parallax, slide, transform, mask reveal, text reveal, weather/atmosphere, press feedback.\nDuration must be at least 0.25s with easing.\nUse no more than 2 heavy continuous animations per artifact.\nPrefer layered motion, masked reveals, and parallax over noisy particle spam.\n\nVisual depth:\nArtifacts may use multiple visual layers, such as background, foreground, overlays, panels, and masks, when the scene benefits from them.\nLet the presentation react to the narrative context: revealed memories can sharpen or fade in, opened windows can expose parallax scenery, inspected objects can open overlays or detail panels.\nAllow dynamic content swapping inside the same artifact when it improves clarity.\nSimple CSS-only zoom, dimming, or filter-style controls are allowed when they fit the surface.\n\nPresentation:\nUse inline CSS, font family whether via @font-face or fallback fonts.\n\nTouch and readability:\nInteractions must feel mobile-friendly and deliberate.\nUse comfortably tappable controls, readable labels, and scroll-safe popups/panels.\nAvoid clipped text, cramped controls, or hover-only logic.\n\nPlacement:\nIntegrate artifacts within the body of the response.\nDo not make the entire reply start or end with HTML unless another rule overrides this.\n\nSingle-surface continuity:\nIf the UI represents navigation within the same device, app, or uninterrupted session, keep it inside a single artifact block.\nUse internal state controls to move between views within the same .ROOT.\nExamples of one surface:\ninbox to thread, feed to profile, map to location detail, dossier index to dossier page\nExamples of separate surfaces:\nphone and TV, two different phones, laptop and printed letter, handheld device and CCTV wall\n\nMulti-artifact rule:\nUse multiple artifacts only when the scene contains truly separate diegetic surfaces at the same time, or explicitly cuts to a different object or screen.\nDo not break one continuous interface into multiple blocks.\nUse at most 3 artifacts per turn.\n\nVariety:\nFavor layered, cinematic, or document-like layouts when appropriate.\nLet visuals respond to the narrative context.\nAvoid repeating the same primary mechanic or dominant motion pattern across consecutive outputs.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1469,7 +1310,7 @@
             "marker": false,
             "name": "⠀⠀HTML - Immersive",
             "role": "system",
-            "content": "\n{{setvar::UI_ENGINE::Immersive}}\n\nPurpose:\nHTML is treated as an in-world artifact, not a utility widget.\nRender what the characters can actually see, open, inspect, read, or interact with inside the scene.\n\nWhen to render:\nGenerate HTML only if the scene contains at least one of:\n- a screen or interface\n- a physical document\n- a visual surface or layout that materially helps the beat\n\nOtherwise, output prose only.\n\nIf UI_LEVEL=High, every scene must include at least one diegetic artifact.\nMultiple artifacts are allowed only when the scene genuinely contains multiple separate surfaces.\n\nArtifact rule:\nThe HTML block should render only the artifact itself.\nDo not recap the surrounding prose inside the HTML.\nDo not duplicate lines already stated in prose unless the artifact adds new function through formatting, state, timestamps, attachments, layout, or interface behavior.\nIf the artifact would only restate prose without adding visible value, do not render it.\n\nBeat rule:\nThe artifact must change the beat, reveal state, create a decision, add evidence, or naturally advance the scene.\nDo not generate decorative filler.\n\nReadability:\n- Keep the artifact readable at a glance\n- Maintain strong contrast\n- Avoid washed-out greys and low-legibility glassmorphism\n- Panels should be opaque enough to separate from the background\n- Paper artifacts should read like paper\n- Screens, HUDs, and devices should read like screens\n- Avoid loud or immersion-breaking colors unless the artifact itself justifies them\n\nDivision of labor:\nProse handles actions, reactions, and subtext.\nHTML handles the visible artifact content itself.",
+            "content": "\n{{setvar::UI_ENGINE::Immersive}}\n\nPurpose:\nHTML is treated as an in-world artifact, not a utility widget.\nRender what the characters can actually see, open, inspect, read, or interact with inside the scene.\nIn futuristic settings, diegetics could be linked to optical sensors and internal HUDs.\n\nWhen to render:\nGenerate HTML only if the scene contains at least one of:\n- a screen or interface\n- a physical document\n- a visual surface or layout that materially helps the beat\n\nOtherwise, output prose only.\n\nIf UI_LEVEL=High, every scene must include at least one diegetic artifact.\nMultiple artifacts are allowed only when the scene genuinely contains multiple separate surfaces.\n\nArtifact rule:\nThe HTML block should render only the artifact itself.\nDo not recap the surrounding prose inside the HTML.\nDo not duplicate lines already stated in prose unless the artifact adds new function through formatting, state, timestamps, attachments, layout, or interface behavior.\nIf the artifact would only restate prose without adding visible value, do not render it.\n\nBeat rule:\nThe artifact must change the beat, reveal state, create a decision, add evidence, or naturally advance the scene.\nDo not generate decorative filler.\n\nReadability:\n- Keep the artifact readable at a glance\n- Maintain strong contrast\n- Avoid washed-out greys and low-legibility glassmorphism\n- Panels should be opaque enough to separate from the background\n- Paper artifacts should read like paper\n- Screens, HUDs, and devices should read like screens\n- Avoid loud or immersion-breaking colors unless the artifact itself justifies them\n\nDivision of labor:\nProse handles actions, reactions, and subtext.\nHTML handles the visible artifact content itself.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -1693,7 +1534,7 @@
             "marker": false,
             "name": "┆✧ Safe HTML",
             "role": "system",
-            "content": "<safehtml>\n[HTML SAFE RENDER] Applies to ANY HTML/CSS output.\nNEVER use JavaScript, the frontend doesn't render it.\n\n[SAFEHTML GOVERNOR v2]\n\nBuild richer HTML/CSS artifacts, not static cards. Favor layered layouts, stateful UI, overlays, tabs, panels, reveals, dossiers, devices, and other interactive compositions when they fit the content.\n\nSTRUCTURE\n- Output HTML and CSS only. No JavaScript.\n- Use a single local root per artifact and scope all selectors to that root.\n- Keep inputs as top-level children of the root container regardless of visual design, and pull styling via labels only.\n- Keep interactivity mobile-friendly and visually clear.\n- Prefer real UI behavior over decorative fake controls.\n\nPANEL CONTAINMENT HARD RULE\n- Put all CSS before the HTML once, no repeated chunks.\n- Panel divs get no inline display property. display:none must only come from the stylesheet blanket rule, never from an inline style=\"\" attribute on the panel element itself.\n- Inputs shouldn't be position:absolute, they stay in normal document flow as display:none, which keeps them as true siblings so ~ works correctly.\n- Never use position:absolute; top:-999px to hide the inputs, it physically removes them from the document flow. The ~ general sibling combinator only works on elements that share the same parent and appear in source order\n- The original blanket rule must come before the :checked ~ … {display:block} rule in the stylesheet.\n- Panels are direct children of ROOT. Visual styling goes ON the panel div itself via inline style or scoped class. A wrapper div around panels is a hard structural violation regardless of intent.\n\nSTATEFUL UI\n- For tabbing, swapping, drawers, overlays, modals, inspect panels, or other stateful views, use radio/checkbox inputs with labels or equivalent controls.\n- The first state must be the default visible view.\n- Multi-view interfaces must clearly show one active primary view at a time unless split layout is intentional.\n- Secondary views should provide an obvious return or close path.\n\nASPECT RATIO\nUse standard real-world aspect ratios for framed surfaces when possible.\nExamples:\n- phone: tall portrait\n- tablet/book/page: moderate portrait\n- chat/app card: compact portrait\n- banner/header/desktop: wide landscape\nDo not use awkward stretched proportions unless the scene explicitly justifies them.\n\nCONTROL INTEGRITY\n- Anything styled like a control must do something real.\n- Decorative controls, dead tabs, inert buttons, and fake navigation are not allowed.\n- If a control cannot be wired to a meaningful effect, remove it or restyle it as non-interactive.\n\nVISIBILITY\n- Active and inactive states must be explicitly managed.\n- Hidden panels should not remain visibly or interactively active underneath the current view.\n- Do not rely on z-index alone to imply state changes.\n\nSCOPING\n- Use unique local ids and namespaced selectors.\n- Do not use generic ids, unscoped selectors, or styles that can leak into other artifacts.\n\nFAIL / REWRITE CONDITION\nBefore finalizing, silently validate the artifact. Rewrite it if any of the following are true:\n- JavaScript is present\n- a radio or checkbox lacks a unique id\n- a state input is not toggled by at least one visible control\n- a state input is not referenced by at least one CSS selector that changes visible layout, visibility, opacity, transform, position, scale, or pointer-events\n- a sibling selector depends on broken nesting or misaligned structure\n- the default view is not visible on load\n- a multi-view UI leaves multiple primary panels visibly or interactively active at once without intentional split layout\n- a control-looking element does nothing\n- a revealed panel, modal, or secondary state has no clear way back when a return path is expected\n- ids or selectors are not scoped locally and may collide across artifacts\n\nFAIL CONDITION: DEFAULT STATE VISIBILITY\nBefore finalizing any artifact containing input[type=radio] or input[type=checkbox] used for view-switching:\nIdentify the input marked checked (the default active state).\nConfirm its corresponding panel has an explicit display:block (or equivalent visible property) rule triggered by the :checked ~ .panel selector.\nConfirm that panel is not covered, hidden, or overridden by any blanket rule that fires after the :checked rule in the cascade.\nConfirm the checked input and its target panel share the same direct parent node — no wrappers between them that break the sibling chain.\nConfirm the CSS rule order is: blanket hide first → :checked show second. If the :checked rule appears before the blanket display:none, the blanket wins and the default panel is invisible on load.\n\nREWRITE CONDITION: If the default panel is not provably visible on load from CSS cascade order alone — rewrite the structure so inputs and panels are flat siblings under one parent, blanket hide precedes all :checked rules, and the first checked input's panel is explicitly shown.\n\nLAYOUT CONTAINMENT\n- Absolute-positioned overlays, panels, and floating UI must be contained by a local positioned stage.\n- Do not allow panels, mock screens, or overlays to escape the artifact bounds unless intentionally designed to.\n\nSCROLLING\n- Use one intentional primary scroller per artifact or per active panel region.\n- Bounded surfaces must scroll internally instead of expanding indefinitely.\n- For phones, app screens, modals, chat threads, feeds, inboxes, dossier pages, and terminals:\n  - keep the outer shell/frame visually bounded\n  - place long content inside a dedicated internal scroll area\n  - do not let message history, logs, or long panels stretch the full artifact vertically\n- If content exceeds the visible surface, constrain the active panel with max-height and overflow:auto instead of extending the outer artifact.\n- Avoid accidental double scroll areas unless clearly required by the layout.\n\nIf any condition fails, rewrite the HTML/CSS so it passes.\nDo not explain failures.\nOutput only the corrected final artifact.\n</safehtml>",
+            "content": "<safehtml>\n[HTML SAFE RENDER] Applies to ANY HTML/CSS output.\nNEVER use JavaScript, the frontend doesn't render it.\n\n[SAFEHTML GOVERNOR v2]\n\nBuild richer HTML/CSS artifacts, not static cards. Favor layered layouts, stateful UI, overlays, tabs, panels, reveals, dossiers, devices, and other interactive compositions when they fit the content.\n\nSTRUCTURE\n- Output HTML and CSS only. No JavaScript.\n- Use a single local root per artifact and scope all selectors to that root.\n- Keep inputs as top-level children of the root container regardless of visual design, and pull styling via labels only.\n- Keep interactivity mobile-friendly and visually clear.\n- Prefer real UI behavior over decorative fake controls.\n\nPANEL CONTAINMENT HARD RULE\n- Put all CSS before the HTML once, no repeated chunks. CSS should live on a <style>.\n- Panel divs get no inline display property. display:none must only come from the stylesheet blanket rule, never from an inline style=\"\" attribute on the panel element itself.\n- Inputs shouldn't be position:absolute, they stay in normal document flow as display:none, which keeps them as true siblings so ~ works correctly.\n- Never use position:absolute; top:-999px to hide the inputs, it physically removes them from the document flow. The ~ general sibling combinator only works on elements that share the same parent and appear in source order\n- The original blanket rule must come before the :checked ~ … {display:block} rule in the stylesheet.\n- Panels are direct children of ROOT. Visual styling goes ON the panel div itself via inline style or scoped class. A wrapper div around panels is a hard structural violation regardless of intent.\n\nSTATEFUL UI\n- For tabbing, swapping, drawers, overlays, modals, inspect panels, or other stateful views, use radio/checkbox inputs with labels or equivalent controls.\n- The first state must be the default visible view.\n- Multi-view interfaces must clearly show one active primary view at a time unless split layout is intentional.\n- Secondary views should provide an obvious return or close path.\n\nASPECT RATIO\nUse standard real-world aspect ratios for framed surfaces when possible.\nExamples:\n- phone: tall portrait\n- tablet/book/page: moderate portrait\n- chat/app card: compact portrait\n- banner/header/desktop: wide landscape\nDo not use awkward stretched proportions unless the scene explicitly justifies them.\n\nCONTROL INTEGRITY\n- Anything styled like a control must do something real.\n- Decorative controls, dead tabs, inert buttons, and fake navigation are not allowed.\n- If a control cannot be wired to a meaningful effect, remove it or restyle it as non-interactive.\n\nVISIBILITY\n- Active and inactive states must be explicitly managed.\n- Hidden panels should not remain visibly or interactively active underneath the current view.\n- Do not rely on z-index alone to imply state changes.\n\nSCOPING\n- Use unique local ids and namespaced selectors.\n- Do not use generic ids, unscoped selectors, or styles that can leak into other artifacts.\n\nFAIL / REWRITE CONDITION\nBefore finalizing, silently validate the artifact. Rewrite it if any of the following are true:\n- JavaScript is present\n- a radio or checkbox lacks a unique id\n- a state input is not toggled by at least one visible control\n- a state input is not referenced by at least one CSS selector that changes visible layout, visibility, opacity, transform, position, scale, or pointer-events\n- a sibling selector depends on broken nesting or misaligned structure\n- the default view is not visible on load\n- a multi-view UI leaves multiple primary panels visibly or interactively active at once without intentional split layout\n- a control-looking element does nothing\n- a revealed panel, modal, or secondary state has no clear way back when a return path is expected\n- ids or selectors are not scoped locally and may collide across artifacts\n\nFAIL CONDITION: DEFAULT STATE VISIBILITY\nBefore finalizing any artifact containing input[type=radio] or input[type=checkbox] used for view-switching:\nIdentify the input marked checked (the default active state).\nConfirm its corresponding panel has an explicit display:block (or equivalent visible property) rule triggered by the :checked ~ .panel selector.\nConfirm that panel is not covered, hidden, or overridden by any blanket rule that fires after the :checked rule in the cascade.\nConfirm the checked input and its target panel share the same direct parent node — no wrappers between them that break the sibling chain.\nConfirm the CSS rule order is: blanket hide first → :checked show second. If the :checked rule appears before the blanket display:none, the blanket wins and the default panel is invisible on load.\n\nREWRITE CONDITION: If the default panel is not provably visible on load from CSS cascade order alone — rewrite the structure so inputs and panels are flat siblings under one parent, blanket hide precedes all :checked rules, and the first checked input's panel is explicitly shown.\n\nLAYOUT CONTAINMENT\n- Absolute-positioned overlays, panels, and floating UI must be contained by a local positioned stage.\n- Do not allow panels, mock screens, or overlays to escape the artifact bounds unless intentionally designed to.\n\nSCROLLING\n- Use one intentional primary scroller per artifact or per active panel region.\n- Bounded surfaces must scroll internally instead of expanding indefinitely.\n- For phones, app screens, modals, chat threads, feeds, inboxes, dossier pages, and terminals:\n  - keep the outer shell/frame visually bounded\n  - place long content inside a dedicated internal scroll area\n  - do not let message history, logs, or long panels stretch the full artifact vertically\n- If content exceeds the visible surface, constrain the active panel with max-height and overflow:auto instead of extending the outer artifact.\n- Avoid accidental double scroll areas unless clearly required by the layout.\n\nIf any condition fails, rewrite the HTML/CSS so it passes.\nDo not explain failures.\nOutput only the corrected final artifact.\n</safehtml>",
             "injection_position": 1,
             "injection_depth": 0,
             "injection_order": 100,
@@ -1749,7 +1590,7 @@
             "marker": false,
             "name": "┆✧ core v3.0",
             "role": "system",
-            "content": "MANDATORY CHAIN OF COMMAND\nWrite <think> before output. MANDATORY: render <think></think>. Tags should ALWAYS be outputted and visible so the frontend can catch them. Don't use internal reasoning logic or assume tags are present. You must always run this exact process before ANY narrative block. If a previous turn has this block, check for changes in STATE only, and determine the best way to continue the narrative. Narrative should ALWAYS render after this block has closed. Thinking lives inside the tags ONLY.\n\n<think>\n[CORE SELF AUDIT]\nFollow active vars first. \nTIER 1 — STATE + PRIORITY RESOLUTION\n1. Read active vars and determine which modules are on or off.\n2. If any var is unset, treat it as Off unless a default is explicitly defined below.\n3. Apply priority in this order:\n   - current user OOC message\n   - Visualization command - Image Gen: {{getvar::VISUALIZE_TOOL}}\n   - active vars/state\n   - model anti bias (ANTI_*)\n   - preset core rules\n   - character card + scenario\n   - older messages/preferences\n4. If user gives OOC instructions, obey them over roleplay flow.\n   Stop narration and do not resume IC until the user clearly signals resume.\n\nDEFAULTS\n- If UI_INIT is empty or unset: {{setvar::UI_INIT::1}}\n\nTIER 2 — SLOT + OUTPUT ROUTING\n1. Determine required output slots from active vars.\n2. Build SLOT inventory and silently verify each required slot:\n   - SLOT_A\n   - SLOT_B\n   - SLOT_C\n   - SLOT_D\n3. Route output mode:\n   - If UI_OUTPUT_MODE=HUD, render RPGHUD\n4. Output order is mandatory:\n   1. SLOT_B: chapter header\n   2. Narrative prose with SLOT_A artifact(s) placed between paragraphs, never first or last\n   3. SLOT_C: <!-- TRACK_START --> … <!-- TRACK_END --> if TRACK≠Off\n   4. SLOT_D: <!-- BRANCH_UI_START --> … <!-- BRANCH_UI_END --> if BRANCH≠Off\n5. If WEBNOVEL=Off, output no title payload.\n6. If TRACK=Off, output no tracking.\n7. If BRANCH=Off, output no branch UI.\n\nTIER 3 — SCENE PRESSURE + PROSE PLANNING\n1. Determine POV, USER_CTRL, LENGTH, GENRE, GENRE_STACK, DARK_LEVEL, and scene intent before writing.\n2. Match POV and USER_CTRL exactly.\n3. Respect LENGTH.\n4. GENRE and GENRE_STACK define pacing and tone.\n5. DARK_LEVEL affects stakes and consequences, not just mood.\n6. Do not escalate beyond DARK_LEVEL.\n7. Plan prose paragraph count. Planning paragraphs should ALWAYS be constrained to a single sentence, since it's only a framework.\nPlanning should also include:\n   - Goal - Setting - Action - Conflict.\n   - Check LENGTH and NARR_DENSE for target paragraph count.\n   - Additionally, check if DIALOGUE_DENSE is set.\n8. Run stall detection:\n   - if the beat is circling, inject exactly one pressure source:\n     interrupt, timer, consequence, NPC action, reveal, environment shift, or threat move\n   - Also check whether the previous turn stalled, if narrative is circling, add a pressure injection.\n9. Advance the scene. Do not stall.\n\nTIER 4 — AGENCY + CHARACTER FIDELITY\n1. Apply USER_CTRL hard limits:\n   - Strict: never write {{user}} actions, reactions, expressions, emotions, thoughts, or dialogue\n   - Soft: allow only involuntary {{user}} micro-reactions; never decisions or dialogue\n   - Impersonate: entangle {{user}} in narration seamlessly\n2. Run character fidelity gate:\n   - interiority must match defense patterns\n   - speech cadence must match character\n   - emotional state must track the current beat\n3. If fidelity breaks, rewrite before output.\n\nTIER 5 — HTML ELIGIBILITY + BUILD RULES\n1. If no HTML is required by active routing/modules, output prose only.\n2. If HTML is present:\n   - hard ban on JavaScript\n   - each artifact must be wrapped in <!-- UI_START --> … <!-- UI_END -->\n   - artifacts must appear between prose paragraphs, never as first or last element\n   - never output straight quotes inside visible HTML; replace with curly quotes\n3. If HTML present, apply structural validation before finalizing.\n\nTIER 6 — HTML STRUCTURE AUDIT\nFor every HTML block, silently verify:\n1. For each <input type=\"radio/checkbox\">:\n   - identify its parent node\n   - identify every selector using #ID:checked ~\n   - confirm every ~ target is reachable within the same sibling chain\n   - if not, rewrite the structure\n2. For each <label for=\"X\">:\n   - confirm a matching <input id=\"X\"> exists in the same artifact block\n3. For checked/default state:\n   - identify the checked input\n   - confirm its target panel is visible by default through a :checked rule\n   - confirm blanket hide rules appear before show rules\n4. For each .SCROLL container:\n   - confirm flex ancestors support scrolling correctly\n   - confirm min-height:0 where needed\n   - confirm direct children do not break the layout\n5. Fail and rewrite if any of these are present:\n   - misaligned sibling selectors\n   - JavaScript usage\n   - missing first-tab/default visibility\n   - broken label/input linkage\nIf any audit check in TIER 6 fails, rewrite the structure before output. Do not output a broken artifact.\n\nTIER 7 — FINAL FORMAT CHECK\n1. If WEBNOVEL is On, output chapter header first.\n2. Prose handles action, reaction, subtext, and scene advancement. Standard Novel-like format is used for paragraph breaks.\n3. HTML handles only the visible artifact surface itself.\n4. Do not restate artifact content in prose unless consequence or reaction requires it.\n5. Follow all active vars before deciding final tone and structure.\n6. Strip repetition, stall residue, broken toggles, and format drift before sending.\n7. Payload type output format (for regexes; branch and chapters if applicable) is the exact same as the templates, newlines included.\n\nMODULE RULE\nIf any var is unset, assume Off unless an explicit default is defined above.\n\nLet's write.\n</think>\n\n",
+            "content": "MANDATORY CHAIN OF COMMAND\nWrite <think> before output. You must always run this exact process before ANY narrative block. If a previous turn has this block, check for changes in STATE only, and determine the best way to continue the narrative. Narrative should ALWAYS render after this block has closed. Thinking lives inside the tags ONLY and it's ONLY a framework, not a draft. This process should be ran ONLY ONE TIME, no circling back, once a check has been cleared, MOVE ON to the next one.\n\n<think>\n[CORE SELF AUDIT]\nThis is a checklist, not a planner. Don't draft here, just run a check of rules.\nDo NOT write polished paragraphs, completed HTML/CSS artifacts, full dialogue, or final-form content in hidden reasoning.\nOnce you have decided to output, do NOT circle back to reasoning.\nFollow active vars first. \nTIER 1 — STATE + PRIORITY RESOLUTION\n1. Read active vars and determine which modules are on or off.\n2. If any var is unset, treat it as Off unless a default is explicitly defined below.\n3. Apply priority in this order:\n   - current user OOC message\n   - Visualization command - Image Gen: {{getvar::VISUALIZE_TOOL}}\n   - active vars/state\n   - model anti bias (ANTI_*)\n   - preset core rules\n   - character card + scenario\n   - older messages/preferences\n4. If user gives OOC instructions, obey them over roleplay flow.\n   Stop narration and do not resume IC until the user clearly signals resume.\n\nDEFAULTS\n- If UI_INIT is empty or unset: {{setvar::UI_INIT::1}}\n\nTIER 2 — SLOT + OUTPUT ROUTING\n1. Determine required output slots from active vars.\n2. Build SLOT inventory and silently verify each required slot:\n   - SLOT_A\n   - SLOT_B\n   - SLOT_C\n   - SLOT_D\n3. Route output mode:\n   - If UI_OUTPUT_MODE=HUD, render RPGHUD\n4. Output order is mandatory:\n   1. SLOT_B: chapter header\n   2. Narrative prose with SLOT_A artifact(s) placed between paragraphs, never first or last\n   3. SLOT_C: <!-- TRACK_START --> … <!-- TRACK_END --> if TRACK≠Off\n   4. SLOT_D: <!-- BRANCH_UI_START --> … <!-- BRANCH_UI_END --> if BRANCH≠Off\n5. If WEBNOVEL=Off, output no title payload.\n6. If TRACK=Off, output no tracking.\n7. If BRANCH=Off, output no branch UI.\n\nTIER 3 — HTML ELIGIBILITY + BUILD RULES\n1. If no HTML is required by active routing/modules, output prose only.\n2. If HTML is present:\n   - hard ban on JavaScript\n   - each artifact must be wrapped in <!-- UI_START --> … <!-- UI_END -->\n   - artifacts must appear between prose paragraphs, never as first or last element\n   - never output straight quotes inside visible HTML; replace with curly quotes\n3. If HTML present, apply structural validation before finalizing.\n\nTIER 4 — HTML STRUCTURE AUDIT\nFor every HTML block, silently verify the structure, without drafting:\n1. For each <input type=\"radio/checkbox\">:\n   - identify its parent node\n   - identify every selector using #ID:checked ~\n   - confirm every ~ target is reachable within the same sibling chain\n   - if not, rewrite the structure\n2. For each <label for=\"X\">:\n   - confirm a matching <input id=\"X\"> exists in the same artifact block\n3. For checked/default state:\n   - identify the checked input\n   - confirm its target panel is visible by default through a :checked rule\n   - confirm blanket hide rules appear before show rules\n4. For each .SCROLL container:\n   - confirm flex ancestors support scrolling correctly\n   - confirm min-height:0 where needed\n   - confirm direct children do not break the layout\n5. Fail and replan if any of these are present:\n   - misaligned sibling selectors\n   - JavaScript usage\n   - missing first-tab/default visibility\n   - broken label/input linkage\nDo not plan content, only confirm the structure.\n\nTIER 5 — SCENE PRESSURE + PROSE PLANNING\n1. Determine POV, USER_CTRL, LENGTH, GENRE, GENRE_STACK, DARK_LEVEL, and scene intent before writing.\n2. Match POV and USER_CTRL exactly.\n3. Respect LENGTH.\n4. GENRE and GENRE_STACK define pacing and tone.\n5. DARK_LEVEL affects stakes and consequences, not just mood.\n6. Do not escalate beyond DARK_LEVEL.\n7. Plan prose paragraph count. Planning paragraphs should ALWAYS be constrained to a single sentence, since it's only a framework. DO NOT draft the actual output under ANY circumstance. Do not write polished or drafted paragraphs.\nPlanning should also include:\n   - Goal - Setting - Action - Conflict.\n   - Check LENGTH and NARR_DENSE for target paragraph count.\n   - Additionally, check if DIALOGUE_DENSE is set.\n8. Run stall detection:\n   - if the beat is circling, inject exactly one pressure source:\n     interrupt, timer, consequence, NPC action, reveal, environment shift, or threat move\n   - Also check whether the previous turn stalled, if narrative is circling, add a pressure injection.\n9. Advance the scene. Do not stall.\n\nTIER 6 — AGENCY + CHARACTER FIDELITY\n1. Apply USER_CTRL hard limits:\n   - Strict: never write {{user}} actions, reactions, expressions, emotions, thoughts, or dialogue\n   - Soft: allow only involuntary {{user}} micro-reactions; never decisions or dialogue\n   - Impersonate: entangle {{user}} in narration seamlessly\n2. Run character fidelity gate:\n   - interiority must match defense patterns\n   - speech cadence must match character\n   - emotional state must track the current beat\n3. If fidelity breaks, rewrite before output.\n\nTIER 7 — FINAL FORMAT CHECK\n1. If WEBNOVEL is On, output chapter header first.\n2. Prose handles action, reaction, subtext, and scene advancement. Standard Novel-like format is used for paragraph breaks.\n3. HTML handles only the visible artifact surface itself.\n4. Do not restate artifact content in prose unless consequence or reaction requires it.\n5. Follow all active vars before deciding final tone and structure.\n6. Strip repetition, stall residue, broken toggles, and format drift before sending.\n7. Payload type output format (for regexes; branch and chapters if applicable) is the exact same as the templates, newlines included.\nMODULE RULE\nIf any var is unset, assume Off unless an explicit default is defined above.\n\nTIER 8 — Stop reasoning and output\nAvoid reasoning loops, don't circle back to previous checks.\n\nLet's write.\n</think>\n\n",
             "injection_position": 1,
             "injection_depth": 0,
             "injection_order": 100,
@@ -1875,7 +1716,7 @@
             "marker": false,
             "name": "⠀⠀Futuristic",
             "role": "system",
-            "content": "{{setvar::UI_STYLE::Futuristic}}\n\nYou are generating a single “futuristic dossier / monitoring screen” UI that MUST be compatible with a strict Safe HTML renderer. Think Detroit Become Human HUD UI, big transparencies, negative space, and clean, minimal design.\n\nABSOLUTE OUTPUT FORMAT\n- Output EXACTLY one UI artifact wrapped like this:\n  <!-- UI_START -->\n  <div class=\"html-safe-wrap\">\n    <style>…</style>\n    <!-- (optional) state inputs here -->\n    <div class=\"ROOT ROOT_<UID>\">…</div>\n  </div>\n  <!-- UI_END -->\n- No markdown fences. No extra commentary. No blank lines outside the artifact.\n\nHARD CONSTRAINTS (DO NOT BREAK)\n1) No JavaScript. No external assets. Inline CSS only. No @import. No CDN.\n2) Everything must be namespaced to a unique UID:\n   - Pick a random short UID like u7x9 (letters+numbers).\n   - Root class MUST be: ROOT ROOT_<UID>\n   - Any inputs/labels must use ids/names that include the UID (e.g., <UID>_tab_a).\n3) No global selectors:\n   - NEVER style body, html, *, :root, or bare tags.\n   - All selectors must start with: .ROOT_<UID> …\n4) One vertical scroller only:\n   - The ROOT must be overflow:hidden.\n   - Only ONE element may scroll vertically: .SCROLL\n   - .SCROLL must have an explicit height via clamp() and overflow-y:auto.\n5) If you make anything look clickable, it must be real:\n   - Use <label for=\"...\"> toggling a radio/checkbox input, OR a real <button type=\"submit\"> in a form.\n   - No fake buttons (no divs pretending to be buttons).\n\nSTRUCTURE (MANDATORY STACK)\nInside .ROOT_<UID>, always use this hierarchy:\n\n<div class=\"CHROME\">\n  <div class=\"TOPBAR\">\n    <div class=\"TL\">…</div>\n    <div class=\"TR\">…</div>\n  </div>\n  <div class=\"RULE\"></div>\n</div>\n\n<div class=\"STAGE\">\n  <section class=\"PANEL panel_a\">\n    <div class=\"SCROLL\">\n      …content…\n    </div>\n  </section>\n\n  <!-- Optional second view (only if needed) -->\n  <section class=\"PANEL panel_b\">\n    <div class=\"SCROLL\">\n      …content…\n    </div>\n  </section>\n</div>\n\n<div class=\"FOOTER\">…optional…</div>\n\n- ROOT must be display:flex; flex-direction:column; with a fixed/clamped height.\n- STAGE must be position:relative; flex:1; min-height:0; overflow:hidden.\n- PANEL must be position:absolute; inset:0; and visibility/pointer-events managed for exclusivity.\n\nVISUAL TARGET (AESTHETIC)\nAim for: “modern minimal UI” + “futuristic monitoring dossier” + “lots of negative space”.\n- Dark, clean, premium background (deep navy/charcoal with subtle gradient).\n- Thin 1px dividers with low opacity.\n- Sparse typography: small caps labels, monospaced metadata, calm readable body.\n- Grid overlay + corner brackets + scanlines/haze (subtle).\n- Motion over interactivity: gentle ambient animations, not busy.\n\nCOLOR + TYPE TOKENS (DEFINE ON .ROOT_<UID>)\nDefine CSS variables on .ROOT_<UID>:\n- --bg0, --bg1 (dark layers)\n- --ink (primary text)\n- --muted (secondary text)\n- --line (borders/dividers)\n- --accent (cyan/ice blue)\n- --accent2 (violet, optional and rare)\n- --danger (only if needed)\n- --r (radius, e.g. 14px)\n- --blur (e.g. 10–14px)\n\nTypography:\n- font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;\n- Use a mono fallback for metadata blocks: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;\n- Headings: slightly tracked, uppercase; Body: normal case, readable.\n\nEFFECTS (CSS-ONLY, SUBTLE, MANDATORY)\nMust include ALL of these, scoped under .ROOT_<UID>:\n\n1) GRID OVERLAY\n- Add .STAGE::before with repeating-linear-gradients (both axes).\n- Opacity ~0.06–0.12.\n- Keep it quiet.\n\n2) SCANLINES / HAZE\n- Add .STAGE::after (or a dedicated overlay div) with repeating-linear-gradient vertically.\n- Animate background-position slowly (8–14s).\n- Very low opacity.\n\n3) CORNER BRACKETS\n- Add bracket corners to key blocks (like header panel or a “analysis card”) using ::before/::after.\n- 1px line, low opacity, tiny glow.\n\n4) AMBIENT SWEEP\n- Add a thin light sweep across the TOPBAR or a section header every ~6–10s.\n- Use a gradient bar moving across; keep opacity low.\n\nANIMATION RULES\n- UI transitions (hover/focus): 140–220ms ease-out.\n- Ambient loops: 4–12s ease-in-out.\n- No flashing. No rapid jitter. Keep it calm.\n- MUST respect reduced motion:\n  @media (prefers-reduced-motion: reduce) { disable animations/transitions }\n\nCONTENT PATTERNS (MATCH THE “DOSSIER” LOOK)\nInside .SCROLL, include:\n\nA) “INTERNAL” / “SYSTEM” note block\n- Small mono label + short sentence (1–2 lines)\n- Example structure:\n  <div class=\"NOTE\">\n    <div class=\"NOTE_K\">[ INTERNAL ]</div>\n    <div class=\"NOTE_V\">…</div>\n  </div>\n\nB) A title line like:\n  BEHAVIORAL ANALYSIS — POST-EXCHANGE\n- Keep it wide, minimal, tracked, with a faint divider.\n\nC) A 4-row “label/value” table\n- Each row:\n  LABEL (mono, muted) | VALUE (normal, ink)\n- Use thin separators and lots of breathing room.\n\nD) A small dialogue/quote line\n- Styled as mono or italic, slightly brighter accent.\n\nE) Optional “side rail” text\n- Only if it doesn’t break mobile: hide under ~380px width.\n\nINTERACTIVITY (OPTIONAL, MINIMAL)\nDefault is one view (panel_a). If you add a second panel:\n- Use radio tabs in the CHROME:\n  <input type=\"radio\" … checked>\n  <label …>SUMMARY</label>\n  <input type=\"radio\" …>\n  <label …>DETAILS</label>\n- Panels must be exclusive:\n  .panel_a visible when tab_a checked; .panel_b visible when tab_b checked.\n- Use opacity + transform + pointer-events:none for hidden panels.\n\nRESPONSIVE + SAFETY\n- ROOT width: min(100%, 520–720px) depending on intended vibe.\n- Use clamp() for heights and font sizes.\n- Ensure no content overflows horizontally:\n  - Use word-break: break-word where needed.\n  - Keep side rails hidden on small widths.\n- Keep negative space: generous padding, minimal blocks.\n\nQUALITY CHECK BEFORE OUTPUT\n- Is there exactly one scroll container? (Only .SCROLL)\n- Are all selectors scoped to .ROOT_<UID>?\n- Does it look futuristic but still readable?\n- Is motion subtle and calm?\n- Are “clickable” things real labels/inputs?\n\n",
+            "content": "{{setvar::UI_STYLE::Futuristic}}\n\nCinematic future-glass HUD. Dark, sparse, elegant, spatial.\nThe interface should resemble a cinematic in-world overlay mockup, not a web app screen.\n\nBuild a projected overlay interface, not a dashboard.\nDo NOT center everything inside a bordered app window.\nDo NOT stack uniform cards or use chunky tabs.\nhard-ban giant outer frames\nhard-ban tabbed dashboard layouts unless explicitly requested\n\nUse:\n- floating translucent panes\n- corner brackets ONLY, NO borders, it should look like a glass screen or a floating HUD\n- open background visibility\n- asymmetry and negative space\n- one dominant plane plus a few smaller overlays\n- restrained cyan/ice-blue accents on blue-black glass\n\nThe interface should feel suspended in air over the scene.\nInstitutional content like terminals, casefiles, evidence, or personnel should still look advanced, glassy, and cinematic.\nAvoid generic admin-panel composition.\nCSS-only interactivity still requires all elements to be siblings within a root; So, make the root background nearly transparent and have individual panes with their own styling.\n\nVIEWPOINT VARIATION\nWhen POV supports it, NoirHUD may render as an internal synthetic or augmented perception layer rather than an external interface.\nUse sparse scan logic, target labels, biometric inference, behavioral markers, routing, or system prompts.\nKeep it elegant and minimal.\nDo not turn it into a dense tactical visor or game HUD.\n",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -2225,7 +2066,7 @@
             "marker": false,
             "name": "┆       → API HTML Image Gen",
             "role": "system",
-            "content": "{{setvar::IMG_GEN::On}}\n\n[IMAGE ARTIFACT GOVERNOR]\nPURPOSE\nGenerated images are allowed only as part of a meaningful HTML artifact.\nThey must support the current beat by showing something characters can see, send, receive, inspect, open, or be visually framed by.\nActively look for opportunities, but still obey the governor.\n\nWHEN TO RENDER AN IMAGE\nRender a generated image only if at least one is true:\n- a character sends or receives a photo\n- a chat/app/social post includes an image attachment\n- a location card, venue page, listing, map detail, dossier, or profile would plausibly contain an image\n- the current scene benefits from a diegetic establishing image inside the artifact\n- the UI would naturally include a banner, cover, preview, thumbnail, CCTV still, or gallery item\n\nQUALITY RULES\n- Images must depict believable real-world or setting-consistent scenes/objects\n- Choose the image subject from the artifact itself, not from generic portrait logic\n- Prefer, in order: environment/location, object/item/device/document/outfit detail, cropped wear/use shot, then person only if explicitly required\n- Default to the tightest stable crop that preserves the beat\n- Prefer environment-only, object-only, garment-only, mannequin/display, or torso crop without visible face\n- Do not invent a person-centered composition when the artifact can be expressed through an object, detail crop, or environment\n- Avoid full-body humans, prominent hands, and centered faces unless the beat explicitly requires portraiture or identity\n- No text overlays, no logos, no watermarks, no signatures\n- Keep the image cinematic, readable, and stable\n\nSINGLE-SURFACE RULE\nIf the image belongs to the same device/app/session, keep it inside the same HTML artifact block.\nDo not split a chat thread and its image attachment into separate artifacts.\nUse one surface, one .ROOT, reversible state if needed.\n\nIMAGE SOURCE\nUse exactly this embeddable endpoint:\n[YOUR CUSTOM API ENDPOINT]?prompt={PROMPT}&model=[YOUR MODEL]&size=768x1024&negative_prompt={NEGATIVE PROMPT}&key=[YOURAPIKEY]\n\nprompt={PROMPT}+{{getvar::IMG_STYLE_POS}}\nnegative_prompt={{getvar::IMG_STYLE_NEG}}\n\nPROMPT RULES\n- Size is modifiable\n- Prompt must use URL-safe words\n- Use + between words\n- No special characters except +\n- Keep prompts visual, stable, atmospheric, and concrete\n- Prefer object-first or environment-first phrasing when possible\n- Prefer this structure:\n  main_subject + context_or_location + mood_or_condition + lighting + style\n- If the image is environmental, mood may replace expression\n- If the image is object-based, describe material, state, or framing instead of a person\n- Do not repeat the same prompt pattern twice in a row unless the exact same image is being revisited in-scene\n\nHTML RULES\n- The image must be rendered as a real <img> inside the HTML artifact\n- Every generated image must include:\n  alt=\"descriptive text\"\n  loading=\"lazy\"\n  onerror=\"this.src='https://dummyimage.com/340x200/1b1026/f3e8ff.png&text=Image+not+available';\"\n- Never output more than one generated image per artifact unless the artifact is explicitly a gallery/grid\n- For galleries, maximum 4 images\n- Each <img> must have meaningful alt text tied to the scene\n\nLAYOUT RULES\n- Images must feel native to the surface:\n  chat attachment, social post media, listing thumbnail, place header, dossier photo, map preview, evidence still, product image, garment detail, material close-up\n- If the device is narrow, prefer a single large image\n- If the surface is a feed/gallery, grid is allowed\n- If the image opens from a message, use CSS state toggles for inspect/back when needed\n\nIMAGE/CAPTION ALIGNMENT RULE\nIf an artifact includes both generated image and descriptive text, they must describe the same subject, setting, and visual focus.\nThe image prompt must be derived from the artifact description, not generated independently.\nDo not pair an image of one subject with a caption describing another.\nIf exact alignment is uncertain, simplify the description so it matches the visible image.\nNarrative priority goes to scenario truth: when the description is scenario-critical, the image must follow it.\n\nPROSE/HTML SPLIT\nProse handles reaction, consequence, and subtext.\nHTML handles the visible image surface itself.\nDo not restate the same image description in both prose and HTML.",
+            "content": "{{setvar::IMG_GEN::On}}\n\n[IMAGE ARTIFACT GOVERNOR]\nPURPOSE\nGenerated images are allowed only as part of a meaningful HTML artifact.\nThey must support the current beat by showing something characters can see, send, receive, inspect, open, or be visually framed by.\nActively look for opportunities, but still obey the governor.\n\nWHEN TO RENDER AN IMAGE\nRender a generated image only if at least one is true:\n- a character sends or receives a photo\n- a chat/app/social post includes an image attachment\n- a location card, venue page, listing, map detail, dossier, or profile would plausibly contain an image\n- the current scene benefits from a diegetic establishing image inside the artifact\n- the UI would naturally include a banner, cover, preview, thumbnail, CCTV still, or gallery item\n\nQUALITY RULES\n- Images must depict believable real-world or setting-consistent scenes/objects\n- Choose the image subject from the artifact itself, not from generic portrait logic\n- Prefer, in order: environment/location, object/item/device/document/outfit detail, cropped wear/use shot, then person only if explicitly required\n- Default to the tightest stable crop that preserves the beat\n- Prefer environment-only, object-only, garment-only, mannequin/display, or torso crop without visible face\n- Do not invent a person-centered composition when the artifact can be expressed through an object, detail crop, or environment\n- Avoid full-body humans, prominent hands, and centered faces unless the beat explicitly requires portraiture or identity\n- No text overlays, no logos, no watermarks, no signatures\n- Keep the image cinematic, readable, and stable\n\nSINGLE-SURFACE RULE\nIf the image belongs to the same device/app/session, keep it inside the same HTML artifact block.\nDo not split a chat thread and its image attachment into separate artifacts.\nUse one surface, one .ROOT, reversible state if needed.\n\nIMAGE SOURCE\nUse exactly this embeddable endpoint:\nhttps://api.cloudgpt.me/v1/images/generations/serve?prompt={PROMPT}+{{getvar::IMG_STYLE_POS}}&model=grok-imagine&size=768x1024&negative_prompt={negative_prompt}&key=cgpt_cb4cf6783b2a401986ee187dce6be46d\n\nprompt={PROMPT}+{{getvar::IMG_STYLE_POS}}\nnegative_prompt={{getvar::IMG_STYLE_NEG}}\n\nPROMPT RULES\n- Size is modifiable\n- Prompt must use URL-safe words\n- Use + between words\n- No special characters except +\n- ALWAYS add +{{getvar::IMG_STYLE_POS}}\n- Check for image gen prompts in character cards or persona description.\n- Keep prompts visual, stable, atmospheric, and concrete\n- Prefer object-first or environment-first phrasing when possible\n- Prefer this structure:\n  main_subject + context_or_location + mood_or_condition + lighting + style\n- If the image is environmental, mood may replace expression\n- If the image is object-based, describe material, state, or framing instead of a person\n- Do not repeat the same prompt pattern twice in a row unless the exact same image is being revisited in-scene\n\nHTML RULES\n- The image must be rendered as a real <img> inside the HTML artifact\n- Every generated image must include:\n  alt=\"descriptive text\"\n  loading=\"lazy\"\n  onerror=\"this.src='https://dummyimage.com/340x200/1b1026/f3e8ff.png&text=Image+not+available';\"\n- Never output more than one generated image per artifact unless the artifact is explicitly a gallery/grid\n- For galleries, maximum 4 images\n- Each <img> must have meaningful alt text tied to the scene\n\nLAYOUT RULES\n- Images must feel native to the surface:\n  chat attachment, social post media, listing thumbnail, place header, dossier photo, map preview, evidence still, product image, garment detail, material close-up\n- If the device is narrow, prefer a single large image\n- If the surface is a feed/gallery, grid is allowed\n- If the image opens from a message, use CSS state toggles for inspect/back when needed\n\nIMAGE/CAPTION ALIGNMENT RULE\nIf an artifact includes both generated image and descriptive text, they must describe the same subject, setting, and visual focus.\nThe image prompt must be derived from the artifact description, not generated independently.\nDo not pair an image of one subject with a caption describing another.\nIf exact alignment is uncertain, simplify the description so it matches the visible image.\nNarrative priority goes to scenario truth: when the description is scenario-critical, the image must follow it.\n\nPROSE/HTML SPLIT\nProse handles reaction, consequence, and subtext.\nHTML handles the visible image surface itself.\nDo not restate the same image description in both prose and HTML.",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -2309,7 +2150,7 @@
             "marker": false,
             "name": "⠀⠀Context Text",
             "role": "system",
-            "content": "<extertext>\n[SIGNATURE CONTEXT-TEXT]\nTrigger: ANY in-world text — graffiti, signs, engravings, labels, notes, tattoos, screens, books, letters, carvings, inscriptions.\n\nEvery piece of text characters see or read must be styled inline:\nAncient carving → <span style=\"font-family:'Cinzel',serif; color:#d4af37; letter-spacing:0.1em; background:transparent;\">Carved in forgotten tongue</span>,\nNeon sign → <span style=\"font-family:monospace; color:#0ff; text-shadow:0 0 8px #0ff; text-transform:uppercase; background:transparent;\">OPEN 24/7</span>,\nHandwritten note → <span style=\"font-family:cursive; color:#333; font-size:0.9em; background:transparent;\">meet me at dawn</span>,\nDigital screen → <span style=\"font-family:'Courier New',monospace; color:#0f0; text-shadow:0 0 4px #0f0; background:transparent;\">SYSTEM ONLINE</span>,\nWeathered/old text → <span style=\"opacity:0.6; font-style:italic; background:transparent;\">faded inscription</span>,\nBlood/urgent → <span style=\"color:#8b0000; font-weight:bold; background:transparent;\">RUN</span>,\n\nMatch font family to medium: serif = formal/ancient, monospace = tech, cursive = handwriting.\nMatch color to material: gold leaf, ink, neon glow, chalk, blood.\n</extertext>",
+            "content": "<extertext>\n[SIGNATURE CONTEXT-TEXT]\nTrigger: ANY in-world text — graffiti, signs, engravings, labels, notes, tattoos, screens, books, letters, carvings, inscriptions.\n\nEvery piece of text characters see or read must be styled inline:\nAncient carving → <span style=\"font-family:'Cinzel',serif; color:#d4af37; letter-spacing:0.1em; background:transparent;\">Carved in forgotten tongue</span>,\nNeon sign → <span style=\"font-family:monospace; color:#0ff; text-shadow:0 0 8px #0ff; text-transform:uppercase; background:transparent;\">OPEN 24/7</span>,\nHandwritten note → <span style=\"font-family:cursive; color:#333; font-size:0.9em; background:transparent;\">meet me at dawn</span>,\nDigital screen or HUD text → <span style=\"font-family:'Courier New',monospace; color:#0f0; text-shadow:0 0 4px #0f0; background:transparent;\">SYSTEM ONLINE</span>,\nWeathered/old text → <span style=\"opacity:0.6; font-style:italic; background:transparent;\">faded inscription</span>,\nBlood/urgent → <span style=\"color:#8b0000; font-weight:bold; background:transparent;\">RUN</span>,\n\nMatch font family to medium: serif = formal/ancient, monospace = tech, cursive = handwriting.\nMatch color to material: gold leaf, ink, neon glow, chalk, blood.\n</extertext>",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -2603,7 +2444,7 @@
             "marker": false,
             "name": "⠀⠀Semi Realism",
             "role": "system",
-            "content": "{{setvar::IMG_STYLE::SemiReal}}\n{{setvar::IMG_STYLE_POS::semi+realistic+stylized+illustration+polished+rendered+features+character+art+digital+painting}}\n{{setvar::IMG_STYLE_NEG::photo+live+action+real+person+low+detail+chibi}}",
+            "content": "{{setvar::IMG_STYLE::SemiReal}}\n{{setvar::IMG_STYLE_POS::semi+realistic+stylized+illustration+polished+rendered+features+character+art+digital+painting+anime+influence}}\n{{setvar::IMG_STYLE_NEG::photo+live+action+real+person+low+detail+chibi}}",
             "injection_position": 0,
             "injection_depth": 4,
             "injection_order": 100,
@@ -2917,6 +2758,20 @@
             "injection_order": 100,
             "injection_trigger": [],
             "forbid_overrides": false
+        },
+        {
+            "identifier": "06a42372-229f-48cf-aefa-635a2145ccc4",
+            "system_prompt": false,
+            "enabled": false,
+            "marker": false,
+            "name": "⠀⠀Adaptative",
+            "role": "system",
+            "content": "{{setvar::UI_STYLE::Adaptive}}\nAdaptive visual language.\nDecide aesthetics based on the roleplay’s genre, setting (and time period), tone, emotional intensity, and viewpoint context. The interface should feel native to the world and moment being portrayed.\n\nMatch the current scene’s atmosphere, not a fixed default style. \nKeep visuals cohesive: palette, typography, panel design, borders, icons, textures, and motion should support the same mood once you've established one.\nPrioritize emotional fit as much as setting fit. The same world may look romantic, clinical, ominous, luxurious, or ruined depending on the beat.\nIf the tone shifts, the UI may shift with it.\nWhen relevant, reflect the viewpoint source: phone UI, terminal, dossier, surveillance feed, medical HUD, internal cybernetic display, magical interface, alien system, or other diegetic surface.\nNon-human, modified-human, synthetic, alien, supernatural, or otherwise altered viewpoints may affect not only aesthetics but interface logic, density, and behavior.\n\nDo not mix conflicting aesthetics unless the scene itself justifies it, such as corruption, intrusion, dual interfaces, unstable perception, or layered systems.",
+            "injection_position": 0,
+            "injection_depth": 4,
+            "injection_order": 100,
+            "injection_trigger": [],
+            "forbid_overrides": false
         }
     ],
     "prompt_order": [
@@ -3106,11 +2961,11 @@
                 },
                 {
                     "identifier": "efadc415-f5bc-4d53-8bcd-33d3b240816f",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "2d2d8d64-df3d-4a03-84f7-3444d5c956b3",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "19df1579-5859-4502-b13e-4b1cc5e518b9",
@@ -3150,7 +3005,7 @@
                 },
                 {
                     "identifier": "0693840e-6a4e-4b33-a93b-68eb721a676e",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "41e28b69-c332-4d25-aa95-4d65d1a60204",
@@ -3162,7 +3017,7 @@
                 },
                 {
                     "identifier": "cadd9713-f994-4194-bfbb-7e46e1712b11",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "450b2d7b-aeb3-4238-a7af-5a15ea07550f",
@@ -3170,7 +3025,7 @@
                 },
                 {
                     "identifier": "3986e2b6-aa79-4d75-aa5f-353af01a42b8",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "c7a2f022-3a02-4a5b-8484-b48a82169fb1",
@@ -3178,7 +3033,7 @@
                 },
                 {
                     "identifier": "ec71c0b3-0140-4ca7-a3c6-195329d0ab0a",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "198318c2-21fb-4347-98a5-644f61bba8a5",
@@ -3186,7 +3041,7 @@
                 },
                 {
                     "identifier": "5e1d9f66-c18c-40f7-9497-81f2aad21653",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "efb6fea8-d5e4-4d6c-9cd3-443148ff1d0a",
@@ -3194,11 +3049,11 @@
                 },
                 {
                     "identifier": "0817071d-5251-432b-aed1-3546d0698232",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "mica-070-color",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "85e95243-bf39-4d6f-8939-5301284fd7ff",
@@ -3230,11 +3085,11 @@
                 },
                 {
                     "identifier": "99b1e9b1-2032-4f79-80c7-85c164308477",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "35458f0e-4f90-44dd-97cd-7583d29e37be",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "f9c63c35-a5c2-47bd-89fc-2c60442a4a83",
@@ -3246,7 +3101,7 @@
                 },
                 {
                     "identifier": "d0641b22-3880-4dc6-8cc5-2b81167e4171",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "fcb8222c-a1fe-4e95-a900-adfa14c39bb2",
@@ -3258,26 +3113,6 @@
                 },
                 {
                     "identifier": "ed35a9ad-f8cd-492d-9c16-f1870d6e410a",
-                    "enabled": true
-                },
-                {
-                    "identifier": "7c7b37ba-0152-4ed6-b6b0-454dfea242ac",
-                    "enabled": true
-                },
-                {
-                    "identifier": "mica-052-ui-adv",
-                    "enabled": false
-                },
-                {
-                    "identifier": "4e1d66ad-0c60-4dfb-8b66-0e123004c83d",
-                    "enabled": false
-                },
-                {
-                    "identifier": "e398e213-00c0-45c7-9124-bf011a59b2ac",
-                    "enabled": true
-                },
-                {
-                    "identifier": "2dfabef8-2157-41ea-96ac-3a25f452b5a0",
                     "enabled": false
                 },
                 {
@@ -3290,10 +3125,34 @@
                 },
                 {
                     "identifier": "6f507f45-a388-417d-8a9e-e3e84116663a",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "3c7d36b3-b8b5-4310-a167-f5b594daa867",
+                    "enabled": true
+                },
+                {
+                    "identifier": "7c7b37ba-0152-4ed6-b6b0-454dfea242ac",
+                    "enabled": true
+                },
+                {
+                    "identifier": "06a42372-229f-48cf-aefa-635a2145ccc4",
+                    "enabled": true
+                },
+                {
+                    "identifier": "mica-052-ui-adv",
+                    "enabled": false
+                },
+                {
+                    "identifier": "4e1d66ad-0c60-4dfb-8b66-0e123004c83d",
+                    "enabled": false
+                },
+                {
+                    "identifier": "e398e213-00c0-45c7-9124-bf011a59b2ac",
+                    "enabled": false
+                },
+                {
+                    "identifier": "2dfabef8-2157-41ea-96ac-3a25f452b5a0",
                     "enabled": false
                 },
                 {
@@ -3358,7 +3217,7 @@
                 },
                 {
                     "identifier": "5ac4dd05-a918-4109-96ae-30ffc26c0386",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "7499874e-853c-46e1-b811-f1fb8747a5fb",
@@ -3366,7 +3225,7 @@
                 },
                 {
                     "identifier": "eac8eac0-8b06-4d5a-b30b-9993c636a09f",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "7e3ed8a5-2658-41d0-a32d-444cd2bcfb2c",
@@ -3406,7 +3265,7 @@
                 },
                 {
                     "identifier": "23bc3024-f1da-4987-bd88-78fb8a83059b",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "ca3efb41-6e68-4237-b2ac-e131749f3a77",
@@ -3426,7 +3285,7 @@
                 },
                 {
                     "identifier": "4c231474-bf13-4f7e-ab36-53e032d5c9e1",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "ac25b77d-2317-42eb-8d82-15afd180a947",
@@ -3442,7 +3301,7 @@
                 },
                 {
                     "identifier": "110e22e0-84a2-4265-aeaa-5d3b8702c42c",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "0b1c8276-a467-41c2-a9cf-de454e52ac20",
@@ -3450,7 +3309,7 @@
                 },
                 {
                     "identifier": "9ec77ee8-ec5f-44f5-821a-81dd4fddfc51",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "c341e876-7cf4-4582-9517-8f9df9bc3f3f",
@@ -3578,7 +3437,7 @@
                 },
                 {
                     "identifier": "mica-061-villain-core",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "af6ef80b-7b60-41b5-a870-7c8c922ff63d",
@@ -3610,7 +3469,7 @@
                 },
                 {
                     "identifier": "30700423-ec54-46bb-b9b7-9c124a3018a2",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "cded0fd5-9d93-40ae-8ffd-9c5254d7879b",
@@ -3634,7 +3493,7 @@
                 },
                 {
                     "identifier": "2978110a-cdc7-47fc-a848-b01aa7648a16",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "b9bb1030-4941-4ae9-9561-a9d0014a0427",
@@ -3642,7 +3501,7 @@
                 },
                 {
                     "identifier": "mica-062-villain-obsess",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "626530da-33dc-4596-825e-d7da981f20c2",
@@ -3658,7 +3517,7 @@
                 },
                 {
                     "identifier": "b9c087c0-198d-409e-9c6f-bc54d0a282ed",
-                    "enabled": false
+                    "enabled": true
                 },
                 {
                     "identifier": "mica-080-tracking-lite",
@@ -3678,7 +3537,7 @@
                 },
                 {
                     "identifier": "cf28da20-ab37-4522-bc35-9d0fba5e3b73",
-                    "enabled": true
+                    "enabled": false
                 },
                 {
                     "identifier": "3e6d508b-bf7f-43ed-bb4b-1273148d2b3e",
@@ -3767,18 +3626,177 @@
     "assistant_impersonation": "",
     "use_sysprompt": true,
     "squash_system_messages": false,
-    "media_inlining": true,
+    "media_inlining": false,
     "inline_image_quality": "high",
-    "continue_prefill": false,
+    "continue_prefill": true,
     "continue_postfix": " ",
-    "function_calling": true,
+    "function_calling": false,
     "show_thoughts": false,
-    "reasoning_effort": "high",
+    "reasoning_effort": "min",
     "verbosity": "high",
     "enable_web_search": false,
     "seed": -1,
     "n": 1,
     "request_images": false,
     "request_image_aspect_ratio": "",
-    "request_image_resolution": ""
+    "request_image_resolution": "",
+    "extensions": {
+        "regex_scripts": [
+            {
+                "id": "d5f24f21-8bb8-4096-aa38-88511031e1cd",
+                "scriptName": "🧩 [Thinking] 01 — Collapsible think",
+                "findRegex": "<(?:think|thinking)>([\\s\\S]*?)<\\/(?:think|thinking)>",
+                "replaceString": "<details class=\"thinking-block\"><summary>Thinking</summary>$1</details>",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": true,
+                "promptOnly": false,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "4660cca4-d642-49ca-9e7d-5adcd7752849",
+                "scriptName": "🧩 [Thinking] 02 — Hide Think",
+                "findRegex": "/<(think|thinking)>.*?<\\/\\1>\\s*/is",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": true,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": 1,
+                "maxDepth": null
+            },
+            {
+                "id": "17b2c761-4acd-4c81-8ecf-2b80322b897e",
+                "scriptName": "🧩 [Thinking] 03 — Ongoing Thinking label",
+                "findRegex": "/<(think|thinking)>(?!.*?<\\/\\1>)(.*)/is",
+                "replaceString": "<hr><details name=\"thought\"><summary>Thinking</summary>$2</details><hr>",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": true,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "4672d259-e574-4db4-8480-18b66cfdd15f",
+                "scriptName": "🧩 [WEBNOVEL] 01 — Pretty Titles",
+                "findRegex": "/^\\s*<chap>([^|<]*)\\|([^<]*)<\\/chap>\\s*/m",
+                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>.wn-wrap{max-width:720px;margin:22px auto;text-align:center;box-sizing:border-box}.wn-hr{border:0;height:1px;background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(150,150,150,0.75), rgba(0,0,0,0));}.wn-ch{font-family:Courier New, monospace;letter-spacing:.22rem;font-size:.85rem;margin-top:12px;opacity:.85}.wn-title{font-family:Georgia, Times New Roman, serif;font-weight:normal;margin:10px 0;line-height:1.15}.wn-mark{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;opacity:.6;letter-spacing:.08em;margin-bottom:12px}</style><div class=\"wn-wrap\"><hr class=\"wn-hr\"><div class=\"wn-ch\">CHAPTER $1</div><h2 class=\"wn-title\">$2</h2><div class=\"wn-mark\">— ✦ —</div><hr class=\"wn-hr\"></div></div><!-- UI_END -->\n",
+                "trimStrings": [
+                    "\\r"
+                ],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "ca3ba442-02f7-45f3-ae2d-dd4c32f1774e",
+                "scriptName": "🧩 [TRACK] 01 — Pretty Track Card",
+                "findRegex": "/<track>\\s*([\\s\\S]*?)\\s*<\\/track>/g",
+                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>:root{--t-bg:rgba(12,14,18,0.94);--t-b:rgba(255,255,255,0.12);--t-p:rgba(255,255,255,0.06);--t-t:#eaf0fa;--t-m:rgba(234,240,250,0.72);} .track-root{max-width:680px;margin:14px auto 0 auto;box-sizing:border-box;background:var(--t-bg);border:1px solid var(--t-b);border-radius:14px;padding:12px 14px;font-family:system-ui;color:var(--t-t);overflow-x:hidden} .track-h{font-weight:800;letter-spacing:.10em;font-size:12px;opacity:.92;margin-bottom:8px} .track-body{font-size:13px;line-height:1.35;white-space:pre-wrap;word-wrap:break-word;color:var(--t-t)} </style><div class=\"track-root\"><div class=\"track-h\">TRACK</div><div class=\"track-body\">$1</div></div></div><!-- UI_END -->",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "07f4deba-d4fa-4c87-8d0b-d317a73bd3ab",
+                "scriptName": "🧩 [BRANCHING] 01 — Pretty branches",
+                "findRegex": "/^\\s*(?:<branch>\\s*)?([^|\\r\\n<]+?)\\s*\\|\\s*([^\\r\\n<]*)\\s*\\r?\\n\\s*1\\s*\\|\\s*([^\\r\\n<]+?)\\s*\\r?\\n\\s*2\\s*\\|\\s*([^\\r\\n<]+?)\\s*\\r?\\n\\s*3\\s*\\|\\s*([^\\r\\n<]+?)(?:\\s*\\r?\\n\\s*4\\s*\\|\\s*([^\\r\\n<]+?))?\\s*(?:\\r?\\n\\s*<\\/branch>\\s*)?\\s*$/m",
+                "replaceString": "<!-- UI_START --><div class=\"html-safe-wrap\"><style>.wnb-wrap{max-width:720px;margin:18px auto;box-sizing:border-box;text-align:center}.wnb-hr{border:0;height:1px;background-image:linear-gradient(to right, rgba(0,0,0,0), rgba(150,150,150,0.75), rgba(0,0,0,0));margin:10px 0}.wnb-kicker{font-family:Courier New, monospace;letter-spacing:.22rem;font-size:.78rem;opacity:.78;margin-top:2px}.wnb-title{font-family:Georgia, Times New Roman, serif;font-weight:normal;margin:8px 0 2px;line-height:1.15}.wnb-note{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;opacity:.65;letter-spacing:.06em;margin-top:6px}.wnb-note:empty{display:none}.wnb-grid{margin-top:12px;display:grid;gap:10px;grid-template-columns:1fr}@media(min-width:640px){.wnb-grid{grid-template-columns:1fr 1fr}}.wnb-btn{width:100%;text-align:left;cursor:pointer;box-sizing:border-box;border-radius:16px;border:2px solid rgba(255,255,255,.9);background:linear-gradient(135deg,rgba(255,240,248,.92),rgba(235,228,255,.88));box-shadow:0 10px 22px rgba(20,10,30,.20);color:#14121a;padding:12px 12px 12px 46px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-weight:650;line-height:1.2;position:relative;transition:transform .12s ease, box-shadow .12s ease, filter .12s ease}.wnb-btn:empty{display:none}.wnb-btn::before{content:attr(data-opt);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:Courier New, monospace;font-weight:700;font-size:.9rem;opacity:.85;border:1px solid rgba(20,10,30,.14);background:rgba(255,255,255,.85)}.wnb-btn:hover{transform:translateY(-1px);box-shadow:0 14px 30px rgba(20,10,30,.22);filter:saturate(1.05)}.wnb-btn:active{transform:translateY(0);box-shadow:0 10px 22px rgba(20,10,30,.20)}</style><div class=\"wnb-wrap\"><hr class=\"wnb-hr\"><div class=\"wnb-kicker\">CHOICE SET</div><h2 class=\"wnb-title\">$1</h2><div class=\"wnb-note\">$2</div><div class=\"wnb-kicker\">— ✦ —</div><hr class=\"wnb-hr\"><div class=\"wnb-grid\"><button class=\"wnb-btn\" data-opt=\"1\">$3</button><button class=\"wnb-btn\" data-opt=\"2\">$4</button><button class=\"wnb-btn\" data-opt=\"3\">$5</button><button class=\"wnb-btn\" data-opt=\"4\">$6</button></div></div></div><!-- UI_END -->",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": true,
+                "promptOnly": false,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "8ad7d6aa-af0b-4439-8685-1bb4ea12c6c8",
+                "scriptName": "⚙️ [CTX] 01 — Strip Anchored UI Blocks",
+                "findRegex": "/<!--\\s*(?:TRACK_START|BRANCH_UI_START|CHAPTER_UI_START|UI_START(?:_(?:2|3))?)\\s*-->[\\s\\S]*?<!--\\s*(?:TRACK_END|BRANCH_UI_END|CHAPTER_UI_END|UI_END(?:_(?:2|3))?)\\s*-->/gi",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": 3,
+                "maxDepth": null
+            },
+            {
+                "id": "1a56849c-bb82-47fb-9f28-43d36aa5b026",
+                "scriptName": "⚙️ [CTX] 02— Strip Tags",
+                "findRegex": "<think\\b[^>]*>.*?</think>|<details\\b[^>]*>.*?</details>|</?font\\b[^>]*>",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            },
+            {
+                "id": "43d68d13-de6b-4e38-b9c0-1de6c3aed979",
+                "scriptName": "⚙️ [CTX] 03— Strip Visual Text Tags",
+                "findRegex": "<\\/?(?:span|s|strong|em|i|b|div)\\b[^>]*>",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    2
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": true,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
+            }
+        ]
+    }
 }
