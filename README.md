@@ -20,7 +20,7 @@ SlowBurn / Steady / Fast
 Intimacy Gate (Locked/Cautious/Open)
 Override mode that only allows what the user explicitly requests
 
-> 4) Mobile-only Narrative Wraps Fancy HTML narrative wrappers (VTK) that are locked to mobile so desktop doesn’t break.
+> 4) Mobile-only Narrative Wraps Fancy HTML narrative wrappers that are locked to mobile so desktop doesn’t break.
 Soft (serif, elegant blocks)
 Blocky (system-ui, dialogue cards)
 
