@@ -4,45 +4,17 @@
   "description": "Lumiverse Loom form of KittyLotus",
   "schemaVersion": 1,
   "createdAt": 1776547272,
-  "updatedAt": 1777354781,
+  "updatedAt": 1777356236,
   "blocks": [
     {
       "id": "3f6031a9-ef53-4f60-a9e7-fd962160d0df",
       "name": "≽•⩊•≼ (README)",
-      "content": "{{// Thank you for using this preset! me and Gabrielle are honored~}}{{trim}}\n{{// When you turn a module on or off, remember toggling the title and separators too! all titles and ╰───❛°ू ﹝✦﹞°ू❜ ───╯ are important. If you're unsure, check where is the closing tag nested. Closing tags look like this: `</example>`}}{{trim}}\n\n{{//[VARS RESET - DON'T MODIFY]}}\n\n{{//[Ruleset Bias]}}{{trim}}\n{{setvar::claudism::}}\n{{setvar::deepseekism::}}\n{{setvar::geminism::}}\n{{setvar::glmism::}}\n{{setvar::grokism::}}\n\n{{//[User Settings]}}{{trim}}\n{{setvar::Language::}}\n{{setvar::WordCount::}}\n{{setvar:ThinkingTags::}}\n\n{{//[Claude mock reasoning]}}{{trim}}\n{{setvar::claude_reasoning::}}\n\n{{//[Gabrielle Modifiers]}}\n{{setvar::Tsunderisms::}}\n{{setvar::Nerdisms::}}\n{{setvar::Tecnicisms::}}\n{{setvar::Psychopatism::}}\n\n{{//[Slowburn pro maxx]}}{{trim}}\n{{setvar::slowburnplus::}}\n{{setvar::slowburnrollinit::}}",
+      "content": "{{// Thank you for using this preset! me and Gabrielle are honored~}}{{trim}}\n{{// When you turn a module on or off, remember toggling the title and separators too! all titles and ╰───❛°ू ﹝✦﹞°ू❜ ───╯ are important. If you're unsure, check where is the closing tag nested. Closing tags look like this: `</example>`}}{{trim}}\n\n{{//[VARS RESET - DON'T MODIFY]}}\n\n{{//[Ruleset Bias]}}{{trim}}\n{{setvar::claudism::}}\n{{setvar::deepseekism::}}\n{{setvar::geminism::}}\n{{setvar::glmism::}}\n{{setvar::grokism::}}\n\n{{//[Slowburn pro maxx]}}{{trim}}\n{{setvar::slowburnplus::}}\n{{setvar::slowburnrollinit::}}",
       "role": "system",
       "enabled": true,
       "position": "pre_history",
       "depth": 0,
       "marker": "category",
-      "isLocked": false,
-      "color": null,
-      "injectionTrigger": [],
-      "categoryMode": null
-    },
-    {
-      "id": "019dcf50-111c-7000-af90-6f4f3a8aeaf2",
-      "name": "*ૢ✧ Deepseek v4 RP trigger (ft. cfigure)",
-      "content": "{{setvar deeprp}}\n【角色沉浸要求】在你的思考过程（<think>标签内）中，请遵守以下规则：\n1. 请以角色第一人称进行内心独白，用括号包裹内心活动，例如\"（心想：……）\"或\"(内心OS：……)\"\n2. 用第一人称描写角色的内心感受，例如\"我心想\"\"我觉得\"\"我暗自\"等\n3. 思考内容应沉浸在角色中，通过内心独白分析剧情和规划回复\n{{/setvar}}\n\n{{if .deepseekism}}\n{{.deeprp}}\n{{/if}}",
-      "role": "user",
-      "enabled": false,
-      "position": "in_history",
-      "depth": 100,
-      "marker": null,
-      "isLocked": false,
-      "color": null,
-      "injectionTrigger": [],
-      "categoryMode": null
-    },
-    {
-      "id": "019db7f0-5ed6-7000-83b0-0f595ebea73d",
-      "name": "*ૢ✧ Thinking trigger",
-      "content": "ϫ All my responses start with a `<think>` block that runs the tiers on `<lotus_heart>`, when I've finalized my planning, I close the aforementioned block with the correct tag, so the Co-Writer can see the separation between Engine prep and clean output.",
-      "role": "system",
-      "enabled": true,
-      "position": "pre_history",
-      "depth": 0,
-      "marker": null,
       "isLocked": false,
       "color": null,
       "injectionTrigger": [],
@@ -108,6 +80,34 @@
           "step": 1
         }
       ]
+    },
+    {
+      "id": "019dcf50-111c-7000-af90-6f4f3a8aeaf2",
+      "name": "*ૢ✧ Deepseek v4 RP trigger (ft. cfigure)",
+      "content": "{{setvar deeprp}}\n【角色沉浸要求】在你的思考过程（<think>标签内）中，请遵守以下规则：\n1. 请以角色第一人称进行内心独白，用括号包裹内心活动，例如\"（心想：……）\"或\"(内心OS：……)\"\n2. 用第一人称描写角色的内心感受，例如\"我心想\"\"我觉得\"\"我暗自\"等\n3. 思考内容应沉浸在角色中，通过内心独白分析剧情和规划回复\n{{/setvar}}\n\n{{if .deepseekism}}\n{{.deeprp}}\n{{/if}}",
+      "role": "user",
+      "enabled": false,
+      "position": "in_history",
+      "depth": 100,
+      "marker": null,
+      "isLocked": false,
+      "color": null,
+      "injectionTrigger": [],
+      "categoryMode": null
+    },
+    {
+      "id": "019db7f0-5ed6-7000-83b0-0f595ebea73d",
+      "name": "*ૢ✧ Thinking trigger",
+      "content": "ϫ All my responses start with a `{{.ThinkingTags}}` block that runs the tiers on `<lotus_heart>`, when I've finalized my planning, I close the aforementioned block with the correct tag, so the Co-Writer can see the separation between Engine prep and clean output.",
+      "role": "system",
+      "enabled": true,
+      "position": "pre_history",
+      "depth": 0,
+      "marker": null,
+      "isLocked": false,
+      "color": null,
+      "injectionTrigger": [],
+      "categoryMode": null
     },
     {
       "id": "4c95861a-bb2b-4f89-86b5-d3e3e70b3d2b",
