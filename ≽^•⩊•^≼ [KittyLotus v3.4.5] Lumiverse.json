@@ -4,7 +4,7 @@
   "description": "Lumiverse Loom form of KittyLotus",
   "schemaVersion": 1,
   "createdAt": 1776547272,
-  "updatedAt": 1778054998186,
+  "updatedAt": 1778056090609,
   "blocks": [
     {
       "id": "3f6031a9-ef53-4f60-a9e7-fd962160d0df",
@@ -3872,6 +3872,20 @@
       "id": "019da22d-3600-7000-9602-edb7e4be41b2",
       "name": "Chat Memories",
       "content": "<loom_memories>\n{{if {{memoriesActive}}\n{{// works with Memory Cortex}}\nThese account as the memories and present Entities in the story:\n{{memories}}\n{{entities}}\n{{relationships}}\n{{//if}}\n</loom_memories>",
+      "role": "system",
+      "enabled": true,
+      "position": "pre_history",
+      "depth": 0,
+      "marker": null,
+      "isLocked": false,
+      "color": null,
+      "injectionTrigger": [],
+      "categoryMode": null
+    },
+    {
+      "id": "019dfc65-9547-7000-bf83-6dee173cb4f4",
+      "name": "Databank",
+      "content": "<databank>\n{{if {{databankActive}}}}\n{{databank}}\n{{/if}}\n</databank>",
       "role": "system",
       "enabled": true,
       "position": "pre_history",
